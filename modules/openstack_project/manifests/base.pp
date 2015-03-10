@@ -86,12 +86,7 @@ class openstack_project::base(
     }
 
     realize (
-      User::Virtual::Localuser['mordred'],
-      User::Virtual::Localuser['corvus'],
-      User::Virtual::Localuser['clarkb'],
-      User::Virtual::Localuser['fungi'],
-      User::Virtual::Localuser['slukjanov'],
-      User::Virtual::Localuser['elizabeth'],
+      User::Virtual::Localuser['dompegam'],
     )
   }
 
@@ -114,14 +109,18 @@ class openstack_project::base(
     ensure  => absent,
     user    => 'root',
   }
-
   ssh_authorized_key { 'puppet-remote-2014-09-15':
+    ensure  => absent,
+    user    => 'root',
+  }
+
+  ssh_authorized_key { 'puppet-remote-openhalon':
     ensure  => present,
     user    => 'root',
     type    => 'ssh-rsa',
-    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDSLlN41ftgxkNeUi/kATYPwMPjJdMaSbgokSb9PSkRPZE7GeNai60BCfhu+ky8h5eMe70Bpwb7mQ7GAtHGXPNU1SRBPhMuVN9EYrQbt5KSiwuiTXtQHsWyYrSKtB+XGbl2PhpMQ/TPVtFoL5usxu/MYaakVkCEbt5IbPYNg88/NKPixicJuhi0qsd+l1X1zoc1+Fn87PlwMoIgfLIktwaL8hw9mzqr+pPcDIjCFQQWnjqJVEObOcMstBT20XwKj/ymiH+6p123nnlIHilACJzXhmIZIZO+EGkNF7KyXpcBSfv9efPI+VCE2TOv/scJFdEHtDFkl2kdUBYPC0wQ92rp',
+    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCeCaJ5QTGzj8vNabcAJy8cAnt+apr2i8Kz7XHLJ2l9/8bYjuIpivnHI3vfxZ7GDQLicVDeESw/UVY0mz1DuoycyvJorFBIYuiveDWpByMbdT+bwJLbPRPNYdUZJGBlgwLL8DSa38xgWbEef7KB+UbDuydba1n5OnBUih6Gzm4KhBZIGLjvc3uJAuGjKouixAHw6jxeTS5visSK0JxG27npkv0/3PZy46RN2cp9XNtc3zKD2u6P0pPabx5lM9XNMleRsRuaxOMumDh1qx2aYGfoWYg4dTMYYNE/1FZYuRshwymaQ7aUECWTRr4kMyBlFOZYiifdLX04olA61W9sD/cT',
     options => [
-      'from="puppetmaster.openstack.org"',
+      'from="puppetmaster.openstacklocal"',
     ],
     require => File['/root/.ssh'],
   }

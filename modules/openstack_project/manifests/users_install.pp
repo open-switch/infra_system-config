@@ -28,20 +28,10 @@ class openstack_project::users_install (
       ensure => present
     }
     realize (
-      User::Virtual::Localuser['mordred'],
-      User::Virtual::Localuser['corvus'],
-      User::Virtual::Localuser['clarkb'],
-      User::Virtual::Localuser['fungi'],
-      User::Virtual::Localuser['slukjanov'],
-      User::Virtual::Localuser['elizabeth'],
+      User::Virtual::Localuser['dompegam'],
     )
   } else {
-      user::virtual::disable{'mordred':}
-      user::virtual::disable{'corvus':}
-      user::virtual::disable{'clarkb':}
-      user::virtual::disable{'fungi':}
-      user::virtual::disable{'slukjanov':}
-      user::virtual::disable{'elizabeth':}
+      user::virtual::disable{'dompegam':}
   }
 }
 
