@@ -169,11 +169,12 @@ node 'cacti.openstack.org' {
 }
 
 # Node-OS: precise
-node 'puppetmaster.openstack.org' {
+node 'puppetmaster.openstacklocal' {
   class { 'openstack_project::puppetmaster':
     root_rsa_key => hiera('puppetmaster_root_rsa_key', 'XXX'),
     sysadmins    => hiera('sysadmins', []),
     version      => '3.6.',
+    puppetdb     => false, 
   }
 }
 
