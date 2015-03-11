@@ -90,10 +90,12 @@ MODULE_LIST=`puppet module list`
 for MOD in ${!SOURCE_MODULES[*]} ; do
     # get the name of the module directory
     if [ `echo $MOD | awk -F. '{print $NF}'` = 'git' ]; then
-        echo "Remote repos of the form repo.git are not supported: ${MOD}"
-        exit 1
+        echo "WARNING: Remote repos of the form repo.git are not supported: ${MOD}, trying anyway"
+#        exit 1
+      MODULE_NAME=`echo $MOD | awk -F/ '{print $NF}'`
+    else
+      MODULE_NAME=`echo $MOD | awk -F- '{print $NF}'`
     fi
-    MODULE_NAME=`echo $MOD | awk -F- '{print $NF}'`
     # set up git base command to use the correct path
     GIT_CMD_BASE="git --git-dir=${MODULE_PATH}/${MODULE_NAME}/.git --work-tree ${MODULE_PATH}/${MODULE_NAME}"
     # treat any occurrence of the module as a match
