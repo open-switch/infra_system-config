@@ -9,11 +9,11 @@ class openstack_project::template (
   $iptables_rules6           = [],
   $pin_puppet                = '3.',
   $install_users             = true,
-  $install_resolv_conf       = true,
+  $install_resolv_conf       = false,
   $automatic_upgrades        = true,
   $certname                  = $::fqdn,
   $ca_server                 = undef,
-  $enable_unbound            = true,
+  $enable_unbound            = false,
   $afs                       = false,
 ) {
   include ntp
