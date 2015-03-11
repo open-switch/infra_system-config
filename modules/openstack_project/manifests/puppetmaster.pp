@@ -6,7 +6,7 @@ class openstack_project::puppetmaster (
   $version   = '3.',
   $ca_server = undef,
   $puppetdb = true,
-  $puppetdb_server = 'puppetdb.openstack.org',
+  $puppetdb_server = 'puppetdb.openstacklocal',
 ) {
   include logrotate
   include openstack_project::params
