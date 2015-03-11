@@ -92,7 +92,7 @@ for MOD in ${!SOURCE_MODULES[*]} ; do
     if [ `echo $MOD | awk -F. '{print $NF}'` = 'git' ]; then
         echo "WARNING: Remote repos of the form repo.git are not supported: ${MOD}, trying anyway"
 #        exit 1
-      MODULE_NAME=`echo $MOD | awk -F/ '{print $NF}'`
+      MODULE_NAME=`echo $MOD | awk -F- '{print $NF}'`
       MODULE_NAME=`echo $MODULE_NAME | awk -F. '{print $1}'`
     else
       MODULE_NAME=`echo $MOD | awk -F- '{print $NF}'`
