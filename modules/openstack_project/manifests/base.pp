@@ -130,17 +130,17 @@ class openstack_project::base(
   }
 
   # DNS-less network
-  host { 'puppetmaster':
+  host { 'puppetmaster.openstacklocal':
     ip => '10.0.0.5',
-    host_aliases => [ 'puppetmaster.openstacklocal' ]
+    host_aliases => [ 'puppetmaster' ]
   }
-  host { 'review':
+  host { 'review.openstacklocal':
     ip => '10.0.0.6',
-    host_aliases => [ 'review.openstacklocal' ]
+    host_aliases => [ 'review' ]
   }
-  host { 'puppetdb':
+  host { 'puppetdb.openstacklocal':
     ip => '10.0.0.7',
-    host_aliases => [ 'puppetdb.openstacklocal' ]
+    host_aliases => [ 'puppetdb' ]
   }
   
   # Which Puppet do I take?
