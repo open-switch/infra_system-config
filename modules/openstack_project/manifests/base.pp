@@ -129,6 +129,20 @@ class openstack_project::base(
     user    => 'root',
   }
 
+  # DNS-less network
+  host { 'puppetmaster':
+    ip => '10.0.0.5',
+    host_aliases => [ 'puppetmaster.openstacklocal' ]
+  }
+  host { 'review':
+    ip => '10.0.0.6',
+    host_aliases => [ 'review.openstacklocal' ]
+  }
+  host { 'puppetdb':
+    ip => '10.0.0.7',
+    host_aliases => [ 'puppetdb.openstacklocal' ]
+  }
+  
   # Which Puppet do I take?
   # Take $puppet_version and pin to that version
   if ($::osfamily == 'Debian') {
