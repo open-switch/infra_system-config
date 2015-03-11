@@ -118,9 +118,9 @@ class openstack_project::base(
     ensure  => present,
     user    => 'root',
     type    => 'ssh-rsa',
-    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC/J25YNhvU7bUOd4aaZE/LUrWJdVWplH/auKFzdSsCJJj19iQUaxbp3soFd8L8Tz/bELvjtQQi3i6tbErvLYJ5Q6TPe7/eiC+LkGSfdSbJTMiCeQW2sBnD+DEa1x2iSxn7toJmCAxQMnRIxAoLND6SbhjyFyV1OvmHlT5plWzw5N9qdT3+ApFvD3qHwSpu6CDcQEZ9cQ3EFBjJ3kgyCeQyJR9B0SjisRC8o057B1U3BcAYVTqrS+9sb2JY2x3fo+jy1BvrPftDW0YE/ibbpk2K+RLlSrT922gMxcqYHvVd56yCcpnQNg+bYxJ4MIEpeXEwreKse0wT3Ntmu9LiqSqH',
+    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDYv1DKZK88r3SG67+oSOeNo1vLLd83dwopDxVfP/mKlCQcz1gBJwdzWO26HQpo2Y5Q3T6bwghVs+DpjTFrQogvhk76BldZm5NNpiy64HLhTptUL/7t3FjoDkWsuYaEzDVFyo1s2FqwCzl/8w3POhHql/soho0qvl5MX9RAiZax/qrcIPl3cT2iPFm4qAmosAPxABKbUVHxt48jfkkbaIH8b1DOmE7ydejFoQaL6pEqO22V80lgG2FX08eRDkMSRIRyAYlyZ0HOeiwmcUuk1BMKGkUr4Y2je6lDBilfCdA0RnVYXy5lMHzBJlb9yBFbrf9ihQKeN9cauSbC8hG4/O5R',
     options => [
-      'from="puppetmaster.openstacklocal"',
+      'from="puppetmaster.openstacklocal,localhost"',
     ],
     require => File['/root/.ssh'],
   }
