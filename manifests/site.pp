@@ -90,7 +90,7 @@ node 'review.openstacklocal' {
 # Node-OS: trusty
 node 'review-dev.openstack.org' {
   class { 'openstack_project::review_dev':
-    project_config_repo             => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo             => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     github_oauth_token              => hiera('gerrit_dev_github_token', 'XXX'),
     github_project_username         => hiera('github_dev_project_username', 'username'),
     github_project_password         => hiera('github_dev_project_password', 'XXX'),
@@ -115,7 +115,7 @@ node 'review-dev.openstack.org' {
 # Node-OS: precise
 node 'jenkins.openstack.org' {
   class { 'openstack_project::jenkins':
-    project_config_repo     => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo     => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
     jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
     ssl_cert_file_contents  => hiera('jenkins_ssl_cert_file_contents', 'XXX'),
@@ -253,7 +253,7 @@ node 'planet.openstack.org' {
 # Node-OS: precise
 node 'eavesdrop.openstack.org' {
   class { 'openstack_project::eavesdrop':
-    project_config_repo     => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo     => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     nickpass                => hiera('openstack_meetbot_password', 'XXX'),
     sysadmins               => hiera('sysadmins', []),
     statusbot_nick          => hiera('statusbot_nick', 'username'),
@@ -380,7 +380,7 @@ node /^git(-fe\d+)?\.openstack\.org$/ {
 node /^git\d+\.openstack\.org$/ {
   include openstack_project
   class { 'openstack_project::git_backend':
-    project_config_repo     => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo     => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     vhost_name              => 'git.openstack.org',
     sysadmins               => hiera('sysadmins', []),
     git_gerrit_ssh_key      => hiera('gerrit_replication_ssh_rsa_pubkey_contents', 'XXX'),
@@ -411,7 +411,7 @@ node 'summit.openstack.org' {
 # Node-OS: precise
 node 'storyboard.openstack.org' {
   class { 'openstack_project::storyboard':
-    project_config_repo     => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo     => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     sysadmins               => hiera('sysadmins', []),
     mysql_host              => hiera('storyboard_db_host', 'localhost'),
     mysql_user              => hiera('storyboard_db_user', 'username'),
@@ -428,7 +428,7 @@ node 'storyboard.openstack.org' {
 # Node-OS: precise
 node 'static.openstack.org' {
   class { 'openstack_project::static':
-    project_config_repo     => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo     => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     sysadmins               => hiera('sysadmins', []),
     swift_authurl           => 'https://identity.api.rackspacecloud.com/v2.0/',
     swift_user              => 'infra-files-ro',
@@ -460,7 +460,7 @@ node 'status.openstack.org' {
 # Node-OS: trusty
 node 'nodepool.openstack.org' {
   class { 'openstack_project::nodepool_prod':
-    project_config_repo      => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo      => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     mysql_password           => hiera('nodepool_mysql_password', 'XXX'),
     mysql_root_password      => hiera('nodepool_mysql_root_password', 'XXX'),
     nodepool_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
@@ -485,7 +485,7 @@ node 'nodepool.openstack.org' {
 # Node-OS: trusty
 node 'zuul.openstack.org' {
   class { 'openstack_project::zuul_prod':
-    project_config_repo            => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo            => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     gerrit_server                  => 'review.openstack.org',
     gerrit_user                    => 'jenkins',
     gerrit_ssh_host_key            => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
@@ -542,7 +542,7 @@ node /^zm\d+\.openstack\.org$/ {
 # Node-OS: trusty
 node 'zuul-dev.openstack.org' {
   class { 'openstack_project::zuul_dev':
-    project_config_repo  => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo  => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     gerrit_server        => 'review-dev.openstack.org',
     gerrit_user          => 'jenkins',
     gerrit_ssh_host_key  => hiera('gerrit_dev_ssh_rsa_pubkey_contents', 'XXX'),
