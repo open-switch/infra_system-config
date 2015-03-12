@@ -51,9 +51,9 @@ node default {
 # Long lived servers:
 #
 # Node-OS: precise
-node 'review.openstack.org' {
+node 'review.openstacklocal' {
   class { 'openstack_project::review':
-    project_config_repo                 => 'https://git.openstack.org/openstack-infra/project-config',
+    project_config_repo                 => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     github_oauth_token                  => hiera('gerrit_github_token', 'XXX'),
     github_project_username             => hiera('github_project_username', 'username'),
     github_project_password             => hiera('github_project_password', 'XXX'),
