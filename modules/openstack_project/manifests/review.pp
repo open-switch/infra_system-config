@@ -40,6 +40,7 @@ class openstack_project::review (
   # provisioning.
   $mysql_host = '',
   $mysql_password = '',
+  $mysql_root_password = '',
   $email_private_key = '',
   # Register an IRC bot and supply it's password here.
   $gerritbot_password = '',
@@ -85,6 +86,19 @@ class openstack_project::review (
 
   class { 'project_config':
     url  => $project_config_repo,
+  }
+
+  class { 'mysql::server':
+    config_hash => {
+      'root_password'  => $mysql_root_password,
+      'default_engine' => 'InnoDB',
+      'bind_address'   => '127.0.0.1',
+    }
+  }
+  include mysql::server::account_security
+
+  mysql_backup::backup { 'gerrit':
+    require => Class['mysql::server'],
   }
 
   class { 'openstack_project::gerrit':
@@ -135,14 +149,14 @@ class openstack_project::review (
     swift_username                      => $swift_username,
     swift_password                      => $swift_password,
     replication                         => [
-      {
-        name                 => 'github',
-        url                  => 'git@github.com:',
-        authGroup            => 'Anonymous Users',
-        replicationDelay     => '1',
-        replicatePermissions => false,
-        mirror               => true,
-      },
+#      {
+#        name                 => 'github',
+#        url                  => 'git@github.com:',
+#        authGroup            => 'Anonymous Users',
+#        replicationDelay     => '1',
+#        replicatePermissions => false,
+#        mirror               => true,
+#      },
       {
         name                 => 'local',
         url                  => 'file:///opt/lib/git/',
@@ -150,41 +164,41 @@ class openstack_project::review (
         threads              => '4',
         mirror               => true,
       },
-      {
-        name                 => 'git01',
-        url                  => 'cgit@git01.openstack.org:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git02',
-        url                  => 'cgit@git02.openstack.org:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git03',
-        url                  => 'cgit@git03.openstack.org:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git04',
-        url                  => 'cgit@git04.openstack.org:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git05',
-        url                  => 'cgit@git05.openstack.org:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
+#      {
+#        name                 => 'git01',
+#        url                  => 'cgit@git01.openstack.org:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
+#      {
+#        name                 => 'git02',
+#        url                  => 'cgit@git02.openstack.org:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
+#      {
+#        name                 => 'git03',
+#        url                  => 'cgit@git03.openstack.org:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
+#      {
+#        name                 => 'git04',
+#        url                  => 'cgit@git04.openstack.org:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
+#      {
+#        name                 => 'git05',
+#        url                  => 'cgit@git05.openstack.org:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
     ],
     require                             => $::project_config::config_dir,
   }
@@ -193,17 +207,17 @@ class openstack_project::review (
     version => 'e00d5af',
   }
 
-  class { 'gerritbot':
-    nick                    => 'openstackgerrit',
-    password                => $gerritbot_password,
-    server                  => 'irc.freenode.net',
-    user                    => 'gerritbot',
-    vhost_name              => $::fqdn,
-    ssh_rsa_key_contents    => $gerritbot_ssh_rsa_key_contents,
-    ssh_rsa_pubkey_contents => $gerritbot_ssh_rsa_pubkey_contents,
-    channel_file            => $::project_config::gerritbot_channel_file,
-    require                 => $::project_config::config_dir,
-  }
+#  class { 'gerritbot':
+#    nick                    => 'openstackgerrit',
+#    password                => $gerritbot_password,
+#    server                  => 'irc.freenode.net',
+#    user                    => 'gerritbot',
+#    vhost_name              => $::fqdn,
+#    ssh_rsa_key_contents    => $gerritbot_ssh_rsa_key_contents,
+#    ssh_rsa_pubkey_contents => $gerritbot_ssh_rsa_pubkey_contents,
+#    channel_file            => $::project_config::gerritbot_channel_file,
+#    require                 => $::project_config::config_dir,
+#  }
   class { 'gerrit::remotes':
     ensure => absent,
   }
@@ -228,9 +242,9 @@ class openstack_project::review (
     require => User['gerrit2'],
   }
 
-  include bup
-  bup::site { 'rs-ord':
-    backup_user   => 'bup-review',
-    backup_server => 'ci-backup-rs-ord.openstack.org',
-  }
+#  include bup
+#  bup::site { 'rs-ord':
+#    backup_user   => 'bup-review',
+#    backup_server => 'ci-backup-rs-ord.openstack.org',
+#  }
 }
