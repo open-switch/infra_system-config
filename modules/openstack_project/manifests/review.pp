@@ -97,7 +97,7 @@ class openstack_project::review (
   }
   include mysql::server::account_security
 
-  mysql_backup::backup { 'gerrit':
+  mysql_backup::backup { 'gerritdb':
     require => Class['mysql::server'],
   }
 
@@ -222,26 +222,26 @@ class openstack_project::review (
     ensure => absent,
   }
 
-  package { 'python-launchpadlib':
-    ensure => present,
-  }
-  file { '/home/gerrit2/.launchpadlib':
-    ensure  => directory,
-    owner   => 'gerrit2',
-    group   => 'gerrit2',
-    mode    => '0775',
-    require => User['gerrit2'],
-  }
-  file { '/home/gerrit2/.launchpadlib/creds':
-    ensure  => present,
-    owner   => 'gerrit2',
-    group   => 'gerrit2',
-    mode    => '0600',
-    content => template('openstack_project/gerrit_lp_creds.erb'),
-    replace => true,
-    require => User['gerrit2'],
-  }
-
+#  package { 'python-launchpadlib':
+#    ensure => present,
+#  }
+#  file { '/home/gerrit2/.launchpadlib':
+#    ensure  => directory,
+#    owner   => 'gerrit2',
+#    group   => 'gerrit2',
+#    mode    => '0775',
+#    require => User['gerrit2'],
+#  }
+#  file { '/home/gerrit2/.launchpadlib/creds':
+#    ensure  => present,
+#    owner   => 'gerrit2',
+#    group   => 'gerrit2',
+#    mode    => '0600',
+#    content => template('openstack_project/gerrit_lp_creds.erb'),
+#    replace => true,
+#    require => User['gerrit2'],
+#  }
+#
 #  include bup
 #  bup::site { 'rs-ord':
 #    backup_user   => 'bup-review',
