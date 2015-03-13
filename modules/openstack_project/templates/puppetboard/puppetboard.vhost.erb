@@ -1,6 +1,5 @@
 <VirtualHost *:<%= @port %>>
     ServerName <%= @fqdn %>
-    ServerAlias 15.126.213.117
 
     WSGIDaemonProcess puppetboard user=<%= @user %> group=<%= @group %> threads=5
     WSGIScriptAlias / <%= @docroot %>/wsgi.py
