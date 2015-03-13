@@ -40,7 +40,6 @@ class openstack_project::review (
   # provisioning.
   $mysql_host = '',
   $mysql_password = '',
-  $mysql_root_password = '',
   $email_private_key = '',
   # Register an IRC bot and supply it's password here.
   $gerritbot_password = '',
@@ -86,19 +85,6 @@ class openstack_project::review (
 
   class { 'project_config':
     url  => $project_config_repo,
-  }
-
-  class { 'mysql::server':
-    config_hash => {
-      'root_password'  => $mysql_root_password,
-      'default_engine' => 'InnoDB',
-      'bind_address'   => '127.0.0.1',
-    }
-  }
-  include mysql::server::account_security
-
-  mysql_backup::backup { 'gerritdb':
-    require => Class['mysql::server'],
   }
 
   class { 'openstack_project::gerrit':
