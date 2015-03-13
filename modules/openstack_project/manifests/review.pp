@@ -72,7 +72,7 @@ class openstack_project::review (
   $lp_sync_secret='',
   # For gerrit's contactstore feature
   # https://review.openstack.org/Documentation/config-contact.html
-  $contactstore = true,
+  $contactstore = false,
   $contactstore_appsec='',
   $contactstore_pubkey='',
   $sysadmins = [],
