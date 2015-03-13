@@ -1,5 +1,5 @@
 ---
-- hosts: "!review.openstacklocal:!git0*:!afs*"
+- hosts: "!review.openhalon.io:!git0*:!afs*"
   gather_facts: false
   roles:
-    - { role: puppet, puppetmaster: puppetmaster.openstacklocal }
+    - { role: puppet, puppetmaster: puppetmaster.openhalon.io }

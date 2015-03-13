@@ -51,7 +51,7 @@ node default {
 # Long lived servers:
 #
 # Node-OS: precise
-node 'review.openstacklocal' {
+node 'review.openhalon.io' {
   class { 'openstack_project::review':
     project_config_repo                 => 'http://magma-git.austin.hp.com/openhalonci/project-config.git',
     github_oauth_token                  => hiera('gerrit_github_token', 'XXX'),
@@ -175,7 +175,7 @@ node 'cacti.openstack.org' {
 }
 
 # Node-OS: precise
-node 'puppetmaster.openstacklocal' {
+node 'puppetmaster.openhalon.io' {
   class { 'openstack_project::puppetmaster':
     root_rsa_key => hiera('puppetmaster_root_rsa_key', 'XXX'),
     sysadmins    => hiera('sysadmins', []),
@@ -184,7 +184,7 @@ node 'puppetmaster.openstacklocal' {
 }
 
 # Node-OS: precise
-node 'puppetdb.openstacklocal' {
+node 'puppetdb.openhalon.io' {
   class { 'openstack_project::puppetdb':
     sysadmins => hiera('sysadmins', []),
   }
