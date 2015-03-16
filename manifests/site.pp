@@ -181,18 +181,14 @@ node 'puppetmaster.openhalon.io' {
     sysadmins    => hiera('sysadmins', []),
     version      => '3.6.',
   }
+}
 
+# Node-OS: precise
+node 'puppetdb.openhalon.io' {
   class { 'openstack_project::puppetdb':
     sysadmins => hiera('sysadmins', []),
   }
 }
-
-# Node-OS: precise
-#node 'puppetdb.openhalon.io' {
-#  class { 'openstack_project::puppetdb':
-#    sysadmins => hiera('sysadmins', []),
-#  }
-#}
 
 # Node-OS: precise
 node 'graphite.openstack.org' {
