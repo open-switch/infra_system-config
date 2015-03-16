@@ -300,7 +300,7 @@ node 'etherpad-dev.openstack.org' {
 }
 
 # Node-OS: precise
-node 'wiki.openstack.org' {
+node 'wiki.openhalon.io' {
   class { 'openstack_project::wiki':
     mysql_root_password     => hiera('wiki_db_password', 'XXX'),
     sysadmins               => hiera('sysadmins', []),
