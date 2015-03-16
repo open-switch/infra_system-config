@@ -17,10 +17,6 @@ class openstack_project::wiki (
     sysadmins                 => $sysadmins,
   }
 
-  realize (
-    User::Virtual::Localuser['rlane'],
-  )
-
   class { 'mediawiki':
     role                      => 'all',
     mediawiki_location        => '/srv/mediawiki/w',
