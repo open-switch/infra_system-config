@@ -136,7 +136,7 @@ class openstack_project::base(
       location   => 'http://apt.puppetlabs.com',
       repos      => 'main',
       key        => '4BD6EC30',
-      key_server => 'pgp.mit.edu',
+      key_server => 'keys.gnupg.net',
     }
 
     file { '/etc/apt/apt.conf.d/80retry':
