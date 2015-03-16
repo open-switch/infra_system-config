@@ -52,19 +52,19 @@ class openstack_project::wiki (
     require => Class['mysql::server'],
   }
 
-  include bup
-  bup::site { 'rs-ord':
-    backup_user   => 'bup-wiki',
-    backup_server => 'ci-backup-rs-ord.openstack.org',
-  }
+#  include bup
+#  bup::site { 'rs-ord':
+#    backup_user   => 'bup-wiki',
+#    backup_server => 'ci-backup-rs-ord.openstack.org',
+#  }
 
-  class { '::elasticsearch':
-    es_template_config => {
-      'bootstrap.mlockall'               => true,
-      'discovery.zen.ping.unicast.hosts' => ['localhost'],
-    },
-    version            => '1.3.2',
-    heap_size          => '1g',
-  }
+#  class { '::elasticsearch':
+#    es_template_config => {
+#      'bootstrap.mlockall'               => true,
+#      'discovery.zen.ping.unicast.hosts' => ['localhost'],
+#    },
+#    version            => '1.3.2',
+#    heap_size          => '1g',
+#  }
 
 }
