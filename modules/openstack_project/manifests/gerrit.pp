@@ -256,7 +256,7 @@ class openstack_project::gerrit (
 
   file { '/home/gerrit2/review_site/static/title.png':
     ensure  => present,
-    source  => 'puppet:///modules/openstack_project/openstack.png',
+    source  => 'puppet:///modules/openstack_project/openhalon.png',
     require => Class['::gerrit'],
     notify => Exec['reload_gerrit_header'],
   }
