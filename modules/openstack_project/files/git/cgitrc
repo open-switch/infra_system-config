@@ -15,7 +15,7 @@ cache-repo-ttl=1
 cache-root-ttl=1
 
 # Specify some default clone prefixes
-clone-prefix=git://git.openstack.org https://git.openstack.org
+clone-prefix=git://git.openhalon.io https://git.openhalon.io
 
 # Specify a command which will be invoked to format commit messages
 commit-filter=/usr/local/bin/commit-filter.sh
@@ -42,7 +42,7 @@ logo=/static/openhalon.png
 max-stats=quarter
 
 # Set the title and heading of the repository index page
-root-title=OpenStack git repository browser
+root-title=OpenHalon git repository browser
 
 # Make side-by-side diffs the default
 side-by-side-diffs=1
