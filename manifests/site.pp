@@ -360,22 +360,16 @@ node /^elasticsearch0[1-7]\.openstack\.org$/ {
 
 # CentOS machines to load balance git access.
 # Node-OS: centos6
-node /^git(-fe\d+)?\.openstack\.org$/ {
+node /^git(-fe\d+)?\.openhalon\.io$/ {
   class { 'openstack_project::git':
     sysadmins               => hiera('sysadmins', []),
     balancer_member_names   => [
-      'git01.openstack.org',
-      'git02.openstack.org',
-      'git03.openstack.org',
-      'git04.openstack.org',
-      'git05.openstack.org',
+      'git01.openhalon.io',
+      'git02.openhalon.io',
     ],
     balancer_member_ips     => [
-      '198.61.223.164',
-      '23.253.102.209',
-      '162.242.144.38',
-      '166.78.46.164',
-      '166.78.46.121',
+      '15.126.131.201',
+      '15.126.131.211',
     ],
   }
 }
@@ -383,11 +377,11 @@ node /^git(-fe\d+)?\.openstack\.org$/ {
 # CentOS machines to run cgit and git daemon. Will be
 # load balanced by git.openstack.org.
 # Node-OS: centos6
-node /^git\d+\.openstack\.org$/ {
+node /^git\d+\.openhalon\.io$/ {
   include openstack_project
   class { 'openstack_project::git_backend':
     project_config_repo     => 'https://review.openhalon.io/infra/project-config',
-    vhost_name              => 'git.openstack.org',
+    vhost_name              => 'git.openhalon.io',
     sysadmins               => hiera('sysadmins', []),
     git_gerrit_ssh_key      => hiera('gerrit_replication_ssh_rsa_pubkey_contents', 'XXX'),
     ssl_cert_file_contents  => hiera('git_ssl_cert_file_contents', 'XXX'),
