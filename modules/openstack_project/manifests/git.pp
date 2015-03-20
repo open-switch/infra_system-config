@@ -54,7 +54,8 @@ class openstack_project::git (
   }
   # The three listen defines here are what the world will hit.
   haproxy::listen { 'balance_git_http':
-    ipaddress        => [$::ipaddress, $::ipaddress6],
+#    ipaddress        => [$::ipaddress, $::ipaddress6],
+    ipaddress        => [$::ipaddress],
     ports            => ['80'],
     mode             => 'tcp',
     collect_exported => false,
@@ -66,7 +67,8 @@ class openstack_project::git (
     },
   }
   haproxy::listen { 'balance_git_https':
-    ipaddress        => [$::ipaddress, $::ipaddress6],
+#    ipaddress        => [$::ipaddress, $::ipaddress6],
+    ipaddress        => [$::ipaddress],
     ports            => ['443'],
     mode             => 'tcp',
     collect_exported => false,
@@ -78,7 +80,8 @@ class openstack_project::git (
     },
   }
   haproxy::listen { 'balance_git_daemon':
-    ipaddress        => [$::ipaddress, $::ipaddress6],
+#    ipaddress        => [$::ipaddress, $::ipaddress6],
+    ipaddress        => [$::ipaddress],
     ports            => ['9418'],
     mode             => 'tcp',
     collect_exported => false,
