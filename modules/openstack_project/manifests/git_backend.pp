@@ -127,9 +127,9 @@ class openstack_project::git_backend (
     require     => User['cgit'],
   }
 
-  file { '/var/www/cgit/static/openstack.png':
+  file { '/var/www/cgit/static/openhalon.png':
     ensure  => present,
-    source  => 'puppet:///modules/openstack_project/openstack.png',
+    source  => 'puppet:///modules/openstack_project/openhalon.png',
     require => File['/var/www/cgit/static'],
   }
 

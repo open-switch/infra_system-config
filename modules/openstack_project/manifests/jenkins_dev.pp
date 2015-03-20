@@ -33,7 +33,7 @@ class openstack_project::jenkins_dev (
   class { '::jenkins::master':
     vhost_name              => 'jenkins-dev.openstack.org',
     serveradmin             => 'webmaster@openstack.org',
-    logo                    => 'openstack.png',
+    logo                    => 'openhalon.png',
     ssl_cert_file           => '/etc/ssl/certs/ssl-cert-snakeoil.pem',
     ssl_key_file            => '/etc/ssl/private/ssl-cert-snakeoil.key',
     ssl_chain_file          => '',

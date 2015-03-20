@@ -36,7 +36,7 @@ enable-http-clone=0
 favicon=/static/favicon.ico
 
 # Use a custom logo
-logo=/static/openstack.png
+logo=/static/openhalon.png
 
 # Enable statistics per week, month and quarter
 max-stats=quarter
