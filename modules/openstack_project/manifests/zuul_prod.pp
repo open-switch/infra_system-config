@@ -49,8 +49,8 @@ class openstack_project::zuul_prod(
     job_name_in_report             => true,
     status_url                     => $status_url,
     statsd_host                    => $statsd_host,
-    git_email                      => 'jenkins@openstack.org',
-    git_name                       => 'OpenStack Jenkins',
+    git_email                      => 'jenkins@openhalon.io',
+    git_name                       => 'OpenHalon Jenkins',
     swift_authurl                  => $swift_authurl,
     swift_auth_version             => $swift_auth_version,
     swift_user                     => $swift_user,
@@ -58,7 +58,7 @@ class openstack_project::zuul_prod(
     swift_tenant_name              => $swift_tenant_name,
     swift_region_name              => $swift_region_name,
     swift_default_container        => $swift_default_container,
-    swift_default_logserver_prefix => $swift_default_logserver_prefix,
+    swift_default_logserver_prefix => $swift_default_logserqver_prefix,
     swift_default_expiry           => $swift_default_expiry,
   }
 

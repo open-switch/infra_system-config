@@ -53,7 +53,7 @@ node default {
 # Node-OS: precise
 node 'review.openhalon.io' {
   class { 'openstack_project::review':
-    project_config_repo                 => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo                 => 'https://git.openhalon.io/infra/project-config',
     github_oauth_token                  => hiera('gerrit_github_token', 'XXX'),
     github_project_username             => hiera('github_project_username', 'username'),
     github_project_password             => hiera('github_project_password', 'XXX'),
@@ -96,7 +96,7 @@ node 'review.openhalon.io' {
 # Node-OS: trusty
 node 'review-dev.openstack.org' {
   class { 'openstack_project::review_dev':
-    project_config_repo             => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo             => 'https://git.openhalon.io/infra/project-config',
     github_oauth_token              => hiera('gerrit_dev_github_token', 'XXX'),
     github_project_username         => hiera('github_dev_project_username', 'username'),
     github_project_password         => hiera('github_dev_project_password', 'XXX'),
@@ -121,7 +121,7 @@ node 'review-dev.openstack.org' {
 # Node-OS: precise
 node 'jenkins.openstack.org' {
   class { 'openstack_project::jenkins':
-    project_config_repo     => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo     => 'https://git.openhalon.io/infra/project-config',
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
     jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
     ssl_cert_file_contents  => hiera('jenkins_ssl_cert_file_contents', 'XXX'),
@@ -259,7 +259,7 @@ node 'planet.openstack.org' {
 # Node-OS: precise
 node 'eavesdrop.openstack.org' {
   class { 'openstack_project::eavesdrop':
-    project_config_repo     => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo     => 'https://git.openhalon.io/infra/project-config',
     nickpass                => hiera('openstack_meetbot_password', 'XXX'),
     sysadmins               => hiera('sysadmins', []),
     statusbot_nick          => hiera('statusbot_nick', 'username'),
@@ -380,7 +380,7 @@ node /^git(-fe\d+)?\.openhalon\.io$/ {
 node /^git\d+\.openhalon\.io$/ {
   include openstack_project
   class { 'openstack_project::git_backend':
-    project_config_repo     => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo     => 'https://git.openhalon.io/infra/project-config',
     vhost_name              => 'git.openhalon.io',
     sysadmins               => hiera('sysadmins', []),
     git_gerrit_ssh_key      => hiera('gerrit_replication_ssh_rsa_pubkey_contents', 'XXX'),
@@ -411,7 +411,7 @@ node 'summit.openstack.org' {
 # Node-OS: precise
 node 'storyboard.openstack.org' {
   class { 'openstack_project::storyboard':
-    project_config_repo     => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo     => 'https://git.openhalon.io/infra/project-config',
     sysadmins               => hiera('sysadmins', []),
     mysql_host              => hiera('storyboard_db_host', 'localhost'),
     mysql_user              => hiera('storyboard_db_user', 'username'),
@@ -428,7 +428,7 @@ node 'storyboard.openstack.org' {
 # Node-OS: precise
 node 'static.openhalon.io' {
   class { 'openstack_project::static':
-    project_config_repo     => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo     => 'https://git.openhalon.io/infra/project-config',
     sysadmins               => hiera('sysadmins', []),
   }
 }
@@ -454,7 +454,7 @@ node 'status.openstack.org' {
 # Node-OS: trusty
 node 'nodepool.openstack.org' {
   class { 'openstack_project::nodepool_prod':
-    project_config_repo      => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo      => 'https://git.openhalon.io/infra/project-config',
     mysql_password           => hiera('nodepool_mysql_password', 'XXX'),
     mysql_root_password      => hiera('nodepool_mysql_root_password', 'XXX'),
     nodepool_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
@@ -477,54 +477,42 @@ node 'nodepool.openstack.org' {
 
 # Node-OS: precise
 # Node-OS: trusty
-node 'zuul.openstack.org' {
+node 'zuul.openhalon.io' {
   class { 'openstack_project::zuul_prod':
-    project_config_repo            => 'https://review.openhalon.io/infra/project-config',
-    gerrit_server                  => 'review.openstack.org',
+    project_config_repo            => 'https://git.openhalon.io/infra/project-config',
+    gerrit_server                  => 'review.openhalon.io',
     gerrit_user                    => 'jenkins',
     gerrit_ssh_host_key            => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
     zuul_ssh_private_key           => hiera('zuul_ssh_private_key_contents', 'XXX'),
-    url_pattern                    => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
-    swift_authurl                  => 'https://identity.api.rackspacecloud.com/v2.0/',
-    swift_user                     => 'infra-files-rw',
-    swift_key                      => hiera('infra_files_rw_password', 'XXX'),
-    swift_tenant_name              => hiera('infra_files_tenant_name', 'tenantname'),
-    swift_region_name              => 'DFW',
-    swift_default_container        => 'infra-files',
-    swift_default_logserver_prefix => 'http://logs.openstack.org/',
-    swift_default_expiry           => 14400,
-    zuul_url                       => 'http://zuul.openstack.org/p',
+    #url_pattern                    => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
+    #swift_authurl                  => 'https://identity.api.rackspacecloud.com/v2.0/',
+    #swift_user                     => 'infra-files-rw',
+    #swift_key                      => hiera('infra_files_rw_password', 'XXX'),
+    #swift_tenant_name              => hiera('infra_files_tenant_name', 'tenantname'),
+    #swift_region_name              => 'DFW',
+    #swift_default_container        => 'infra-files',
+    #swift_default_logserver_prefix => 'http://logs.openstack.org/',
+    #swift_default_expiry           => 14400,
+    zuul_url                       => 'http://zuul.openhalon.io/p',
     sysadmins                      => hiera('sysadmins', []),
-    statsd_host                    => 'graphite.openstack.org',
-    gearman_workers                => [
-      'nodepool.openstack.org',
-      'jenkins.openstack.org',
-      'jenkins01.openstack.org',
-      'jenkins02.openstack.org',
-      'jenkins03.openstack.org',
-      'jenkins04.openstack.org',
-      'jenkins05.openstack.org',
-      'jenkins06.openstack.org',
-      'jenkins07.openstack.org',
-      'jenkins-dev.openstack.org',
-      'zm01.openstack.org',
-      'zm02.openstack.org',
-      'zm03.openstack.org',
-      'zm04.openstack.org',
-      'zm05.openstack.org',
-      'zm06.openstack.org',
-      'zm07.openstack.org',
-      'zm08.openstack.org',
+    #statsd_host                    => 'graphite.openstack.org',
+    gearman_workers                => [ # Required to open the ports to listen for them
+#      'nodepool.openstack.org',
+#      'jenkins.openhalon.io',
+#      'jenkins01.openstack.org',
+#      'jenkins-dev.openstack.org',
+      'zm01.openhalon.io',
+#      'zm02.openstack.org',
     ],
   }
 }
 
 # Node-OS: precise
 # Node-OS: trusty
-node /^zm\d+\.openstack\.org$/ {
+node /^zm\d+\.openhalon\.io$/ {
   class { 'openstack_project::zuul_merger':
-    gearman_server       => 'zuul.openstack.org',
-    gerrit_server        => 'review.openstack.org',
+    gearman_server       => 'zuul.openhalon.io',
+    gerrit_server        => 'review.openhalon.io',
     gerrit_user          => 'jenkins',
     gerrit_ssh_host_key  => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
     zuul_ssh_private_key => hiera('zuul_ssh_private_key_contents', 'XXX'),
@@ -536,7 +524,7 @@ node /^zm\d+\.openstack\.org$/ {
 # Node-OS: trusty
 node 'zuul-dev.openstack.org' {
   class { 'openstack_project::zuul_dev':
-    project_config_repo  => 'https://review.openhalon.io/infra/project-config',
+    project_config_repo  => 'https://git.openhalon.io/infra/project-config',
     gerrit_server        => 'review-dev.openstack.org',
     gerrit_user          => 'jenkins',
     gerrit_ssh_host_key  => hiera('gerrit_dev_ssh_rsa_pubkey_contents', 'XXX'),
