@@ -9,7 +9,7 @@ class openstack_project::zuul_prod(
   $zuul_ssh_private_key = '',
   $url_pattern = '',
   $zuul_url = '',
-  $status_url = 'http://status.openstack.org/zuul/',
+  $status_url = 'http://status.openhalon.io/zuul/',
   $swift_authurl = '',
   $swift_auth_version = '',
   $swift_user = '',
@@ -80,7 +80,7 @@ class openstack_project::zuul_prod(
       owner   => 'zuul',
       group   => 'zuul',
       mode    => '0600',
-      content => "review.openstack.org,23.253.232.87,2001:4800:7815:104:3bc3:d7f6:ff03:bf5d ${gerrit_ssh_host_key}",
+      content => "review.openhalon.io,15.126.238.27 ${gerrit_ssh_host_key}",
       replace => true,
       require => File['/home/zuul/.ssh'],
     }
