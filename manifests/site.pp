@@ -501,7 +501,7 @@ node 'zuul.openhalon.io' {
 #      'jenkins.openhalon.io',
 #      'jenkins01.openstack.org',
 #      'jenkins-dev.openstack.org',
-      'zm01.openhalon.io',
+      'zm01.openhalon.io', '15.126.131.134',
 #      'zm02.openstack.org',
     ],
   }
