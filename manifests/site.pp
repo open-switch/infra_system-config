@@ -499,7 +499,7 @@ node 'zuul.openhalon.io' {
     gearman_workers                => [ # Required to open the ports to listen for them
 #      'nodepool.openstack.org',
 #      'jenkins.openhalon.io',
-      'jenkins01.openhalon.io', '15.126.137.141',
+      'jenkins.openhalon.io', '15.126.137.141',
 #      'jenkins-dev.openstack.org',
       'zm01.openhalon.io', '15.126.131.134',
 #      'zm02.openstack.org',
