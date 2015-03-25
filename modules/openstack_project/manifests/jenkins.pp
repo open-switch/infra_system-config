@@ -46,7 +46,7 @@ class openstack_project::jenkins (
 
   class { '::jenkins::master':
     vhost_name              => $vhost_name,
-    serveradmin             => 'webmaster@openstack.org',
+    serveradmin             => 'webmaster@openhalon.io',
     logo                    => 'openhalon.png',
     ssl_cert_file           => $prv_ssl_cert_file,
     ssl_key_file            => $prv_ssl_key_file,
