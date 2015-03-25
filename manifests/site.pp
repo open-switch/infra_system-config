@@ -119,7 +119,7 @@ node 'review-dev.openstack.org' {
 }
 
 # Node-OS: precise
-node 'jenkins.openstack.org' {
+node 'jenkins.openhalon.io' {
   class { 'openstack_project::jenkins':
     project_config_repo     => 'https://git.openhalon.io/infra/project-config',
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
@@ -128,14 +128,14 @@ node 'jenkins.openstack.org' {
     ssl_key_file_contents   => hiera('jenkins_ssl_key_file_contents', 'XXX'),
     ssl_chain_file_contents => hiera('jenkins_ssl_chain_file_contents', 'XXX'),
     sysadmins               => hiera('sysadmins', []),
-    zmq_event_receivers     => ['logstash.openstack.org',
-                                'nodepool.openstack.org',
-    ],
+#    zmq_event_receivers     => ['logstash.openstack.org',
+#                                'nodepool.openstack.org',
+#    ],
   }
 }
 
 # Node-OS: precise
-node /^jenkins\d+\.openstack\.org$/ {
+node /^jenkins\d+\.openhalon\.io$/ {
   class { 'openstack_project::jenkins':
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
     jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
@@ -143,9 +143,9 @@ node /^jenkins\d+\.openstack\.org$/ {
     ssl_key_file            => '/etc/ssl/private/ssl-cert-snakeoil.key',
     ssl_chain_file          => '',
     sysadmins               => hiera('sysadmins', []),
-    zmq_event_receivers     => ['logstash.openstack.org',
-                                'nodepool.openstack.org',
-    ],
+#    zmq_event_receivers     => ['logstash.openstack.org',
+#                                'nodepool.openstack.org',
+#    ],
   }
 }
 
@@ -499,7 +499,7 @@ node 'zuul.openhalon.io' {
     gearman_workers                => [ # Required to open the ports to listen for them
 #      'nodepool.openstack.org',
 #      'jenkins.openhalon.io',
-#      'jenkins01.openstack.org',
+      'jenkins01.openhalon.io', '15.126.137.141',
 #      'jenkins-dev.openstack.org',
       'zm01.openhalon.io', '15.126.131.134',
 #      'zm02.openstack.org',
