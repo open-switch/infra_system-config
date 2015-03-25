@@ -147,7 +147,7 @@ function create_tree(pipeline) {
 function get_sparkline_url(pipeline_name) {
     if (!(pipeline_name in window.zuul_sparkline_urls)) {
         window.zuul_sparkline_urls[pipeline_name] = $.fn.graphite.geturl({
-            url: "http://graphite.openstack.org/render/",
+            url: "http://graphite.openhalon.io/render/",
             from: "-8hours",
             width: 100,
             height: 16,
@@ -441,7 +441,7 @@ function update_zuul_info(data) {
 function update() {
     var html = '';
 
-    $.getJSON('http://zuul.openstack.org/status.json', function(data) {
+    $.getJSON('http://zuul.openhalon.io/status.json', function(data) {
         update_zuul_info(data);
 
         if ('message' in data) {
