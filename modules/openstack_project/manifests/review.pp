@@ -171,6 +171,10 @@ class openstack_project::review (
   gerrit::plugin { 'javamelody':
     version => 'e00d5af',
   }
+ 
+  gerrit::plugin { 'delete-project':
+    version => 'ec9a665',
+  }
 
 #  class { 'gerritbot':
 #    nick                    => 'openstackgerrit',
