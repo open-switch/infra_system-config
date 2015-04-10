@@ -58,9 +58,11 @@ class openstack_project::thick_slave(
 
   include pip
   # for pushing files to swift and uploading to pypi with twine
-  package { 'requests':
-    ensure   => latest,
-    provider => pip,
+  if ($::lsbdistcodename != 'trusty') {
+    package { 'requests':
+      ensure   => latest,
+      provider => pip,
+    }
   }
   if ($::osfamily == 'RedHat') {
     # Work around https://bugzilla.redhat.com/show_bug.cgi?id=973375
@@ -70,9 +72,11 @@ class openstack_project::thick_slave(
       before  => Package['requests'],
     }
   } else {
-    package { $::openstack_project::jenkins_params::python_requests_package:
-      ensure => latest,
-      before => Package['requests'],
+    if ($::lsbdistcodename != 'trusty') {
+      package { $::openstack_project::jenkins_params::python_requests_package:
+        ensure => absent,
+        before => Package['requests'],
+      }
     }
   }
 
