@@ -493,7 +493,7 @@ node 'zuul.openhalon.io' {
     #swift_default_container        => 'infra-files',
     #swift_default_logserver_prefix => 'http://logs.openstack.org/',
     #swift_default_expiry           => 14400,
-    zuul_url                       => 'http://zuul.openhalon.io/p',
+    zuul_url                       => 'http://zuul.openhalon.io',
     sysadmins                      => hiera('sysadmins', []),
     #statsd_host                    => 'graphite.openstack.org',
     gearman_workers                => [ # Required to open the ports to listen for them
@@ -567,6 +567,14 @@ node 'pbx.openstack.org' {
 # A backup machine.  Don't run cron or puppet agent on it.
 node /^ci-backup-.*\.openstack\.org$/ {
   include openstack_project::backup_server
+}
+
+node /^openhalon-slave-\d+\.openhalon\.io$/ {
+  include openstack_project
+  class { 'openstack_project::slave':
+    jenkins_ssh_public_key   => $openstack_project::jenkins_ssh_key,
+    sysadmins               => hiera('sysadmins', []),
+  }
 }
 
 # Node-OS: precise
