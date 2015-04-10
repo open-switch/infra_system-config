@@ -70,10 +70,10 @@ class openstack_project::thick_slave(
       before  => Package['requests'],
     }
   } else {
-#    package { $::openstack_project::jenkins_params::python_requests_package:
-#      ensure => absent,
-#      before => Package['requests'],
-#    }
+    package { $::openstack_project::jenkins_params::python_requests_package:
+      ensure => latest,
+      before => Package['requests'],
+    }
   }
 
   if ($::lsbdistcodename == 'trusty') {
