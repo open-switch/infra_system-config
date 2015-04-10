@@ -572,7 +572,7 @@ node /^ci-backup-.*\.openstack\.org$/ {
 node /^openhalon-slave-\d+\.openhalon\.io$/ {
   include openstack_project
   class { 'openstack_project::slave':
-    jenkins_ssh_public_key   => $openstack_project::jenkins_ssh_key,
+    ssh_key   => $openstack_project::jenkins_ssh_key,
     sysadmins               => hiera('sysadmins', []),
   }
 }
