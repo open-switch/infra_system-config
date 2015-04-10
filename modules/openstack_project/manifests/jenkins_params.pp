@@ -85,7 +85,11 @@ class openstack_project::jenkins_params {
         $dvipng_package = 'texlive-dvipng'
       } else {
         $mysql_dev_package = 'mysql-devel'
-        $cgroups_tools_package = ''
+        if [ $lsbdistcodename == 'trusty' ] ; then
+	  $cgroups_tools_package = 'cgroup-bin'
+	} else {
+	  $cgroups_tools_package = ''
+	}
         $cgconfig_require = Package['cgroups']
         $cgred_require = Package['cgroups']
         $dvipng_package = 'dvipng'
