@@ -481,7 +481,7 @@ node 'zuul.openhalon.io' {
   class { 'openstack_project::zuul_prod':
     project_config_repo            => 'https://git.openhalon.io/infra/project-config',
     gerrit_server                  => 'review.openhalon.io',
-    gerrit_user                    => 'jenkins',
+    gerrit_user                    => 'zuul',
     gerrit_ssh_host_key            => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
     zuul_ssh_private_key           => hiera('zuul_ssh_private_key_contents', 'XXX'),
     #url_pattern                    => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
@@ -513,7 +513,7 @@ node /^zm\d+\.openhalon\.io$/ {
   class { 'openstack_project::zuul_merger':
     gearman_server       => 'zuul.openhalon.io',
     gerrit_server        => 'review.openhalon.io',
-    gerrit_user          => 'jenkins',
+    gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
     zuul_ssh_private_key => hiera('zuul_ssh_private_key_contents', 'XXX'),
     sysadmins            => hiera('sysadmins', []),
@@ -526,7 +526,7 @@ node 'zuul-dev.openstack.org' {
   class { 'openstack_project::zuul_dev':
     project_config_repo  => 'https://git.openhalon.io/infra/project-config',
     gerrit_server        => 'review-dev.openstack.org',
-    gerrit_user          => 'jenkins',
+    gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_dev_ssh_rsa_pubkey_contents', 'XXX'),
     zuul_ssh_private_key => hiera('zuul_dev_ssh_private_key_contents', 'XXX'),
     url_pattern          => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
