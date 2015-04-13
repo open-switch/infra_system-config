@@ -35,7 +35,7 @@ class openstack_project::jenkins_params {
       $libxml2_dev_package = 'libxml2-devel'
       $libxslt_dev_package = 'libxslt-devel'
       $libffi_dev_package = 'libffi-devel'
-      $makeinfo_package = 'textinfo'
+      $makeinfo_package = 'texinfo'
       # FIXME: No Maven packages on RHEL
       #$maven_package = 'maven'
       # For tooz unit tests
@@ -126,7 +126,7 @@ class openstack_project::jenkins_params {
       $libxml2_dev_package = 'libxml2-dev'
       $libxslt_dev_package = 'libxslt1-dev'
       $libffi_dev_package = 'libffi-dev'
-      $makeinfo_package = 'textinfo'
+      $makeinfo_package = 'texinfo'
       $maven_package = 'maven2'
       # For tooz unit tests
       $memcached_package = 'memcached'
