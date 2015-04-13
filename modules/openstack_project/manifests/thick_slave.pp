@@ -17,6 +17,7 @@ class openstack_project::thick_slave(
     $::openstack_project::jenkins_params::docbook_xml_package, # for building openstack docs
     $::openstack_project::jenkins_params::docbook5_xml_package, # for building openstack docs
     $::openstack_project::jenkins_params::docbook5_xsl_package, # for building openstack docs
+    $::openstack_project::jenkins_params::dtc_package, # required by openhalon build system
     $::openstack_project::jenkins_params::gettext_package, # for msgfmt, used in translating manuals
     $::openstack_project::jenkins_params::gnome_doc_package, # for generating translation files for docs
     $::openstack_project::jenkins_params::graphviz_package, # for generating graphs in docs
