@@ -28,6 +28,9 @@ class openstack_project::gerrit (
   $ssh_replication_rsa_key_contents='', # If left empty will not create file.
   $ssh_replication_rsa_pubkey_contents='', # If left empty will not create file.
   $email = '',
+  $smtpserver = '',
+  $smtpuser = '',
+  $smtppass = '',
   $database_poollimit = '',
   $container_heaplimit = '',
   $core_packedgitopenfiles = '',
@@ -126,6 +129,9 @@ class openstack_project::gerrit (
     ssh_replication_rsa_key_contents    => $ssh_replication_rsa_key_contents,
     ssh_replication_rsa_pubkey_contents => $ssh_replication_rsa_pubkey_contents,
     email                               => $email,
+    smtpserver                          => $smtpserver,
+    smtpuser                            => $smtpuser,
+    smtppass                            => $smtppass,
     openidssourl                        => 'https://login.launchpad.net/+openid',
     database_poollimit                  => $database_poollimit,
     container_heaplimit                 => $container_heaplimit,
