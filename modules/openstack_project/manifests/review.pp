@@ -107,7 +107,7 @@ class openstack_project::review (
     ssh_replication_rsa_pubkey_contents => $ssh_replication_rsa_pubkey_contents,
     ssh_welcome_rsa_key_contents        => $ssh_welcome_rsa_key_contents,
     ssh_welcome_rsa_pubkey_contents     => $ssh_welcome_rsa_pubkey_contents,
-    email                               => 'review@openstack.org',
+    email                               => 'review@openhalon.io',
     smtpserver                          => $smtpserver,
     smtpuser                            => $smtpuser,
     smtppass                            => $smtppass,

@@ -84,9 +84,9 @@ node 'review.openhalon.io' {
     sysadmins                           => hiera('sysadmins', []),
     swift_username                      => hiera('swift_store_user', 'username'),
     swift_password                      => hiera('swift_store_key', 'XXX'),
-    smtpserver                          => 'smtp.sendgrid.net'
-    smtpuser                            => 'openhalon'
-    smtppass                            => hiera['smtppass', 'XXX'),
+    smtpserver                          => 'smtp.sendgrid.net',
+    smtpuser                            => 'openhalon',
+    smtppass                            => hiera('smtppass', 'XXX'),
   }
   class { 'gerrit::mysql':
     mysql_root_password                 => hiera('gerrit_mysql_root_password', 'XXX'),
