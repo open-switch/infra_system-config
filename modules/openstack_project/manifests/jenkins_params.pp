@@ -36,6 +36,7 @@ class openstack_project::jenkins_params {
       $libxml2_dev_package = 'libxml2-devel'
       $libxslt_dev_package = 'libxslt-devel'
       $libffi_dev_package = 'libffi-devel'
+      $libyaml_dev_package = 'libyaml-devel'
       $makeinfo_package = 'texinfo'
       # FIXME: No Maven packages on RHEL
       #$maven_package = 'maven'
@@ -47,6 +48,7 @@ class openstack_project::jenkins_params {
       $mongodb_package = 'mongodb-server'
       $pandoc_package = 'pandoc'
       $pkgconfig_package = 'pkgconfig'
+      $python2_dev_package = 'python-devel'
       # FIXME: no PyPy headers on RHEL
       # FIXME: no PyPy on RHEL
       # FIXME: no Python 3 headers on RHEL
@@ -128,6 +130,7 @@ class openstack_project::jenkins_params {
       $libxml2_dev_package = 'libxml2-dev'
       $libxslt_dev_package = 'libxslt1-dev'
       $libffi_dev_package = 'libffi-dev'
+      $libyaml_dev_package = 'libyaml-dev'
       $makeinfo_package = 'texinfo'
       $maven_package = 'maven2'
       # For tooz unit tests
@@ -140,6 +143,7 @@ class openstack_project::jenkins_params {
       $pkgconfig_package = 'pkg-config'
       $pypy_dev_package = 'pypy-dev'
       $pypy_package = 'pypy'
+      $python2_dev_package = 'python2.7-dev'
       $python3_dev_package = 'python3-all-dev'
       $python3_package = 'python3.4'
       $python_libvirt_package = 'python-libvirt'

@@ -41,8 +41,10 @@ class openstack_project::thick_slave(
     $::openstack_project::jenkins_params::libxml2_dev_package, # for xmllint, need for wadl
     $::openstack_project::jenkins_params::libxslt_dev_package,
     $::openstack_project::jenkins_params::libffi_dev_package, # xattr's cffi dependency
+    $::openstack_project::jenkins_params::libyaml_dev_package, # required by pyyaml
     $::openstack_project::jenkins_params::pandoc_package, #for docs, markdown->docbook, bug 924507
     $::openstack_project::jenkins_params::pkgconfig_package, # for spidermonkey, used by ceilometer
+    $::openstack_project::jenkins_params::python2_dev_package, # required by pyyaml
     $::openstack_project::jenkins_params::python_libvirt_package,
     $::openstack_project::jenkins_params::python_lxml_package, # for validating openstack manuals
     $::openstack_project::jenkins_params::python_zmq_package, # zeromq unittests (not pip installable)
@@ -61,6 +63,12 @@ class openstack_project::thick_slave(
   }
 
   include pip
+
+  package { 'pyyaml':
+    ensure   => latest,
+    provider => pip,
+  }
+
   # for pushing files to swift and uploading to pypi with twine
   if ($::lsbdistcodename != 'trusty') {
     package { 'requests':
