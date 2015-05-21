@@ -232,14 +232,14 @@ class openstack_project::static (
     docroot  => '/srv/static/governance',
     require  => File['/srv/static/governance'],
   }
-#
-#  file { '/srv/static/governance':
-#    ensure  => directory,
-#    owner   => 'jenkins',
-#    group   => 'jenkins',
-#    require => User['jenkins'],
-#  }
-#
+
+  file { '/srv/static/governance':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
   ###########################################################
   # Specs
 
