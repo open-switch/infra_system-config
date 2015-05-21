@@ -226,12 +226,12 @@ class openstack_project::static (
   ###########################################################
   # Governance
 
-#  apache::vhost { 'governance.openstack.org':
-#    port     => 80,
-#    priority => '50',
-#    docroot  => '/srv/static/governance',
-#    require  => File['/srv/static/governance'],
-#  }
+  apache::vhost { 'governance.openhalon.io':
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/static/governance',
+    require  => File['/srv/static/governance'],
+  }
 #
 #  file { '/srv/static/governance':
 #    ensure  => directory,
