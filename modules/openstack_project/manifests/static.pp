@@ -183,28 +183,28 @@ class openstack_project::static (
   ###########################################################
   # Docs-draft
 
-#  apache::vhost { 'docs-draft.openstack.org':
-#    port     => 80,
-#    priority => '50',
-#    docroot  => '/srv/static/docs-draft',
-#    require  => File['/srv/static/docs-draft'],
-#  }
-#
-#  file { '/srv/static/docs-draft':
-#    ensure  => directory,
-#    owner   => 'jenkins',
-#    group   => 'jenkins',
-#    require => User['jenkins'],
-#  }
-#
-#  file { '/srv/static/docs-draft/robots.txt':
-#    ensure  => present,
-#    owner   => 'root',
-#    group   => 'root',
-#    mode    => '0444',
-#    source  => 'puppet:///modules/openstack_project/disallow_robots.txt',
-#    require => File['/srv/static/docs-draft'],
-#  }
+  apache::vhost { 'docs-draft.openstack.org':
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/static/docs-draft',
+    require  => File['/srv/static/docs-draft'],
+  }
+
+  file { '/srv/static/docs-draft':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
+  file { '/srv/static/docs-draft/robots.txt':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
+    source  => 'puppet:///modules/openstack_project/disallow_robots.txt',
+    require => File['/srv/static/docs-draft'],
+  }
 
   ###########################################################
   # Security
