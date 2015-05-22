@@ -183,7 +183,7 @@ class openstack_project::static (
   ###########################################################
   # Docs-draft
 
-  apache::vhost { 'docs-draft.openstack.org':
+  apache::vhost { 'docs-draft.openhalon.io':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/docs-draft',
