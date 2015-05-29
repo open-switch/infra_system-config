@@ -241,6 +241,23 @@ class openstack_project::static (
   }
 
   ###########################################################
+  # Docs
+
+  apache::vhost { 'docs.openhalon.io':
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/static/docs',
+    require  => File['/srv/static/docs'],
+  }
+
+  file { '/srv/static/docs':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
+  ###########################################################
   # Specs
 
 #  apache::vhost { 'specs.openstack.org':
