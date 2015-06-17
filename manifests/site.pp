@@ -572,7 +572,7 @@ node /^ci-backup-.*\.openstack\.org$/ {
   include openstack_project::backup_server
 }
 
-node /^openhalon-slave-\d+\.openhalon\.io$/ {
+node /^openhalon-slave-.*\.openhalon\.io$/ {
   include openstack_project
   class { 'openstack_project::slave':
     ssh_key   => $openstack_project::jenkins_ssh_key,
