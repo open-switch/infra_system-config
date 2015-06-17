@@ -2,6 +2,8 @@
 # slaves.
 class openstack_project::thick_slave(
   $all_mysql_privs = false,
+  $slave = $::fqdn,
+  $token = 'XXX'
 ){
 
   include openstack_project::jenkins_params
@@ -123,6 +125,21 @@ class openstack_project::thick_slave(
       source => 'puppet:///modules/openstack_project/rubygems.sh',
     }
 
+  }
+
+  file { '/usr/sbin/cleanup_jenkins.sh':
+    ensure => present,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0700',
+    content => template('openstack_project/cleanup_jenkins.erb'),
+    replace => true,
+  }
+
+  cron{ 'cleanup_jenkins':
+    command => '/usr/sbin/cleanup_jenkins.sh',
+    user => 'root',
+    hour => "*/12",
   }
 
   case $::osfamily {

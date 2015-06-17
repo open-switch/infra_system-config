@@ -577,6 +577,7 @@ node /^openhalon-slave-.*\.openhalon\.io$/ {
   class { 'openstack_project::slave':
     ssh_key   => $openstack_project::jenkins_ssh_key,
     sysadmins               => hiera('sysadmins', []),
+    token     => hiera('jenkins_jobs_password','XXX'),
   }
 }
 

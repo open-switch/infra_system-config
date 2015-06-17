@@ -5,6 +5,7 @@ class openstack_project::slave (
   $certname = $::fqdn,
   $ssh_key = '',
   $sysadmins = [],
+  $token = 'XXX',
 ) {
 
   include openstack_project
@@ -33,7 +34,9 @@ class openstack_project::slave (
   include openstack_project::slave_common
 
   if (! $thin) {
-    include openstack_project::thick_slave
+    class {'openstack_project::thick_slave':
+      token => $token,
+    }
   }
 
 }

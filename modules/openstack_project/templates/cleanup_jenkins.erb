@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Cleaning the server ..."
+echo
+
+echo "Setting the node offline..."
+echo
+curl -s k -X POST -u gerrig:<%=token%> https://jenkins.openhalon.io/computer/<%=slave%>/toggleOffline?offlineMessage="Performing%20daily%20maintenance"
+
+echo 'Waiting for node to be idle'
+echo
+while ! curl -s -k -X POST https://jenkins.openhalon.io/computer/<%=slave%>/api/xml | grep -q '<idle>true</idle>'; do
+    sleep 5;
+done
+
+echo 'The node is idle now. Cleaning up the Jenkins Workspace'
+echo
+rm -rf /mnt/jenkins/workspace
+
+echo "Setting the node back online.."
+echo
+curl -s k -X POST -u gerrig:<%=token%> https://jenkins.openhalon.io/computer/<%=slave%>/toggleOffline
+
+echo "Cleanup completed"
