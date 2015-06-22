@@ -86,18 +86,6 @@ class openstack_project::zuul_prod(
     }
   }
 
-  file { '/etc/zuul/logging.conf':
-    ensure => present,
-    source => 'puppet:///modules/openstack_project/zuul/logging.conf',
-    notify => Exec['zuul-reload'],
-  }
-
-  file { '/etc/zuul/gearman-logging.conf':
-    ensure => present,
-    source => 'puppet:///modules/openstack_project/zuul/gearman-logging.conf',
-    notify => Exec['zuul-reload'],
-  }
-
   file { '/etc/zuul/merger-logging.conf':
     ensure => present,
     source => 'puppet:///modules/openstack_project/zuul/merger-logging.conf',
