@@ -137,7 +137,7 @@ class openstack_project::thick_slave(
   }
 
   cron{ 'cleanup_jenkins':
-    command => '/usr/sbin/cleanup_jenkins.sh',
+    command => '/usr/sbin/cleanup_jenkins.sh | /usr/bin/logger -t cleanup_jenkins',
     user => 'root',
     hour => "*/12",
   }
