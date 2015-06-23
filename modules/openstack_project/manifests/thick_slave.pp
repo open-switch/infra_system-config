@@ -187,6 +187,7 @@ class openstack_project::thick_slave(
   $gem_packages = [
     'bundler',
     'puppetlabs_spec_helper',
+    'jekyll',
   ]
 
   package { $gem_packages:
