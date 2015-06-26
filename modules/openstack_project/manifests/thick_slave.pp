@@ -8,6 +8,9 @@ class openstack_project::thick_slave(
 
   include openstack_project::jenkins_params
 
+  # VSI setup
+  include docker
+
   # Packages that most jenkins slaves (eg, unit test runners) need
   $packages = [
     $::openstack_project::jenkins_params::ant_package, # for building buck
@@ -19,7 +22,6 @@ class openstack_project::thick_slave(
     $::openstack_project::jenkins_params::docbook_xml_package, # for building openstack docs
     $::openstack_project::jenkins_params::docbook5_xml_package, # for building openstack docs
     $::openstack_project::jenkins_params::docbook5_xsl_package, # for building openstack docs
-    $::openstack_project::jenkins_params::docker_package, # for VSI testing
     $::openstack_project::jenkins_params::dnsmasq_package, # required by openhalon build system
     $::openstack_project::jenkins_params::dtc_package, # required by openhalon build system
     $::openstack_project::jenkins_params::gettext_package, # for msgfmt, used in translating manuals
