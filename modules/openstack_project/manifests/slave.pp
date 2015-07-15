@@ -28,7 +28,7 @@ class openstack_project::slave (
     limit_domain => 'jenkins',
     limit_type   => 'hard',
     limit_item   => 'nproc',
-    limit_value  => '256'
+    limit_value  => '8192'
   }
 
   include openstack_project::slave_common
