@@ -37,6 +37,7 @@ class openstack_project::thick_slave(
     $::openstack_project::jenkins_params::memcached_package, # for tooz unit tests
     $::openstack_project::jenkins_params::redis_package, # for tooz unit tests (and others that use redis)
     $::openstack_project::jenkins_params::makeinfo_package, # required by yocto
+    $::openstack_project::jenkins_params::markdown_package, # required by openvswitch documentation
     $::openstack_project::jenkins_params::mongodb_package, # for ceilometer unit tests
     $::openstack_project::jenkins_params::mysql_dev_package,
     $::openstack_project::jenkins_params::nspr_dev_package, # for spidermonkey, used by ceilometer
