@@ -35,11 +35,11 @@ class openstack_project::www (
     target_dir   => '/usr/local/bin'
   }
 
-  file { '/srv/www':
-    ensure  => directory,
-    owner   => 'www-data',
-    group   => 'www-data',
-  }
+#  file { '/srv/www':
+#    ensure  => directory,
+#    owner   => 'www-data',
+#    group   => 'www-data',
+#  }
 
   exec { 'composer-run':
     environment => [ "COMPOSER_HOME=/usr/local/bin" ],
@@ -48,7 +48,8 @@ class openstack_project::www (
     user    => root,
     group   => root,
     timeout => 0,
-    require => [Package['git'], Package['php5-cli'], File['/srv/www']]
+    creates => "/srv/www"
+    require => [Package['git'], Package['php5-cli']]
   }
 
   include apache
@@ -61,6 +62,13 @@ class openstack_project::www (
   }
   a2mod { 'proxy_http':
     ensure => present,
+  }
+
+  apache::vhost { $::fqdn:
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/www',
+    require  => File['/srv/www'],
   }
 
   class { 'mysql::server':
