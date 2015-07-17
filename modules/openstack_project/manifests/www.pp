@@ -8,7 +8,7 @@ class openstack_project::www (
   $ssl_chain_file_contents = ''
 ) {
 
-  package { ['openssl', 'ssl-cert', 'subversion', 'git', 'php5-cli']:
+  package { ['openssl', 'ssl-cert', 'subversion', 'php5-cli']:
     ensure => present;
   }
 
