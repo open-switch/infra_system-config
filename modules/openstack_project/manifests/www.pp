@@ -53,7 +53,7 @@ class openstack_project::www (
   }
 
   include apache
-  include apache::mod::php
+  include apache::php
 
   a2mod { 'rewrite':
     ensure => present,
@@ -64,7 +64,7 @@ class openstack_project::www (
   a2mod { 'proxy_http':
     ensure => present,
   }
-  
+
   apache::vhost { $::fqdn:
     port     => 80,
     priority => '50',
