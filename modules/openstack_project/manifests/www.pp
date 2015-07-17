@@ -48,8 +48,8 @@ class openstack_project::www (
     user    => root,
     group   => root,
     timeout => 0,
-    creates => "/srv/www"
-    require => [Package['git'], Package['php5-cli']],
+    creates => "/srv/www",
+    require => [Package['git'], Package['php5-cli']]
   }
 
   include apache
