@@ -8,7 +8,7 @@ class openstack_project::www (
   $ssl_chain_file_contents = ''
 ) {
 
-  package { ['openssl', 'ssl-cert', 'subversion']:
+  package { ['openssl', 'ssl-cert', 'subversion', 'git', 'php5-cli']:
     ensure => present;
   }
 
@@ -48,6 +48,18 @@ class openstack_project::www (
     group   => root,
     timeout => 0,
     require => [Package['git'], Package['php5-cli'], File['/srv/www']]
+  }
+
+  include apache
+
+  a2mod { 'rewrite':
+    ensure => present,
+  }
+  a2mod { 'proxy':
+    ensure => present,
+  }
+  a2mod { 'proxy_http':
+    ensure => present,
   }
 
   class { 'mysql::server':
