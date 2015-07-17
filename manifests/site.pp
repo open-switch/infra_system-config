@@ -302,6 +302,17 @@ node 'etherpad-dev.openstack.org' {
   }
 }
 
+# Node-OS: trusty
+node 'www.openhalon.io' {
+  class { 'openstack_project::www':
+    mysql_root_password     => hiera('www_db_password', 'XXX'),
+    sysadmins               => hiera('sysadmins', []),
+    ssl_cert_file_contents  => hiera('www_ssl_cert_file_contents', 'XXX'),
+    ssl_key_file_contents   => hiera('www_ssl_key_file_contents', 'XXX'),
+    ssl_chain_file_contents => hiera('www_ssl_chain_file_contents', 'XXX'),
+  }
+}
+
 # Node-OS: precise
 node 'wiki.openhalon.io' {
   class { 'openstack_project::wiki':
