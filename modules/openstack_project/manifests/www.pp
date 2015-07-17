@@ -42,7 +42,7 @@ class openstack_project::www (
   }
 
   exec { 'composer-run':
-    command => "/usr/local/bin/composer create-project silverstripe/installer 3.1.13",
+    command => "/usr/local/bin/composer create-project silverstripe/installer /srv/www/ 3.1.13",
     cwd     => '/srv/www/',
     user    => root,
     group   => root,
