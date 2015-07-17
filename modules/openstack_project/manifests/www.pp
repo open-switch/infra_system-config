@@ -68,7 +68,6 @@ class openstack_project::www (
     port     => 80,
     priority => '50',
     docroot  => '/srv/www',
-    require  => File['/srv/www'],
   }
 
   class { 'mysql::server':
