@@ -54,6 +54,7 @@ class openstack_project::thick_slave(
     $::openstack_project::jenkins_params::libxslt_dev_package,
     $::openstack_project::jenkins_params::libffi_dev_package, # xattr's cffi dependency
     $::openstack_project::jenkins_params::libyaml_dev_package, # required by pyyaml
+    $::openstack_project::jenkins_params::nodejs_package, # required by jekyll
     $::openstack_project::jenkins_params::pandoc_package, #for docs, markdown->docbook, bug 924507
     $::openstack_project::jenkins_params::pkgconfig_package, # for spidermonkey, used by ceilometer
     $::openstack_project::jenkins_params::python2_dev_package, # required by pyyaml
