@@ -49,7 +49,7 @@ class openstack_project::static (
   apache::vhost { 'www.openhalon.io':
     port     => 80,
     priority => '50',
-    docroot  => '/srv/static/www',
+    docroot  => '/srv/static/www/_site',
     require  => File['/srv/static/www'],
   }
 
