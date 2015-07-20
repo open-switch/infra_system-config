@@ -46,6 +46,23 @@ class openstack_project::static (
   ###########################################################
   # Archive
 
+  apache::vhost { 'www.openhalon.io':
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/static/www',
+    require  => File['/srv/static/www'],
+  }
+
+  file { '/srv/static/www':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
+  ###########################################################
+  # Archive
+
   apache::vhost { 'archive.openhalon.io':
     port     => 80,
     priority => '50',
