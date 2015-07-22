@@ -199,6 +199,8 @@ class openstack_project::thick_slave(
     'bundler',
     'puppetlabs_spec_helper',
     'jekyll',
+    'asciidoctor',
+    'jekyll-asciidoc',
   ]
 
   package { $gem_packages:
