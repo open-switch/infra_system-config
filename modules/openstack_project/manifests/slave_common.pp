@@ -4,7 +4,7 @@
 # openstack_project::single_use_slave
 class openstack_project::slave_common(
   $sudo         = false,
-  $project_config_repo = 'https://git.openswitch.net/infra/project-config',
+  $project_config_repo = 'https://git.openhalon.io/openswitch/project-config',
 ){
 #  vcsrepo { '/opt/requirements':
 #    ensure   => latest,
