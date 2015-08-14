@@ -23,8 +23,8 @@ class openstack_project::zuul_merger(
     gerrit_user          => $gerrit_user,
     zuul_ssh_private_key => $zuul_ssh_private_key,
     zuul_url             => $zuul_url,
-    git_email            => 'jenkins@openhalon.io',
-    git_name             => 'OpenHalon Jenkins',
+    git_email            => 'jenkins@openswitch.net',
+    git_name             => 'OpenSwitch Jenkins',
   }
 
   class { '::zuul::merger': }
@@ -42,7 +42,7 @@ class openstack_project::zuul_merger(
       owner   => 'zuul',
       group   => 'zuul',
       mode    => '0600',
-      content => "review.openhalon.io,15.126.238.27 ${gerrit_ssh_host_key}",
+      content => "review.openswitch.net,15.126.134.181 ${gerrit_ssh_host_key}",
       replace => true,
       require => File['/home/zuul/.ssh'],
     }

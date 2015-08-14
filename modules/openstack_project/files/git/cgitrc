@@ -15,7 +15,7 @@ cache-repo-ttl=1
 cache-root-ttl=1
 
 # Specify some default clone prefixes
-clone-prefix=git://git.openhalon.io https://git.openhalon.io
+clone-prefix=git://git.openswitch.net https://git.openswitch.net
 
 # Specify a command which will be invoked to format commit messages
 commit-filter=/usr/local/bin/commit-filter.sh
@@ -36,13 +36,13 @@ enable-http-clone=0
 favicon=/static/favicon.ico
 
 # Use a custom logo
-logo=/static/openhalon.png
+logo=/static/openswitch.png
 
 # Enable statistics per week, month and quarter
 max-stats=quarter
 
 # Set the title and heading of the repository index page
-root-title=OpenHalon git repository browser
+root-title=openswitch git repository browser
 
 # Make side-by-side diffs the default
 side-by-side-diffs=1

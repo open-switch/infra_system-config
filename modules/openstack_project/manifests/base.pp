@@ -114,13 +114,13 @@ class openstack_project::base(
     user    => 'root',
   }
 
-  ssh_authorized_key { 'puppet-remote-openhalon':
+  ssh_authorized_key { 'puppet-remote-openswitch':
     ensure  => present,
     user    => 'root',
     type    => 'ssh-rsa',
-    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDYv1DKZK88r3SG67+oSOeNo1vLLd83dwopDxVfP/mKlCQcz1gBJwdzWO26HQpo2Y5Q3T6bwghVs+DpjTFrQogvhk76BldZm5NNpiy64HLhTptUL/7t3FjoDkWsuYaEzDVFyo1s2FqwCzl/8w3POhHql/soho0qvl5MX9RAiZax/qrcIPl3cT2iPFm4qAmosAPxABKbUVHxt48jfkkbaIH8b1DOmE7ydejFoQaL6pEqO22V80lgG2FX08eRDkMSRIRyAYlyZ0HOeiwmcUuk1BMKGkUr4Y2je6lDBilfCdA0RnVYXy5lMHzBJlb9yBFbrf9ihQKeN9cauSbC8hG4/O5R',
+    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDFQTwSfcKow4pqDSewCcrU9XRziwi8CjZpDImbX8Rj62dfMwGeTqf+wIgMf6CQMXcw1sxpLwzs6w1LKcj9Z5jczfA2Cbo4CZULF2TBrUhdE/jj/W7oFsaDKLkvgZtClBGwP3hxJKJwpS0AXASGUCWm2/sM1QO9ZXcN9IjFzQDTqnT3PdrgdeyL7yBVDi4VPNxFt/JWAe0Pxfe6gnGKLverEdDtV3Jj9MOp4YFWmYmz4yH2bV1fTnjYUbpHb8cdjc7C/yU+zIFRGmNT/f4qFveJMRSxeh9qL5YrkAgAJHjHjjctrSuZLfkZ9RAkmjsYwedkzm+MKzplAAHzewqvP37r',
     options => [
-      'from="puppetmaster.openhalon.io,15.126.209.124"',
+      'from="puppetmaster.openswitch.net,15.126.130.36"',
     ],
     require => File['/root/.ssh'],
   }

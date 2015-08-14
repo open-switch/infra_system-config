@@ -46,7 +46,7 @@ class openstack_project::static (
   ###########################################################
   # Archive
 
-  apache::vhost { 'www.openhalon.io':
+  apache::vhost { 'www.openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/www/_site',
@@ -63,7 +63,7 @@ class openstack_project::static (
   ###########################################################
   # Archive
 
-  apache::vhost { 'archive.openhalon.io':
+  apache::vhost { 'archive.openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/archive',
@@ -80,7 +80,7 @@ class openstack_project::static (
   ###########################################################
   # sstate
 
-  apache::vhost { 'sstate.openhalon.io':
+  apache::vhost { 'sstate.openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/sstate',
@@ -200,7 +200,7 @@ class openstack_project::static (
   ###########################################################
   # Docs-draft
 
-  apache::vhost { 'docs-draft.openhalon.io':
+  apache::vhost { 'docs-draft.openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/docs-draft',
@@ -226,7 +226,7 @@ class openstack_project::static (
   ###########################################################
   # Security
 
-#  apache::vhost { 'security.openstack.org':
+#  apache::vhost { 'security.openswitch.net':
 #    port     => 80,
 #    priority => '50',
 #    docroot  => '/srv/static/security',
@@ -243,7 +243,7 @@ class openstack_project::static (
   ###########################################################
   # Governance
 
-  apache::vhost { 'governance.openhalon.io':
+  apache::vhost { 'governance.openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/governance',
@@ -260,7 +260,7 @@ class openstack_project::static (
   ###########################################################
   # Docs
 
-  apache::vhost { 'docs.openhalon.io':
+  apache::vhost { 'docs.openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/docs',

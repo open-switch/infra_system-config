@@ -86,8 +86,8 @@ def bootstrap_server(server, admin_pass, key, cert, environment, name,
     ssh_client = utils.ssh_connect(ip, 'root', ssh_kwargs, timeout=600)
 
     if IPV6:
-        ssh_client.ssh('ping6 -c5 -Q 0x10 review.openhalon.io '
-                       '|| ping6 -c5 -Q 0x10 wiki.openhalon.io')
+        ssh_client.ssh('ping6 -c5 -Q 0x10 review.openswitch.net '
+                       '|| ping6 -c5 -Q 0x10 wiki.openswitch.net')
 
     ssh_client.scp(os.path.join(SCRIPT_DIR, '..', 'make_swap.sh'),
                    'make_swap.sh')
@@ -210,7 +210,7 @@ def main():
                         help="name of signed puppet certificate file (e.g., "
                         "hostname.example.com.pem)")
     parser.add_argument("--server", dest="server", help="Puppetmaster to use.",
-                        default="puppetmaster.openhalon.io")
+                        default="puppetmaster.openswitch.net")
     parser.add_argument("--volume", dest="volume",
                         help="UUID of volume to attach to the new server.",
                         default=None)

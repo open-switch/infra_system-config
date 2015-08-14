@@ -5,8 +5,8 @@ class openstack_project::puppetmaster (
   $sysadmins = [],
   $version   = '3.',
   $ca_server = undef,
-  $puppetdb = true,
-  $puppetdb_server = 'puppetdb.openhalon.io',
+  $puppetdb = false,
+  $puppetdb_server = 'puppetdb.openswitch.net',
 ) {
   include logrotate
   include openstack_project::params
