@@ -113,7 +113,7 @@ class openstack_project::review (
     smtppass                            => $smtppass,
       # 1 + 100 + 9 + 2 + 2 + 25 => 139(rounded up)
     database_poollimit                  => '150',
-    container_heaplimit                 => '8g',
+    container_heaplimit                 => '26g',
     core_packedgitopenfiles             => '4096',
     core_packedgitlimit                 => '400m',
     core_packedgitwindowsize            => '16k',
@@ -156,20 +156,20 @@ class openstack_project::review (
         threads              => '4',
         mirror               => true,
       },
-      {
-        name                 => 'git01',
-        url                  => 'cgit@git01.openswitch.net:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git02',
-        url                  => 'cgit@git02.openswitch.net:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
+#      {
+#        name                 => 'git01',
+#        url                  => 'cgit@git01.openswitch.net:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
+#      {
+#        name                 => 'git02',
+#        url                  => 'cgit@git02.openswitch.net:/var/lib/git/',
+#        replicationDelay     => '1',
+#        threads              => '4',
+#        mirror               => true,
+#      },
     ],
     require                             => $::project_config::config_dir,
   }
