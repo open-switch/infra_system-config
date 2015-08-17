@@ -53,7 +53,7 @@ node default {
 # Node-OS: precise
 node 'review.openswitch.net' {
   class { 'openstack_project::review':
-    project_config_repo                 => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo                 => 'https://review.openswitch.net/infra/project-config',
     github_oauth_token                  => hiera('gerrit_github_token', 'XXX'),
     github_project_username             => hiera('github_project_username', 'username'),
     github_project_password             => hiera('github_project_password', 'XXX'),
@@ -99,7 +99,7 @@ node 'review.openswitch.net' {
 # Node-OS: trusty
 node 'review-dev.openstack.org' {
   class { 'openstack_project::review_dev':
-    project_config_repo             => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo             => 'https://review.openswitch.net/infra/project-config',
     github_oauth_token              => hiera('gerrit_dev_github_token', 'XXX'),
     github_project_username         => hiera('github_dev_project_username', 'username'),
     github_project_password         => hiera('github_dev_project_password', 'XXX'),
@@ -124,7 +124,7 @@ node 'review-dev.openstack.org' {
 # Node-OS: precise
 node 'jenkins.openswitch.net' {
   class { 'openstack_project::jenkins':
-    project_config_repo     => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
     jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
     ssl_cert_file_contents  => hiera('jenkins_ssl_cert_file_contents', 'XXX'),
@@ -262,7 +262,7 @@ node 'planet.openstack.org' {
 # Node-OS: precise
 node 'eavesdrop.openstack.org' {
   class { 'openstack_project::eavesdrop':
-    project_config_repo     => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
     nickpass                => hiera('openstack_meetbot_password', 'XXX'),
     sysadmins               => hiera('sysadmins', []),
     statusbot_nick          => hiera('statusbot_nick', 'username'),
@@ -383,7 +383,7 @@ node /^git(-fe\d+)?\.openswitch\.net$/ {
 node /^git\d+\.openswitch\.net$/ {
   include openstack_project
   class { 'openstack_project::git_backend':
-    project_config_repo     => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
     vhost_name              => 'git.openswitch.net',
     sysadmins               => hiera('sysadmins', []),
     git_gerrit_ssh_key      => hiera('gerrit_replication_ssh_rsa_pubkey_contents', 'XXX'),
@@ -414,7 +414,7 @@ node 'summit.openstack.org' {
 # Node-OS: precise
 node 'storyboard.openstack.org' {
   class { 'openstack_project::storyboard':
-    project_config_repo     => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
     sysadmins               => hiera('sysadmins', []),
     mysql_host              => hiera('storyboard_db_host', 'localhost'),
     mysql_user              => hiera('storyboard_db_user', 'username'),
@@ -431,7 +431,7 @@ node 'storyboard.openstack.org' {
 # Node-OS: precise
 node 'static.openswitch.net' {
   class { 'openstack_project::static':
-    project_config_repo     => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
     sysadmins               => hiera('sysadmins', []),
   }
 }
@@ -457,7 +457,7 @@ node 'status.openstack.org' {
 # Node-OS: trusty
 node 'nodepool.openstack.org' {
   class { 'openstack_project::nodepool_prod':
-    project_config_repo      => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo      => 'https://review.openswitch.net/infra/project-config',
     mysql_password           => hiera('nodepool_mysql_password', 'XXX'),
     mysql_root_password      => hiera('nodepool_mysql_root_password', 'XXX'),
     nodepool_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
@@ -482,7 +482,7 @@ node 'nodepool.openstack.org' {
 # Node-OS: trusty
 node 'zuul.openswitch.net' {
   class { 'openstack_project::zuul_prod':
-    project_config_repo            => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo            => 'https://review.openswitch.net/infra/project-config',
     gerrit_server                  => 'review.openswitch.net',
     gerrit_user                    => 'zuul',
     gerrit_ssh_host_key            => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
@@ -527,7 +527,7 @@ node /^zm\d+\.openswitch\.net$/ {
 # Node-OS: trusty
 node 'zuul-dev.openstack.org' {
   class { 'openstack_project::zuul_dev':
-    project_config_repo  => 'https://git.openhalon.io/openswitch/project-config',
+    project_config_repo  => 'https://review.openswitch.net/infra/project-config',
     gerrit_server        => 'review-dev.openstack.org',
     gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_dev_ssh_rsa_pubkey_contents', 'XXX'),
