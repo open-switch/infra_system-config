@@ -69,6 +69,9 @@ class openstack_project::review (
   $smtpserver = 'localhost',
   $smtpuser = '',
   $smtppass = '',
+  # Support for auth from github
+  $oauth_github_client_id = '',
+  $oauth_github_client_secret = '',
   # To be renamed - they're now just launchpad creds, not lp_sync
   $lp_sync_consumer_key='',
   $lp_sync_token='',
@@ -111,6 +114,8 @@ class openstack_project::review (
     smtpserver                          => $smtpserver,
     smtpuser                            => $smtpuser,
     smtppass                            => $smtppass,
+    oauth_github_client_id              => $oauth_github_client_id,
+    oauth_github_client_secret          => $oauth_github_client_secret,
       # 1 + 100 + 9 + 2 + 2 + 25 => 139(rounded up)
     database_poollimit                  => '150',
     container_heaplimit                 => '26g',

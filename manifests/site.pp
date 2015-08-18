@@ -87,6 +87,8 @@ node 'review.openswitch.net' {
     smtpserver                          => 'smtp.sendgrid.net',
     smtpuser                            => 'openswitch',
     smtppass                            => hiera('smtppass', 'XXX'),
+    oauth_github_client_id              => hiera('gerrit_github_client_id', 'XXX'),
+    oauth_github_client_secret          => hiera('gerrit_github_client_secret', 'XXX'),
   }
   class { 'gerrit::mysql':
     mysql_root_password                 => hiera('gerrit_mysql_root_password', 'XXX'),
