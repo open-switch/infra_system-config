@@ -47,9 +47,4 @@ class openstack_project::zuul_merger(
       require => File['/home/zuul/.ssh'],
     }
   }
-
-  file { '/etc/zuul/merger-logging.conf':
-    ensure => present,
-    source => 'puppet:///modules/openstack_project/zuul/merger-logging.conf',
-  }
 }
