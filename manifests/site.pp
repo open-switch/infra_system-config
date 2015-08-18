@@ -85,7 +85,7 @@ node 'review.openswitch.net' {
     swift_username                      => hiera('swift_store_user', 'username'),
     swift_password                      => hiera('swift_store_key', 'XXX'),
     smtpserver                          => 'smtp.sendgrid.net',
-    smtpuser                            => 'openswitch',
+    smtpuser                            => 'openhalon',
     smtppass                            => hiera('smtppass', 'XXX'),
     oauth_github_client_id              => hiera('gerrit_github_client_id', 'XXX'),
     oauth_github_client_secret          => hiera('gerrit_github_client_secret', 'XXX'),
