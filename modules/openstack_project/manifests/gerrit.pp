@@ -82,30 +82,30 @@ class openstack_project::gerrit (
     afs                       => $afs,
   }
 
-  class { 'jeepyb::openstackwatch':
-    projects       => [
-      'openstack/ceilometer',
-      'openstack/cinder',
-      'openstack/glance',
-      'openstack/heat',
-      'openstack/horizon',
-      'openstack/infra',
-      'openstack/keystone',
-      'openstack/nova',
-      'openstack/oslo',
-      'openstack/neutron',
-      'openstack/swift',
-      'openstack/tempest',
-      'openstack-dev/devstack',
-    ],
-    container      => 'rss',
-    feed           => 'openstackwatch.xml',
-    json_url       => 'https://review.openstack.org/query?q=status:open',
-    swift_username => $swift_username,
-    swift_password => $swift_password,
-    swift_auth_url => 'https://auth.api.rackspacecloud.com/v1.0',
-    auth_version   => '1.0',
-  }
+#  class { 'jeepyb::openstackwatch':
+#    projects       => [
+#      'openstack/ceilometer',
+#      'openstack/cinder',
+#      'openstack/glance',
+#      'openstack/heat',
+#      'openstack/horizon',
+#      'openstack/infra',
+#      'openstack/keystone',
+#      'openstack/nova',
+#      'openstack/oslo',
+#      'openstack/neutron',
+#      'openstack/swift',
+#      'openstack/tempest',
+#      'openstack-dev/devstack',
+#    ],
+#    container      => 'rss',
+#    feed           => 'openstackwatch.xml',
+#    json_url       => 'https://review.openstack.org/query?q=status:open',
+#    swift_username => $swift_username,
+#    swift_password => $swift_password,
+#    swift_auth_url => 'https://auth.api.rackspacecloud.com/v1.0',
+#    auth_version   => '1.0',
+#  }
 
   class { '::gerrit':
     vhost_name                          => $vhost_name,
