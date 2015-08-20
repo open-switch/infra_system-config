@@ -574,7 +574,7 @@ node /^ci-backup-.*\.openstack\.org$/ {
   include openstack_project::backup_server
 }
 
-node /^openswitch-slave-.*\.v\.net$/ {
+node /^openswitch-slave-.*\.openswitch\.net$/ {
   include openstack_project
   class { 'openstack_project::slave':
     ssh_key   => $openstack_project::jenkins_ssh_key,
