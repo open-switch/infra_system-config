@@ -46,11 +46,12 @@ class openstack_project::static (
   ###########################################################
   # Archive
 
-  apache::vhost { 'www.openswitch.net':
+  apache::vhost { 'openswitch.net':
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/www/_site',
     require  => File['/srv/static/www'],
+    serveraliases => ['www.openswitch.net'],
   }
 
   file { '/srv/static/www':
