@@ -25,6 +25,7 @@ class openstack_project::thick_slave(
     $::openstack_project::jenkins_params::chrpath_package, # required by yocto
     $::openstack_project::jenkins_params::curl_package,
     $::openstack_project::jenkins_params::dvipng_package, # for generating image (ie: math) in docs
+    $::openstack_project::jenkins_params::diffstat_package, # for yocto
     $::openstack_project::jenkins_params::docbook_xml_package, # for building openstack docs
     $::openstack_project::jenkins_params::docbook5_xml_package, # for building openstack docs
     $::openstack_project::jenkins_params::docbook5_xsl_package, # for building openstack docs
