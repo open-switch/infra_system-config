@@ -21,7 +21,7 @@ done
 
 echo 'The node is idle now. Cleaning up the Jenkins Workspace'
 echo
-rm -rf /mnt/jenkins/workspace/*
+find /mnt/jenkins/workspace/ -maxdepth 1 ! -name 'sstate-cache' -a ! -name 'workspace' -type d -exec rm -Rf {} +
 
 echo "Setting the node back online.."
 echo
