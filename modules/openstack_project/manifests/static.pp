@@ -49,7 +49,7 @@ class openstack_project::static (
   apache::vhost { 'openswitch.net':
     port     => 80,
     priority => '50',
-    docroot  => '/srv/static/www/dist',
+    docroot  => '/srv/static/www',
     require  => File['/srv/static/www'],
     serveraliases => ['www.openswitch.net'],
   }
