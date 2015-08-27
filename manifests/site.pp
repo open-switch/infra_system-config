@@ -47,6 +47,14 @@ node default {
   }
 }
 
+node 'proxy.openswitch.net' {
+  class { 'openstack_project::server':
+    sysadmins => hiera('sysadmins', []),
+    iptables_public_tcp_ports = [8080],
+  }
+}
+
+
 #
 # Long lived servers:
 #
