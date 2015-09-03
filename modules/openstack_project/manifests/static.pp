@@ -94,7 +94,7 @@ class openstack_project::static (
     group   => 'jenkins',
     require => User['jenkins'],
   }
-  
+
   ###########################################################
   # Api
 
