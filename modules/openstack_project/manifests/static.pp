@@ -94,6 +94,23 @@ class openstack_project::static (
     group   => 'jenkins',
     require => User['jenkins'],
   }
+  
+  ###########################################################
+  # Api
+
+  apache::vhost { 'api.openswitch.net':
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/static/api',
+    require  => File['/srv/static/api'],
+  }
+
+  file { '/srv/static/api':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
 
   ###########################################################
   # Logs
