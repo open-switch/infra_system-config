@@ -9,7 +9,7 @@ class openstack_project::zuul_prod(
   $zuul_ssh_private_key = '',
   $url_pattern = '',
   $zuul_url = '',
-  $status_url = 'http://status.openswitch.net/zuul/',
+  $status_url = 'http://zuul.openswitch.net/',
   $swift_authurl = '',
   $swift_auth_version = '',
   $swift_user = '',
