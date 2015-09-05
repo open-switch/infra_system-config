@@ -39,4 +39,20 @@ class openstack_project::slave (
     }
   }
 
+  if ($vsi_sudo == true) {
+    file { '/etc/sudoers.d/jenkins-vsi':
+      ensure => present,
+      source => 'puppet:///modules/openstack_project/jenkins/jenkins-vsi.sudo',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0440',
+    }
+    exec {"docker_group":
+    unless => "groups jenkins | grep docker",
+    command => "usermod -aG docker jenkins",
+    require => User['root'],
+    }
+  }
+
+
 }

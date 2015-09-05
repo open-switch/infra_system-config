@@ -591,6 +591,18 @@ node /^openswitch-slave-.*\.openswitch\.net$/ {
   }
 }
 
+# vsi slave with certain sudo cmd
+node /^slave-.*\.openswitch\.net$/ {
+  include openstack_project
+  class { 'openstack_project::slave':
+    ssh_key   => $openstack_project::jenkins_ssh_key,
+    sysadmins               => hiera('sysadmins', []),
+    token     => hiera('jenkins_jobs_password','XXX'),
+    vsi_sudo  => true,
+  }
+}
+
+
 # Node-OS: precise
 node 'proposal.slave.openstack.org' {
   include openstack_project
