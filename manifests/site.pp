@@ -598,7 +598,7 @@ node /^slave-.*\.openswitch\.net$/ {
     ssh_key   => $openstack_project::jenkins_ssh_key,
     sysadmins               => hiera('sysadmins', []),
     token     => hiera('jenkins_jobs_password','XXX'),
-    vsi_sudo  => true,
+    vsi_sudo  => 'true',
   }
 }
 
