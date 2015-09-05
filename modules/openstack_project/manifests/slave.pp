@@ -6,6 +6,7 @@ class openstack_project::slave (
   $ssh_key = '',
   $sysadmins = [],
   $token = 'XXX',
+  $vsi_sudo = false,
 ) {
 
   include openstack_project
