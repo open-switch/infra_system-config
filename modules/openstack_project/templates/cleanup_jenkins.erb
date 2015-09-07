@@ -22,6 +22,8 @@ done
 echo 'The node is idle now. Cleaning up the Jenkins Workspace'
 echo
 find /mnt/jenkins/workspace/ -maxdepth 1 ! -name 'sstate-cache' -a ! -name 'workspace' -type d -exec rm -Rf {} +
+# Cleanup broken symlinks on the sstate cache
+find /mnt/jenkins/workspace/sstate-cache -type l -exec sh -c "file -b {} | grep -q ^broken" \; -print | xargs rm
 
 echo "Setting the node back online.."
 echo
