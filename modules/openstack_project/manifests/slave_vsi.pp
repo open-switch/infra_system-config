@@ -1,6 +1,6 @@
 # == Class: openstack_project::slave
 #
-class openstack_project::slave (
+class openstack_project::slave_vsi (
   $thin = false,
   $certname = $::fqdn,
   $ssh_key = '',
@@ -37,6 +37,19 @@ class openstack_project::slave (
     class {'openstack_project::thick_slave':
       token => $token,
     }
+  }
+
+  file { '/etc/sudoers.d/jenkins-vsi':
+    ensure => present,
+    source => 'puppet:///modules/openstack_project/jenkins/jenkins-vsi.sudo',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0440',
+  }
+  exec {"docker_group":
+    unless => "groups jenkins | grep docker",
+    command => "usermod -aG docker jenkins",
+    require => User['root'],
   }
 
 }
