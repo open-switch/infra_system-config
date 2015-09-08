@@ -46,10 +46,11 @@ class openstack_project::slave_vsi (
     group  => 'root',
     mode   => '0440',
   }
+
   exec {"docker_group":
-    unless => "groups jenkins | grep docker",
-    command => "usermod -aG docker jenkins",
-    require => User['root'],
+    unless => "/usr/bin/groups jenkins | /bin/grep docker",
+    command => "/usr/sbin/usermod -aG docker jenkins",
+    require => User['jenkins'],
   }
 
 }
