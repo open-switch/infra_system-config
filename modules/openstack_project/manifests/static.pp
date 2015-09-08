@@ -52,6 +52,10 @@ class openstack_project::static (
     docroot  => '/srv/static/www',
     require  => File['/srv/static/www'],
     serveraliases => ['www.openswitch.net'],
+    extraconfig => ['RewriteEngine on', 
+                    'RewriteCond %{REQUEST_FILENAME} !-f',
+                    'RewriteCond %{REQUEST_FILENAME} !-d',
+                    'RewriteRule ^(.*)$ /index.html [L]'],
   }
 
   file { '/srv/static/www':
