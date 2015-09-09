@@ -17,6 +17,13 @@ class openstack_project::slave_common(
     url  => $project_config_repo,
   }
 
+  file { '/mnt/jenkins':
+    ensure => directory,
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => '0755',
+  }
+
   file { '/usr/local/jenkins/slave_scripts':
     ensure  => directory,
     owner   => 'root',
