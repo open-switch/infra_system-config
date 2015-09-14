@@ -83,6 +83,11 @@ class openstack_project::thick_slave(
     provider => pip,
   }
 
+  package { 'tornado':
+    ensure   => latest,
+    provider => pip,
+  }
+
   # for pushing files to swift and uploading to pypi with twine
   if ($::lsbdistcodename != 'trusty') {
     package { 'requests':
