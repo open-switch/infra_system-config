@@ -14,7 +14,7 @@ class openstack_project::lists(
     iptables_public_tcp_ports => [25, 80, 465],
   }
 
-  $listdomain = 'lists.openstack.org'
+  $listdomain = 'lists.openswitch.net'
 
   class { 'exim':
     sysadmins       => $listadmins,
