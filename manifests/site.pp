@@ -246,7 +246,7 @@ node 'groups-dev.openstack.org' {
 }
 
 # Node-OS: precise
-node 'lists.openstack.org' {
+node 'lists.openswitch.net' {
   class { 'openstack_project::lists':
     listadmins   => hiera('listadmins', []),
     listpassword => hiera('listpassword', 'XXX'),
