@@ -250,6 +250,9 @@ node 'lists.openswitch.net' {
   class { 'openstack_project::lists':
     listadmins   => hiera('listadmins', []),
     listpassword => hiera('listpassword', 'XXX'),
+    smtpserver   => 'smtp.sendgrid.net',
+    smtpuser     => 'openhalon',
+    smtppass     => hiera('smtppass', 'XXX'),
   }
 }
 
