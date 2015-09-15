@@ -2,10 +2,10 @@
 #
 class openstack_project::lists(
   $listadmins,
-  $listpassword = ''
+  $listpassword = '',
   $smtpserver = 'localhost',
   $smtpuser = '',
-  $smtppass = '',
+  $smtppass = ''
 ) {
   # Using openstack_project::template instead of openstack_project::server
   # because the exim config on this machine is almost certainly
@@ -27,7 +27,7 @@ class openstack_project::lists(
     vhost_name => $listdomain,
     smtpserver => $smtpserver,
     smtpuser   => $smtpuser,
-    smtppass   => $smtppass,
+    smtppass   => $smtppass
   }
 
 #  realize (
