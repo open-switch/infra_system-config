@@ -19,9 +19,10 @@ class openstack_project::users {
     uid      => 2000,
     gid      => 2000,
   }
+
   @user::virtual::localuser { 'tiamarin':
     realname => 'Javier Tia',
-    sshkeys  => 'AAAAB3NzaC1yc2EAAAABIwAAAgEA67PRWQqWKFa0nguNgAJMbU6jR7LAUur0xgstqsCyDJPEoSyGEhULIp6HPU0vJNSjk+F/PjqBQGVWdQCEE04T4B5veZNeD9oFM2hBEMc4Ac1FsA4vVgYwT3AHoQxfsUxGTTFzzroqRFN0yICpgb1r1xfoafUYt1TCEpxqF6YqdEzutp4KEGxUK+nLVKzrZvRQUtgKSFjHHylMAOZcXl/SDHh42IpDGrVjqsBig9c9uQUWv1A4bj5cfBFNKvp9Z4p5AK+5CGNCNL19aLIPgQMNzGrIROff4hD5GJuqzJqtgIaCgsxnlU+62zI8LP6pArEgqY5nQUU8kwkIiV2FnDcqvGLafxrRyQDNeHldssNLawwphZg6wdAxnRZa6QXR7+AtbU9Rw0mWLH6eyTwQPET00jicCp2bvlf1+LmC8ANRClhY4qeaSE9/9IRdalHqh7hnVM48a+t8MpttBoo+puu71NdjKnSSTjHyrmrq5aX7Jubm/Ds+fC/LQlc6uXCavxmDTXB4RSaFrZjiXz6iavbt5dmNhdsHi6gjf/0kR8KGAJOCntT0a2h6LxMVQo1c+xrp6emtD5rbzFe/dzHqDtghDraRZEYcWXIGA32emEeSHUs67IauHUCUzgjDBafEP7EV7pECSfkHC/F2hz3e2Mz0vRfnyT2lfn8LRdhPzJz5D6M='
+    sshkeys  => 'AAAAB3NzaC1yc2EAAAABIwAAAgEA67PRWQqWKFa0nguNgAJMbU6jR7LAUur0xgstqsCyDJPEoSyGEhULIp6HPU0vJNSjk+F/PjqBQGVWdQCEE04T4B5veZNeD9oFM2hBEMc4Ac1FsA4vVgYwT3AHoQxfsUxGTTFzzroqRFN0yICpgb1r1xfoafUYt1TCEpxqF6YqdEzutp4KEGxUK+nLVKzrZvRQUtgKSFjHHylMAOZcXl/SDHh42IpDGrVjqsBig9c9uQUWv1A4bj5cfBFNKvp9Z4p5AK+5CGNCNL19aLIPgQMNzGrIROff4hD5GJuqzJqtgIaCgsxnlU+62zI8LP6pArEgqY5nQUU8kwkIiV2FnDcqvGLafxrRyQDNeHldssNLawwphZg6wdAxnRZa6QXR7+AtbU9Rw0mWLH6eyTwQPET00jicCp2bvlf1+LmC8ANRClhY4qeaSE9/9IRdalHqh7hnVM48a+t8MpttBoo+puu71NdjKnSSTjHyrmrq5aX7Jubm/Ds+fC/LQlc6uXCavxmDTXB4RSaFrZjiXz6iavbt5dmNhdsHi6gjf/0kR8KGAJOCntT0a2h6LxMVQo1c+xrp6emtD5rbzFe/dzHqDtghDraRZEYcWXIGA32emEeSHUs67IauHUCUzgjDBafEP7EV7pECSfkHC/F2hz3e2Mz0vRfnyT2lfn8LRdhPzJz5D6M=',
     key_id   => 'javier.tia@hp.com',
     uid      => 2001,
     gid      => 2001,
