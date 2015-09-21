@@ -71,6 +71,7 @@ class openstack_project::static (
   apache::vhost { 'archive.openswitch.net':
     port     => 80,
     priority => '50',
+    template => 'openstack_project/archive.vhost.erb'
     docroot  => '/srv/static/archive',
     require  => File['/srv/static/archive'],
   }
