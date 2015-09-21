@@ -71,9 +71,17 @@ class openstack_project::static (
   apache::vhost { 'archive.openswitch.net':
     port     => 80,
     priority => '50',
-    template => 'openstack_project/archive.vhost.erb'
+    template => 'openstack_project/archive.vhost.erb',
     docroot  => '/srv/static/archive',
     require  => File['/srv/static/archive'],
+  }
+
+  # Cleanup of build artifacts, keep a two-week history
+  cron { 'cleanupartifacts':
+    user        => 'jenkins',
+    hour        => '*/12',
+    minute      => '0',
+    command     => '(ls -t /srv/static/archive/artifacts |head -n 56;ls /srv/static/archive/artifacts)|sort|uniq -u |sed -e \'s,.*,"&",g\'|xargs rm -Rf',
   }
 
   file { '/srv/static/archive':
