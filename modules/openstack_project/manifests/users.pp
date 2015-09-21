@@ -27,4 +27,12 @@ class openstack_project::users {
     uid      => 2001,
     gid      => 2001,
   }
+
+  @user::virtual::localuser { 'ying':
+    realname => 'Ying Wang',
+    sshkeys  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDYX/e38dceillWY4beLUhmX5B0KvnBVd4QktV/k8O/v3QVwNit8jOP8tyRbmDrn2IbQKWJWgu4YIzaumhYqMJ9Ooaa7ZOWwpI4/74Pduo3xgLYhohhd2wPKSC80GiP6gLUVQgI2cmJFCLoU5vxhr1KOcWWTlKFOWTwOzxXwDKAUd6CQy5HryCoqmJ1CwFBimu8e3WG13LfcbohTz3guu5vKrL98yCL9hefXEMCEh/pC4FezmChX/k0DT2QK+EquO4HjTt0WpM4udGpA46Da54Pq1P6Csu/VOoYKu+k1OsKZMujO9DOTF4aXFPVO/vVrGygaKwZxWu3Bt9dDW3m+/WP',
+    key_id   => 'ying.wang11@hpe.com',
+    uid      => 2002,
+    gid      => 2002,
+  }
 }

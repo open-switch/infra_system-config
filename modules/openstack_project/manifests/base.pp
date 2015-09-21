@@ -87,6 +87,7 @@ class openstack_project::base(
 
     realize (
       User::Virtual::Localuser['dompegam'],
+      User::Virtual::Localuser['ying'],
       User::Virtual::Localuser['tiamarin']
     )
   }
