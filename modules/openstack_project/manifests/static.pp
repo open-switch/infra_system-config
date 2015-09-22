@@ -81,10 +81,17 @@ class openstack_project::static (
     user        => 'jenkins',
     hour        => '*/12',
     minute      => '0',
-    command     => '(ls -t /srv/static/archive/artifacts |head -n 56;ls /srv/static/archive/artifacts)|sort|uniq -u |sed -e \'s,.*,"&",g\'|xargs rm -Rf',
+    command     => '(ls -t /srv/static/archive/artifacts/periodic |head -n 56;ls /srv/static/archive/artifacts/periodic)|sort|uniq -u |sed -e \'s,.*,"&",g\'|xargs rm -Rf',
   }
 
   file { '/srv/static/archive':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
+  file { '/srv/static/archive/artifacts/periodic':
     ensure  => directory,
     owner   => 'jenkins',
     group   => 'jenkins',
