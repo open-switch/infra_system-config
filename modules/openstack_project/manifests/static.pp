@@ -291,18 +291,19 @@ class openstack_project::static (
   ###########################################################
   # Docs
 
-  apache::vhost::proxy { 'docs.openswitch.net':
+  apache::vhost { 'docs.openswitch.net':
     port     => 80,
-    dest     => 'http://127.0.0.1:8000',
     priority => '50',
+    docroot  => '/srv/static/docs',
+    require  => File['/srv/static/governance'],
   }
 
-#  file { '/srv/static/docs':
-#    ensure  => directory,
-#    owner   => 'jenkins',
-#    group   => 'jenkins',
-#    require => User['jenkins'],
-#  }
+  file { '/srv/static/docs':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
 
   ###########################################################
   # Specs
