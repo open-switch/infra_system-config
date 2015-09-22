@@ -9,13 +9,13 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
   DocumentRoot <%= docroot %>
   <Directory <%= docroot %>>
     Options <%= options %>
-    AllowOverride None
+    AllowOverride all
     Order allow,deny
     allow from all
   </Directory>
   <Directory <%= docroot %>/artifacts>
     Options <%= options %>
-    AllowOverride None
+    AllowOverride all
     Order allow,deny
     allow from all
     IndexOrderDefault Descending Name
