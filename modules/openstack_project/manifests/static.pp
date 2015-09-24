@@ -142,10 +142,11 @@ class openstack_project::static (
     port     => 80,
     priority => '50',
     docroot  => '/srv/static/sstate',
-    ssl_cert_file => $ssl_cert_file,
-    ssl_key_file => $ssl_key_file,
-    ssl_chain_file => $ssl_chain_file,
-    require  => File[$ssl_cert_file, $ssl_key_file, $ssl_chain_file,  '/srv/static/sstate'],
+#    ssl_cert_file => $ssl_cert_file,
+#    ssl_key_file => $ssl_key_file,
+#    ssl_chain_file => $ssl_chain_file,
+#    require  => File[$ssl_cert_file, $ssl_key_file, $ssl_chain_file,  '/srv/static/sstate'],
+    require  => File['/srv/static/sstate'],
   }
 
   file { '/srv/static/sstate':
