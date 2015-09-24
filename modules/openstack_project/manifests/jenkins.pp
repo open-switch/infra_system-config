@@ -116,6 +116,9 @@ class openstack_project::jenkins (
   jenkins::plugin { 'token-macro':
     version => '1.5.1',
   }
+  jenkins::plugin { 'downstream-ext':
+    version => '1.8',
+  }
 
   if $manage_jenkins_jobs == true {
     class { 'project_config':
