@@ -9,11 +9,44 @@ class openstack_project::static (
   $swift_region_name = '',
   $swift_default_container = '',
   $project_config_repo = '',
+  $ssl_cert_file = "/etc/ssl/certs/${::fqdn}.pem",
+  $ssl_cert_file_contents = '',
+  $ssl_key_file = "/etc/ssl/private/${::fqdn}.key",
+  $ssl_key_file_contents = '',
+  $ssl_chain_file = '/etc/ssl/certs/intermediate.pem',
+  $ssl_chain_file_contents = '',
 ) {
 
   class { 'openstack_project::server':
     iptables_public_tcp_ports => [22, 80, 443],
     sysadmins                 => $sysadmins,
+  }
+
+  if $ssl_cert_file_contents != '' {
+    file { $ssl_cert_file:
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0640',
+      content => $ssl_cert_file_contents,
+    }
+  }
+
+  if $ssl_key_file_contents != '' {
+    file { $ssl_key_file:
+      owner   => 'root',
+      group   => 'ssl-cert',
+      mode    => '0640',
+      content => $ssl_key_file_contents,
+    }
+  }
+
+  if $ssl_chain_file_contents != '' {
+    file { $ssl_chain_file:
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0640',
+      content => $ssl_chain_file_contents,
+    }
   }
 
 #  class { 'project_config':
@@ -52,7 +85,7 @@ class openstack_project::static (
     docroot  => '/srv/static/www',
     require  => File['/srv/static/www'],
     serveraliases => ['www.openswitch.net'],
-    extraconfig => ['RewriteEngine on', 
+    extraconfig => ['RewriteEngine on',
                     'RewriteCond %{REQUEST_FILENAME} !-f',
                     'RewriteCond %{REQUEST_FILENAME} !-d',
                     'RewriteRule ^(.*)$ /index.html [L]'],
@@ -73,7 +106,11 @@ class openstack_project::static (
     priority => '50',
     template => 'openstack_project/archive.vhost.erb',
     docroot  => '/srv/static/archive',
-    require  => File['/srv/static/archive'],
+    redirect_ssl => true,
+    ssl_cert_file => $ssl_cert_file,
+    ssl_key_file => $ssl_key_file,
+    ssl_chain_file => $ssl_chain_file,
+    require  => File[$ssl_cert_file, $ssl_key_file, $ssl_chain_file,  '/srv/static/archive'],
   }
 
   # Cleanup of build artifacts, keep a two-week history
