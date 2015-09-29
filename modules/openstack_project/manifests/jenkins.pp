@@ -119,6 +119,34 @@ class openstack_project::jenkins (
   jenkins::plugin { 'downstream-ext':
     version => '1.8',
   }
+  jenkins::plugin { 'test-results-analyzer':
+    version => '0.2.1',
+  }
+  jenkins::plugin { 'multiple-scms':
+    version => '0.5',
+  }
+  jenkins::plugin { 'conditional-buildstep':
+    version => '1.3.3',
+  }
+  jenkins::plugin { 'envinject':
+    version => '1.92.1',
+  }
+  jenkins::plugin { 'flexible-publish':
+    version => '0.15.2',
+  }
+  jenkins::plugin { 'parameterized-trigger':
+    version => '2.29',
+  }
+  jenkins::plugin { 'ssh-agent':
+    version => '1.8',
+  }
+  jenkins::plugin { 'ssh-credentials':
+    version => '1.11',
+  }
+  jenkins::plugin { 'publish-over-ssh':
+    version => '1.13',
+  }
+
 
   if $manage_jenkins_jobs == true {
     class { 'project_config':
