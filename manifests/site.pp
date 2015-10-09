@@ -280,7 +280,7 @@ node 'eavesdrop.openswitch.net' {
     sysadmins               => hiera('sysadmins', []),
 #    statusbot_nick          => hiera('statusbot_nick', 'username'),
 #    statusbot_password      => hiera('statusbot_nick_password', 'XXX'),
-#    statusbot_server        => 'chat.freenode.net',
+    statusbot_server        => 'chat.freenode.net',
 #    statusbot_channels      => 'edeploy',
 #    statusbot_auth_nicks    => '',
 #    statusbot_wiki_user     => hiera('statusbot_wiki_username', 'username'),
