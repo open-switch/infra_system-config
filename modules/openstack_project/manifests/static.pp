@@ -174,6 +174,23 @@ class openstack_project::static (
   }
 
   ###########################################################
+  # stage for openswitch website
+
+  apache::vhost { 'egats.openswitch.net':
+    port     => 80,
+    priority => '50',
+    docroot  => '/srv/static/egats',
+    require  => File['/srv/static/egats'],
+  }
+
+  file { '/srv/static/egats':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
+  ###########################################################
   # Logs
 
 #  apache::vhost { 'logs.openstack.org':
