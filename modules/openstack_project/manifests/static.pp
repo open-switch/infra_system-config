@@ -181,6 +181,10 @@ class openstack_project::static (
     priority => '50',
     docroot  => '/srv/static/egats',
     require  => File['/srv/static/egats'],
+    extraconfig => ['RewriteEngine on',
+                    'RewriteCond %{REQUEST_FILENAME} !-f',
+                    'RewriteCond %{REQUEST_FILENAME} !-d',
+                    'RewriteRule ^(.*)$ /index.html [L]'],
   }
 
   file { '/srv/static/egats':
