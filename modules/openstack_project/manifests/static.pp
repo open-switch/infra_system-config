@@ -194,6 +194,14 @@ class openstack_project::static (
     require => User['jenkins'],
   }
 
+  # this is to backup prod codes
+  file { '/srv/static/www-last':
+    ensure  => directory,
+    owner   => 'jenkins',
+    group   => 'jenkins',
+    require => User['jenkins'],
+  }
+
   ###########################################################
   # Logs
 
