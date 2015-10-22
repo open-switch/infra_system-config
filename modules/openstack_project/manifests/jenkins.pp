@@ -146,7 +146,15 @@ class openstack_project::jenkins (
   jenkins::plugin { 'publish-over-ssh':
     version => '1.13',
   }
-
+  jenkins::plugin { 'build-token-root':
+    version => '1.3',
+  }
+  jenkins::plugin { 'validating-string-parameter':
+    version => '2.3',
+  }
+  jenkins::plugin { 'build-flow-plugin':
+    version => '0.18',
+  }
 
   if $manage_jenkins_jobs == true {
     class { 'project_config':
