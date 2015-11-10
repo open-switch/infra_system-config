@@ -468,6 +468,16 @@ node 'static.openswitch.net' {
   }
 }
 
+node 'static-aws.openswitch.net' {
+  class { 'openstack_project::static':
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
+    sysadmins               => hiera('sysadmins', []),
+    ssl_cert_file_contents  => hiera('static_ssl_cert_file_contents', 'XXX'),
+    ssl_key_file_contents   => hiera('static_ssl_key_file_contents', 'XXX'),
+    ssl_chain_file_contents => hiera('static_ssl_chain_file_contents', 'XXX')
+  }
+}
+
 # A machine to serve various project status updates.
 # Node-OS: precise
 node 'status.openstack.org' {
