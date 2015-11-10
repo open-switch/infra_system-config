@@ -175,6 +175,15 @@ class openstack_project::review (
         threads              => '4',
         mirror               => true,
       },
+      {
+        name                 => 'github',
+        url                  => 'git@github.com:open-switch/${name}.git',
+        push                 => '+refs/heads/*:refs/heads/*',
+        replicationDelay     => '1',
+        threads              => '4',
+        mirror               => true,
+        remoteNameStyle      => 'dash',
+        authGroup            => 'Anonymous Group'
     ],
     require                             => $::project_config::config_dir,
   }
