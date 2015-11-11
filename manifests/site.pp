@@ -392,7 +392,7 @@ node /^elasticsearch0[1-7]\.openstack\.org$/ {
 
 # CentOS machines to load balance git access.
 # Node-OS: centos6
-node /^git(-fe\d+)?\.openswitch\.net$/ {
+node 'git.openswitch.net' {
   class { 'openstack_project::git':
     sysadmins               => hiera('sysadmins', []),
     balancer_member_names   => [
@@ -403,6 +403,39 @@ node /^git(-fe\d+)?\.openswitch\.net$/ {
       '15.126.136.69',
       '15.126.138.233',
     ],
+  }
+}
+
+# CentOS machines to load balance git access.
+# Node-OS: centos6
+node 'git-aws.openswitch.net' {
+  class { 'openstack_project::git':
+    sysadmins               => hiera('sysadmins', []),
+    balancer_member_names   => [
+      'git01-aws.openswitch.net',
+      'git02-aws.openswitch.net',
+    ],
+    balancer_member_ips     => [
+      '52.26.242.129',
+      '52.34.28.108',
+    ],
+  }
+}
+
+# CentOS machines to run cgit and git daemon. Will be
+# load balanced by git.openstack.org.
+# Node-OS: centos6
+node /^git\d+\-aws\.openswitch\.net$/ {
+  include openstack_project
+  class { 'openstack_project::git_backend':
+    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
+    vhost_name              => 'git-aws.openswitch.net',
+    sysadmins               => hiera('sysadmins', []),
+    git_gerrit_ssh_key      => hiera('gerrit_replication_ssh_rsa_pubkey_contents', 'XXX'),
+    ssl_cert_file_contents  => hiera('git_ssl_cert_file_contents', 'XXX'),
+    ssl_key_file_contents   => hiera('git_ssl_key_file_contents', 'XXX'),
+    ssl_chain_file_contents => hiera('git_ssl_chain_file_contents', 'XXX'),
+    behind_proxy            => true,
   }
 }
 
