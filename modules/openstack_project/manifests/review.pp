@@ -183,7 +183,8 @@ class openstack_project::review (
         threads              => '4',
         mirror               => true,
         remoteNameStyle      => 'dash',
-        authGroup            => 'Anonymous Group'
+        authGroup            => 'Anonymous Users',
+       },
     ],
     require                             => $::project_config::config_dir,
   }
