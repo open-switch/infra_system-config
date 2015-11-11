@@ -585,6 +585,37 @@ node 'zuul.openswitch.net' {
   }
 }
 
+
+node 'zuul-aws.openswitch.net' {
+  class { 'openstack_project::zuul_prod':
+    project_config_repo            => 'https://review.openswitch.net/infra/project-config',
+    gerrit_server                  => 'review.openswitch.net',
+    gerrit_user                    => 'zuul',
+    gerrit_ssh_host_key            => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
+    zuul_ssh_private_key           => hiera('zuul_ssh_private_key_contents', 'XXX'),
+    #url_pattern                    => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
+    #swift_authurl                  => 'https://identity.api.rackspacecloud.com/v2.0/',
+    #swift_user                     => 'infra-files-rw',
+    #swift_key                      => hiera('infra_files_rw_password', 'XXX'),
+    #swift_tenant_name              => hiera('infra_files_tenant_name', 'tenantname'),
+    #swift_region_name              => 'DFW',
+    #swift_default_container        => 'infra-files',
+    #swift_default_logserver_prefix => 'http://logs.openstack.org/',
+    #swift_default_expiry           => 14400,
+    zuul_url                       => 'http://zuul.openswitch.net',
+    sysadmins                      => hiera('sysadmins', []),
+    #statsd_host                    => 'graphite.openstack.org',
+    gearman_workers                => [ # Required to open the ports to listen for them
+#      'nodepool.openstack.org',
+#      'jenkins.openswitch.net',
+      'jenkins.openswitch.net', '15.126.131.77',
+#      'jenkins-dev.openstack.org',
+      'zm01.openswitch.net', '15.126.131.252',
+#      'zm02.openstack.org',
+    ],
+  }
+}
+
 # Node-OS: precise
 # Node-OS: trusty
 node /^zm\d+\.openswitch\.net$/ {
