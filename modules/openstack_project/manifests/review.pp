@@ -176,6 +176,20 @@ class openstack_project::review (
         mirror               => true,
       },
       {
+        name                 => 'git01-aws',
+        url                  => 'cgit@git01-aws.openswitch.net:/var/lib/git/',
+        replicationDelay     => '1',
+        threads              => '4',
+        mirror               => true,
+      },
+      {
+        name                 => 'git02-aws',
+        url                  => 'cgit@git02-aws.openswitch.net:/var/lib/git/',
+        replicationDelay     => '1',
+        threads              => '4',
+        mirror               => true,
+      },
+      {
         name                 => 'github',
         url                  => 'git@github.com:open-switch/${name}.git',
         push                 => '+refs/heads/*:refs/heads/*',
