@@ -577,7 +577,8 @@ node 'zuul.openswitch.net' {
     gearman_workers                => [ # Required to open the ports to listen for them
 #      'nodepool.openstack.org',
 #      'jenkins.openswitch.net',
-      'jenkins.openswitch.net', '15.126.131.77',
+#      'jenkins.openswitch.net', '15.126.131.77',
+       'jenkins.openswitch.net', '52.11.169.151',
 #      'jenkins-dev.openstack.org',
       'zm01.openswitch.net', '15.126.131.252',
 #      'zm02.openstack.org',
