@@ -580,7 +580,8 @@ node 'zuul.openswitch.net' {
 #      'jenkins.openswitch.net', '15.126.131.77',
        'jenkins.openswitch.net', '52.11.169.151',
 #      'jenkins-dev.openstack.org',
-      'zm01.openswitch.net', '15.126.131.252',
+       'zm01.openswitch.net', '52.33.196.156',
+#      'zm01.openswitch.net', '15.126.131.252',
 #      'zm02.openstack.org',
     ],
   }
