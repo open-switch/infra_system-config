@@ -272,6 +272,16 @@ node 'lists.openswitch.net' {
   }
 }
 
+node 'lists-aws.openswitch.net' {
+  class { 'openstack_project::lists':
+    listadmins   => hiera('listadmins', []),
+    listpassword => hiera('listpassword', 'XXX'),
+    smtpserver   => 'smtp.sendgrid.net',
+    smtpuser     => 'openhalon',
+    smtppass     => hiera('smtppass', 'XXX'),
+  }
+}
+
 # Node-OS: precise
 node 'paste.openstack.org' {
   class { 'openstack_project::paste':
