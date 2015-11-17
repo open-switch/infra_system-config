@@ -162,20 +162,6 @@ class openstack_project::review (
         mirror               => true,
       },
       {
-        name                 => 'git01',
-        url                  => 'cgit@git01.openswitch.net:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git02',
-        url                  => 'cgit@git02.openswitch.net:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
         name                 => 'git03',
         url                  => 'cgit@git03.openswitch.net:/var/lib/git/',
         replicationDelay     => '1',
