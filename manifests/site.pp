@@ -147,20 +147,6 @@ node 'jenkins.openswitch.net' {
   }
 }
 
-node 'jenkins-aws.openswitch.net' {
-  class { 'openstack_project::jenkins':
-    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
-    jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
-    jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
-    ssl_cert_file_contents  => hiera('jenkins_ssl_cert_file_contents', 'XXX'),
-    ssl_key_file_contents   => hiera('jenkins_ssl_key_file_contents', 'XXX'),
-    ssl_chain_file_contents => hiera('jenkins_ssl_chain_file_contents', 'XXX'),
-    sysadmins               => hiera('sysadmins', []),
-#    zmq_event_receivers     => ['logstash.openstack.org',
-#                                'nodepool.openstack.org',
-#    ],
-  }
-}
 
 
 # Node-OS: precise
@@ -272,15 +258,6 @@ node 'lists.openswitch.net' {
   }
 }
 
-node 'lists-aws.openswitch.net' {
-  class { 'openstack_project::lists':
-    listadmins   => hiera('listadmins', []),
-    listpassword => hiera('listpassword', 'XXX'),
-    smtpserver   => 'smtp.sendgrid.net',
-    smtpuser     => 'openhalon',
-    smtppass     => hiera('smtppass', 'XXX'),
-  }
-}
 
 # Node-OS: precise
 node 'paste.openstack.org' {
@@ -478,15 +455,6 @@ node 'static.openswitch.net' {
   }
 }
 
-node 'static-aws.openswitch.net' {
-  class { 'openstack_project::static':
-    project_config_repo     => 'https://review.openswitch.net/infra/project-config',
-    sysadmins               => hiera('sysadmins', []),
-    ssl_cert_file_contents  => hiera('static_ssl_cert_file_contents', 'XXX'),
-    ssl_key_file_contents   => hiera('static_ssl_key_file_contents', 'XXX'),
-    ssl_chain_file_contents => hiera('static_ssl_chain_file_contents', 'XXX')
-  }
-}
 
 # A machine to serve various project status updates.
 # Node-OS: precise
@@ -564,36 +532,6 @@ node 'zuul.openswitch.net' {
   }
 }
 
-node 'zuul-aws.openswitch.net' {
-  class { 'openstack_project::zuul_prod':
-    project_config_repo            => 'https://review.openswitch.net/infra/project-config',
-    gerrit_server                  => 'review.openswitch.net',
-    gerrit_user                    => 'zuul',
-    gerrit_ssh_host_key            => hiera('gerrit_ssh_rsa_pubkey_contents', 'XXX'),
-    zuul_ssh_private_key           => hiera('zuul_ssh_private_key_contents', 'XXX'),
-    #url_pattern                    => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
-    #swift_authurl                  => 'https://identity.api.rackspacecloud.com/v2.0/',
-    #swift_user                     => 'infra-files-rw',
-    #swift_key                      => hiera('infra_files_rw_password', 'XXX'),
-    #swift_tenant_name              => hiera('infra_files_tenant_name', 'tenantname'),
-    #swift_region_name              => 'DFW',
-    #swift_default_container        => 'infra-files',
-    #swift_default_logserver_prefix => 'http://logs.openstack.org/',
-    #swift_default_expiry           => 14400,
-    zuul_url                       => 'http://zuul.openswitch.net',
-    sysadmins                      => hiera('sysadmins', []),
-    #statsd_host                    => 'graphite.openstack.org',
-    gearman_workers                => [ # Required to open the ports to listen for them
-#      'nodepool.openstack.org',
-#      'jenkins.openswitch.net',
-       'jenkins.openswitch.net', '52.11.169.151',
-#      'jenkins-dev.openstack.org',
-#      'zm01.openswitch.net', '15.126.131.252',
-       'zm01.openswitch.net', '52.33.196.156',
-#      'zm02.openstack.org',
-    ],
-  }
-}
 
 # Node-OS: precise
 # Node-OS: trusty
