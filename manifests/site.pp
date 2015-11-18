@@ -92,8 +92,8 @@ node 'review.openswitch.net' {
     sysadmins                           => hiera('sysadmins', []),
     swift_username                      => hiera('swift_store_user', 'username'),
     swift_password                      => hiera('swift_store_key', 'XXX'),
-    smtpserver                          => 'smtp.sendgrid.net',
-    smtpuser                            => 'openhalon',
+    smtpserver                          => 'email-smtp.us-west-2.amazonaws.com',
+    smtpuser                            => hiera('smtpuser', 'XXX'),
     smtppass                            => hiera('smtppass', 'XXX'),
     oauth_github_client_id              => hiera('gerrit_github_client_id', 'XXX'),
     oauth_github_client_secret          => hiera('gerrit_github_client_secret', 'XXX'),
@@ -252,12 +252,11 @@ node 'lists.openswitch.net' {
   class { 'openstack_project::lists':
     listadmins   => hiera('listadmins', []),
     listpassword => hiera('listpassword', 'XXX'),
-    smtpserver   => 'smtp.sendgrid.net',
-    smtpuser     => 'openhalon',
+    smtpserver   => 'email-smtp.us-west-2.amazonaws.com',
+    smtpuser     => hiera('smtpuser', 'XXX'),
     smtppass     => hiera('smtppass', 'XXX'),
   }
 }
-
 
 # Node-OS: precise
 node 'paste.openstack.org' {
