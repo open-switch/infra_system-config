@@ -59,7 +59,7 @@ node 'proxy.openswitch.net' {
 # Long lived servers:
 #
 # Node-OS: precise
-node 'review.openswitch.net' {
+node 'review.openswitch.net', 'review-aws.openswitch.net' {
   class { 'openstack_project::review':
     project_config_repo                 => 'https://review.openswitch.net/infra/project-config',
     github_oauth_token                  => hiera('gerrit_github_token', 'XXX'),
