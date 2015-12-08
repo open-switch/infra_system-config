@@ -244,12 +244,12 @@ class openstack_project::gerrit (
     require => Class['::gerrit'],
   }
 
-  file { '/home/gerrit2/review_site/static/usg-cla.html':
+  file { '/home/gerrit2/review_site/static/ops-dco.html':
     ensure  => present,
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    source  => 'puppet:///modules/openstack_project/gerrit/usg-cla.html',
+    source  => 'puppet:///modules/openstack_project/gerrit/ops-dco.html',
     replace => true,
     require => Class['::gerrit'],
   }
