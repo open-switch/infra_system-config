@@ -163,21 +163,21 @@ class openstack_project::review (
       },
       {
         name                 => 'git03',
-        url                  => 'cgit@git03.openswitch.net:/var/lib/git/${name}.git',
+        url                  => 'cgit@git03.openswitch.net:/var/lib/git/',
         replicationDelay     => '1',
         threads              => '4',
         mirror               => true,
       },
       {
         name                 => 'git04',
-        url                  => 'cgit@git04.openswitch.net:/var/lib/git/${name}.git',
+        url                  => 'cgit@git04.openswitch.net:/var/lib/git/',
         replicationDelay     => '1',
         threads              => '4',
         mirror               => true,
       },
       {
         name                 => 'github-openswitch',
-        url                  => 'git@github.com:open-switch/${name}.git',
+        url                  => 'git@github.com:open-switch/',
         projects             => 'openswitch/*',
         push                 => '+refs/heads/*:refs/heads/*',
         push                 => '+refs/heads/*:refs/tags/*',
@@ -188,7 +188,7 @@ class openstack_project::review (
        },
        {
         name                 => 'github-infra',
-        url                  => 'git@github.com:open-switch/${name}.git',
+        url                  => 'git@github.com:open-switch/',
         projects             => 'infra/*',
         push                 => '+refs/heads/*:refs/heads/*',
         push                 => '+refs/heads/*:refs/tags/*',
