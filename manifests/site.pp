@@ -68,8 +68,6 @@ node 'review.openswitch.net', 'review-aws.openswitch.net' {
     mysql_host                          => hiera('gerrit_mysql_host', 'localhost'),
     mysql_password                      => hiera('gerrit_mysql_password', 'XXX'),
     email_private_key                   => hiera('gerrit_email_private_key', 'XXX'),
-    ops_gerrit_username                 => hiera('ops_gerrit_username', 'XXX'),
-    ops_gerrit_password                 => hiera('ops_gerrit_password', 'XXX'),
     gerritbot_password                  => hiera('gerrit_gerritbot_password', 'XXX'),
     gerritbot_ssh_rsa_key_contents      => hiera('gerritbot_ssh_rsa_key_contents', 'XXX'),
     gerritbot_ssh_rsa_pubkey_contents   => hiera('gerritbot_ssh_rsa_pubkey_contents', 'XXX'),
