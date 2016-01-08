@@ -156,7 +156,7 @@ class openstack_project::review (
 #      },
       {
         name                 => 'local',
-        url                  => 'file:///opt/lib/git/${name}.git',
+        url                  => 'file:///opt/lib/git/',
         replicationDelay     => '1',
         threads              => '4',
         mirror               => true,
