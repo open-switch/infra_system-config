@@ -205,6 +205,10 @@ node 'puppetdb.openswitch.net' {
   }
 }
 
+node 'ticket.openswitch.net' {
+  include openstack_project::ticket
+}
+
 # Node-OS: precise
 node 'graphite.openstack.org' {
   class { 'openstack_project::graphite':
