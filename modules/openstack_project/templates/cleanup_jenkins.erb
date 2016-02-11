@@ -25,6 +25,10 @@ find /mnt/jenkins/workspace/ -maxdepth 1 ! -name 'sstate-cache' -a ! -name 'work
 # Cleanup broken symlinks on the sstate cache
 find /mnt/jenkins/workspace/sstate-cache -type l -exec sh -c "file -b {} | grep -q ^broken" \; -print | xargs rm
 
+echo 'The node is idle now. Cleaning up docker'
+sudo docker ps -q |xargs sudo docker rm -f; sudo docker images -q |xargs sudo docker rmi
+sudo service docker restart
+
 echo "Setting the node back online.."
 echo
 curl -s -X POST -u gerrig:<%=token%> https://jenkins.openswitch.net/computer/<%=slave%>/toggleOffline
