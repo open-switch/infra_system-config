@@ -21,7 +21,7 @@ class openstack_project::ticket {
     shell   => '/bin/bash',
     uid     => '3000',
     gid     => '3000',
-    managehome => true
+    managehome => true,
   }
 
   ssh_authorized_key { 'michael_key':
