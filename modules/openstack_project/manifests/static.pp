@@ -118,7 +118,7 @@ class openstack_project::static (
     user        => 'jenkins',
     hour        => '*/12',
     minute      => '0',
-    command     => '(ls -t /srv/static/archive/artifacts/periodic |head -n 56;ls /srv/static/archive/artifacts/periodic)|sort|uniq -u |sed -e \'s,.*,"&",g\'|xargs rm -Rf',
+    command     => '(ls -t /srv/static/archive/artifacts/periodic |head -n 112;ls /srv/static/archive/artifacts/periodic)|sort|uniq -u |sed -e \'s,.*,"&",g\'|xargs -I{} rm -Rf /srv/static/archive/artifacts/periodic/{}',
   }
 
   file { '/srv/static/archive':
