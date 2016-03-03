@@ -44,7 +44,7 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
       AllowOverride all
       Order allow,deny
       allow from all
-      IndexOrderDefault Descending Name
+      IndexOrderDefault Descending Date
     </Directory>
 
     ErrorLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_ssl_error.log
