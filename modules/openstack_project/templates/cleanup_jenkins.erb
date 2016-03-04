@@ -21,9 +21,7 @@ done
 
 echo 'The node is idle now. Cleaning up the Jenkins Workspace'
 echo
-find /mnt/jenkins/workspace/ -maxdepth 1 ! -name 'sstate-cache' -a ! -name 'workspace' -type d -exec rm -Rf {} +
-# Cleanup broken symlinks on the sstate cache
-find /mnt/jenkins/workspace/sstate-cache -type l -exec sh -c "file -b {} | grep -q ^broken" \; -print | xargs rm
+find /mnt/jenkins/workspace/ -maxdepth 1 ! -name 'workspace' -type d -exec rm -Rf {} +
 
 echo 'The node is idle now. Cleaning up docker'
 sudo docker ps -q |xargs sudo docker rm -f; sudo docker images -q |xargs sudo docker rmi
