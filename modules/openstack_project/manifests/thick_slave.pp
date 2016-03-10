@@ -83,6 +83,9 @@ class openstack_project::thick_slave(
     provider => pip,
   }
 
+  package { 'lcov': 
+    ensure => 'installed'
+  }
   package { 'tornado':
     ensure   => latest,
     provider => pip,
