@@ -33,7 +33,7 @@ class openstack_project::eavesdrop (
     nick        => 'openswitch',
     nickpass    => $nickpass,
     network     => 'FreeNode',
-    server      => 'chat.freenode.net:7000',
+    server      => '91.217.189.42:7000',
     use_ssl     => 'True',
     vhost_extra => $vhost_extra,
     channels    => [
