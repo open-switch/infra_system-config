@@ -91,6 +91,15 @@ class openstack_project::thick_slave(
     provider => pip,
   }
 
+  $perl_packages = [
+    'libwww-perl',
+    'libdatetime-perl',
+  ]
+
+  package { $perl_packages:
+    ensure   => 'installed',
+  }
+
   # for pushing files to swift and uploading to pypi with twine
   if ($::lsbdistcodename != 'trusty') {
     package { 'requests':
@@ -154,6 +163,20 @@ class openstack_project::thick_slave(
     mode   => '0700',
     content => template('openstack_project/cleanup_jenkins.erb'),
     replace => true,
+  }
+
+  file { '/var/log/cloudwatch':
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+  }
+
+  exec { 'Monitoring package installation':
+    cwd     => '/var/log/cloudwatch',
+    command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
+    unless  => 'grep -rq aws /var/log/cloudwatch',
+    require => User['root']
   }
 
   cron{ 'cleanup_jenkins':
