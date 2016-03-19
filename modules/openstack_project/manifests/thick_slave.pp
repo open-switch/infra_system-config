@@ -175,7 +175,7 @@ class openstack_project::thick_slave(
   exec { 'Monitoring package installation':
     cwd     => '/var/log/cloudwatch',
     command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
-    unless  => 'grep -rq cloudwatch /var/log/',
+    unless  => 'bash -c "test -d /var/log/cloudwatch"',
     require => User['root']
   }
 
