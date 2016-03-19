@@ -98,6 +98,7 @@ class openstack_project::thick_slave(
 
   package { $perl_packages:
     ensure   => 'installed',
+    install_options => ['--allow-unauthenticated', '-f'],
   }
 
   # for pushing files to swift and uploading to pypi with twine
@@ -172,11 +173,11 @@ class openstack_project::thick_slave(
 #    mode   => '0755',
 #  }
 
-  exec { 'Monitoring package installation':
-    command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
-    creates => '/var/log/cloudwatch',
-    path    => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin',
-  }
+#  exec { 'Monitoring package installation':
+#    command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
+#    creates => '/var/log/cloudwatch',
+#    path    => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin',
+#  }
 
   cron{ 'cleanup_jenkins':
     command => '/usr/sbin/cleanup_jenkins.sh | /usr/bin/logger -t cleanup_jenkins',
