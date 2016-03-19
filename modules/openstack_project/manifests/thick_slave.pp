@@ -91,15 +91,15 @@ class openstack_project::thick_slave(
     provider => pip,
   }
 
-  $perl_packages = [
-    'libwww-perl',
-    'libdatetime-perl',
-  ]
+#  $perl_packages = [
+#    'libwww-perl',
+#    'libdatetime-perl',
+#  ]
 
-  package { $perl_packages:
-    ensure   => 'installed',
-    install_options => ['--allow-unauthenticated', '-f'],
-  }
+#  package { $perl_packages:
+#    ensure   => 'installed',
+#    install_options => ['--allow-unauthenticated', '-f'],
+#  }
 
   # for pushing files to swift and uploading to pypi with twine
   if ($::lsbdistcodename != 'trusty') {
