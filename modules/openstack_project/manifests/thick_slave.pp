@@ -175,7 +175,7 @@ class openstack_project::thick_slave(
   exec { 'Monitoring package installation':
     command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
     creates => '/var/log/cloudwatch',
-    path    => '/usr/local/bin/:/bin/',
+    path    => '/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin',
   }
 
   cron{ 'cleanup_jenkins':
