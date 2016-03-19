@@ -165,17 +165,17 @@ class openstack_project::thick_slave(
     replace => true,
   }
 
-  file { '/var/log/cloudwatch':
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-  }
+#  file { '/var/log/cloudwatch':
+#    ensure => directory,
+#    owner  => 'root',
+#    group  => 'root',
+#    mode   => '0755',
+#  }
 
   exec { 'Monitoring package installation':
-    cwd     => '/var/log/cloudwatch',
     command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
-    unless  => 'bash -c "test -d /var/log/cloudwatch"',
+    creates => '/var/log/cloudwatch',
+    path    => '/usr/local/bin/:/bin/',
     require => User['root']
   }
 
