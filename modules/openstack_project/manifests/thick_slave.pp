@@ -17,6 +17,15 @@ class openstack_project::thick_slave(
 #    require => User['jenkins'],
 #  }
 
+class { 'apt':
+    always_apt_update => true,
+}
+
+exec { 'apt-get-update':
+    command     => '/usr/bin/apt-get update',
+    refreshonly => true,
+}
+
   # Packages that most jenkins slaves (eg, unit test runners) need
   $packages = [
     $::openstack_project::jenkins_params::ant_package, # for building buck
