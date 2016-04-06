@@ -1,4 +1,4 @@
-e == Class: openstack_project::base
+# == Class: openstack_project::base
 #
 class openstack_project::base(
   $certname              = $::fqdn,
