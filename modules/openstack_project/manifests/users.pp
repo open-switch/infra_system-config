@@ -35,4 +35,13 @@ class openstack_project::users {
     uid      => 2002,
     gid      => 2002,
   }
+
+  @user::virtual::localuser { 'marisidd':
+    realname => 'Basavaraju Marisiddaiah',
+    sshkeys  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEAwkDK+OWmRGfjjCv9LUsz10UTeRI5GXQ+MeAZpYNNZoJxbKL80qVwBVJ42Ip/g/yXwxt4KvuxTuwCg/T0tjiAGoTa/PHvKfYI0/MrIA2TF+f+Ig7OBwAClGTgOz7PUbaZYAqR8A6oy8gJB5cka2DDOfi0KBkfTZwNjb3nUR8lJMCoeGfH9ODWDJMkesPmkHZOLdlm7rAfDY+WN00PbbL6yYv68TfIp4TyB2tbq9l3wE3pK18fkluvul3I0Urgxgfi1/qiL9ajkWXe7ZhoGl6fnsPhoD+UsrhFkcwISHJcug3PC0rJydOTMhT5hnfxOvOgsutaju+uLLawRpZ9Jzv1+w',
+    key_id   => 'basavaraju.marisiddaiah@hpe.com',
+    uid      => 2003,
+    gid      => 2003,
+  }
 }
+
