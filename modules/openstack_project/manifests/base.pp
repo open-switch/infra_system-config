@@ -1,4 +1,4 @@
-# == Class: openstack_project::base
+e == Class: openstack_project::base
 #
 class openstack_project::base(
   $certname              = $::fqdn,
@@ -88,7 +88,8 @@ class openstack_project::base(
     realize (
       User::Virtual::Localuser['dompegam'],
       User::Virtual::Localuser['ying'],
-      User::Virtual::Localuser['tiamarin']
+      User::Virtual::Localuser['tiamarin'],
+      User::Virtual::Localuser['marisidd']
     )
   }
 
