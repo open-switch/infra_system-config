@@ -32,6 +32,7 @@ echo "Setting the node back online.."
 # as a workaround we will disconnect the node and reconnect it
 # Jenkins has an REST API for disconnection, but connection will happen on demand when we fetch the status
 curl -s -X POST -u gerrig:<%=token%> https://jenkins.openswitch.net/computer/<%=slave%>/doDisconnect?offlineMessage="Performing%20daily%20maintenance"
+curl -s -X POST -u gerrig:<%=token%> https://jenkins.openswitch.net/computer/<%=slave%>/toggleOffline
 curl -s https://jenkins.openswitch.net/computer/<%=slave%>/api/json > /dev/null
 
 echo "Cleanup completed"
