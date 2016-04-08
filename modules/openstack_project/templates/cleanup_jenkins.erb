@@ -28,7 +28,10 @@ sudo docker ps -q |xargs sudo docker rm -f; sudo docker images -q |xargs sudo do
 sudo service docker restart
 
 echo "Setting the node back online.."
-echo
-curl -s -X POST -u gerrig:<%=token%> https://jenkins.openswitch.net/computer/<%=slave%>/toggleOffline
+# We are seeing that nodes are not being picked up by zuul after they were toogle offline
+# as a workaround we will disconnect the node and reconnect it
+# Jenkins has an REST API for disconnection, but connection will happen on demand when we fetch the status
+curl -s -X POST -u gerrig:<%=token%> https://jenkins.openswitch.net/computer/<%=slave%>/doDisconnect?offlineMessage="Performing%20daily%20maintenance"
+curl -s https://jenkins.openswitch.net/computer/<%=slave%>/api/json > /dev/null
 
 echo "Cleanup completed"
