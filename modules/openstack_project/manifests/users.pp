@@ -62,5 +62,3 @@ class openstack_project::users {
 
 }
 
-}
-
