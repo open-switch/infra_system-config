@@ -44,8 +44,8 @@ class openstack_project::users {
     gid      => 2003,
   }
   
-  @user::virtual::localuser { 'marisidd':
-    realname => 'Basavaraju Marisiddaiah',
+  @user::virtual::localuser { 'sinhaank':
+    realname => 'Ankit Kumar Sinha',
     sshkeys  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEA1W4pd6GCMWtqXFH1//u0fdvuKA+pYTP+7NwSXoYPsbU5kMSvapLrDTxxJaDpN2sn7mICq7YB9mQEHKfegkNTNOdaD4yEUvWySwmBStvF7CA+02nk336/FvTyAzYInVr7l5T1VWvOpn8FpKDZZzNYeiX8Z2C9wYgYd5ZMZOUHzHg4ULs69KXwH0WmhAiWtT0mZVbjK9RHq1QoFsauuDDSVGJRv5VK71CesGyQV0mvuwqJy/uiKfC9IfUUxkVa/0P97QfqfEKASVtB3Q3tcmxCHTOhBh1hpauw9cpq4Q65iAYf0/CtWGSP5R3ngv1B1aQPwI19mcKB2tL85f386iDC/Q',
     key_id   => 'ankit.sinha@hpe.com',
     uid      => 2004,
