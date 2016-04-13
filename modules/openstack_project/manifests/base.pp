@@ -92,6 +92,7 @@ class openstack_project::base(
       User::Virtual::Localuser['marisidd'],
       User::Virtual::Localuser['sinhaank'],
       User::Virtual::Localuser['jeremybbrown'],
+      User::Virtual::Localuser['jenna'],
     )
   }
 
