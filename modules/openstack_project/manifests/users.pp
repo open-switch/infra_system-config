@@ -46,7 +46,7 @@ class openstack_project::users {
   
   @user::virtual::localuser { 'sinhaank':
     realname => 'Ankit Kumar Sinha',
-    sshkeys  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEA1W4pd6GCMWtqXFH1//u0fdvuKA+pYTP+7NwSXoYPsbU5kMSvapLrDTxxJaDpN2sn7mICq7YB9mQEHKfegkNTNOdaD4yEUvWySwmBStvF7CA+02nk336/FvTyAzYInVr7l5T1VWvOpn8FpKDZZzNYeiX8Z2C9wYgYd5ZMZOUHzHg4ULs69KXwH0WmhAiWtT0mZVbjK9RHq1QoFsauuDDSVGJRv5VK71CesGyQV0mvuwqJy/uiKfC9IfUUxkVa/0P97QfqfEKASVtB3Q3tcmxCHTOhBh1hpauw9cpq4Q65iAYf0/CtWGSP5R3ngv1B1aQPwI19mcKB2tL85f386iDC/Q',
+    sshkeys  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCuJfRtRM0k+6ZyYD+k1NV/EJeS/gS08iSAt69z/+bvqKs58l3Q2HSuoOYwTeZBe3zy1luZpX2JZtiMadisjcbIj60TSchbv8wYmJH3ysrGeGqj2rY4X7nsKKwOj2tPwruo0WxZ5majCHwYT858jwcBsX0KqHMlspW+r4DIJGSzskNz/k8uHDxDz5/5UBqIVhU0Tr5B4ERhBey/pOPdkVpTlQ2nM0wntHJ5YqaMc2W8CwyFDw89rElkfKG1PLv709xfJPFOBRs5wJ+XG2QBlx1uVuHhgVJomsCk+pO9K0fqRekmJxkxVkRaQXIRE3tayyLj4hq2hfE9B0rlFgQzY3pF',
     key_id   => 'ankit.sinha@hpe.com',
     uid      => 2004,
     gid      => 2004,
