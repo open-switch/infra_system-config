@@ -55,7 +55,7 @@ class openstack_project::users {
   @user::virtual::localuser { 'jeremybbrown':
     realname => 'Jeremy Brown',
     sshkeys  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEAyNJKJGsZsqmS0jz6K26IqGokHZy2N78lNPHCDtt81kiMTRfy/ckUeg38EbBus/bNrXM2yZKfINBXkdoq3tPWEOdS8fB3YNyFS1zlGLKl6Ps8wHMjfdeoX8G1nodk71kM0tZ5Eb5cfEzF0zPH31BFQ93/Gd+VpjKUrBfFTgdrkk/Rze0fyxrjGN/yqVmiw6re1l/L14sf6uTz6vaN4DIU+KC4nTo+uam3NbpdiZkWPL+3CzpZKgcuK5TlIR5qrn+f2x36C5ipfchYDesREVS8QkMkTndjS1f8qWJ7aw0jtFsj0W3OzglEhYWLo1hr7nWu9aoARvhIoU1SZMxDEqz8uQ==',
-    key_id   => 'jeremy.b.brown2@hpe.com',
+    key_id   => 'jeremy.b.brown2@hp.com',
     uid      => 2005,
     gid      => 2005,
   }
