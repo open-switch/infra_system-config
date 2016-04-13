@@ -62,7 +62,7 @@ class openstack_project::users {
 
   @user::virtual::localuser { 'jenna':
     realname => 'Jenna Hung',
-    sshkeys  => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVpxleqFkeRV/M6zPC451EF3ZPxxbCYz5nteXKiop6WnNvz1E69oGaUdzJQ+4Ku1zFrAIMEmtFBr5Er5NvWeXJW8N9s/zn/LkpUW7nxb4RxhXNN3JY1Hesba5sa8itDRFqu45G9z+N4nomr8AEXkYMP9qZQl/I58Z/+0g/YGFwy0KF/7+U/B+6zf26q8GOMOiMLmFBrZJthKlp3zFU2Xil6tP4f4o4iJSVe/q+KIico/DB+MauMYJUAY1uzhnAdcZ3dzUsxxOLuE/ZAELenRf+A5yQOPycyMnw7RUt8PPLvZxNXMjtSko3REyPNys9s/hu2YQOOAPXiNVoUJpunOMT',
+    sshkeys  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCVpxleqFkeRV/M6zPC451EF3ZPxxbCYz5nteXKiop6WnNvz1E69oGaUdzJQ+4Ku1zFrAIMEmtFBr5Er5NvWeXJW8N9s/zn/LkpUW7nxb4RxhXNN3JY1Hesba5sa8itDRFqu45G9z+N4nomr8AEXkYMP9qZQl/I58Z/+0g/YGFwy0KF/7+U/B+6zf26q8GOMOiMLmFBrZJthKlp3zFU2Xil6tP4f4o4iJSVe/q+KIico/DB+MauMYJUAY1uzhnAdcZ3dzUsxxOLuE/ZAELenRf+A5yQOPycyMnw7RUt8PPLvZxNXMjtSko3REyPNys9s/hu2YQOOAPXiNVoUJpunOMT',
     key_id   => 'jenna.hung@hpe.com',
     uid      => 2006,
     gid      => 2006,
