@@ -96,6 +96,11 @@ exec { 'apt-get-update':
     provider => pip,
   }
 
+  package { 'jenkins-job-builder':
+    ensure => present,
+    provider => pip,
+  }
+
 #  $perl_packages = [
 #    'libwww-perl',
 #    'libdatetime-perl',
