@@ -24,7 +24,31 @@ echo
 find /mnt/jenkins/workspace/ -maxdepth 1 ! -name 'workspace' -type d -exec rm -Rf {} +
 
 echo 'The node is idle now. Cleaning up docker'
-sudo docker ps -q |xargs sudo docker rm -f; sudo docker images -q |xargs sudo docker rmi
+containers=$(sudo docker ps -aq)
+if [ -z $containers ]
+then
+  echo "No docker containers to be deleted"
+else
+  sudo docker stop --time=5 $containers
+  sudo docker rm -f $containers
+fi
+images=$(sudo docker images -f "dangling=true" -q)
+if [ -z $images ]
+then
+  echo "No dangling docker images"
+else
+  sudo docker rmi -f $images
+fi
+images=$(sudo docker images | grep '^ops.*' | awk '{print $1}')
+if [ -z $images ]
+then
+  echo "No ops images to be deleted"
+else
+  sudo docker rmi -f $images
+fi
+echo "After docker cleanup"
+sudo docker ps -a
+sudo docker images
 sudo service docker restart
 
 echo "Setting the node back online.."
