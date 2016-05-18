@@ -36,8 +36,8 @@ class openstack_project::review_dev (
   }
 
   class { 'openstack_project::gerrit':
-    vhost_name                      => 'review-dev.openstack.org',
-    canonicalweburl                 => 'https://review-dev.openstack.org/',
+    vhost_name                      => 'review-dev.openswitch.net',
+    canonicalweburl                 => 'https://review-dev.openswitch.net',
     ssl_cert_file                   => '/etc/ssl/certs/ssl-cert-snakeoil.pem',
     ssl_key_file                    => '/etc/ssl/private/ssl-cert-snakeoil.key',
     ssl_chain_file                  => '',
@@ -69,18 +69,18 @@ class openstack_project::review_dev (
     sysadmins                       => $sysadmins,
     gitweb                          => false,
     cgit                            => true,
-    web_repo_url                    => 'https://git.openstack.org/cgit/',
+    web_repo_url                    => 'https://git.openswitch.net/cgit/',
     swift_username                  => $swift_username,
     swift_password                  => $swift_password,
-    replication                     => [
-      {
-        name                 => 'github',
-        url                  => 'git@github.com:',
-        authGroup            => 'Anonymous Users',
-        replicationDelay     => '1',
-        replicatePermissions => false,
-        mirror               => true,
-      },
+    replication                         => [
+#      {
+#        name                 => 'github',
+#        url                  => 'git@github.com:',
+#        authGroup            => 'Anonymous Users',
+#        replicationDelay     => '1',
+#        replicatePermissions => false,
+#        mirror               => true,
+#      },
       {
         name                 => 'local',
         url                  => 'file:///opt/lib/git/',
@@ -89,15 +89,22 @@ class openstack_project::review_dev (
         mirror               => true,
       },
       {
-        name                 => 'afs',
-        url                  => 'file:///afs/openstack.org/mirror/git-sandbox/',
+        name                 => 'git03',
+        url                  => 'cgit@git03.openswitch.net:/var/lib/git/',
+        replicationDelay     => '1',
+        threads              => '4',
+        mirror               => true,
+      },
+      {
+        name                 => 'git04',
+        url                  => 'cgit@git04.openswitch.net:/var/lib/git/',
         replicationDelay     => '1',
         threads              => '4',
         mirror               => true,
       },
     ],
-    require                         => $::project_config::config_dir,
     afs                             => true,
+    require                         => $::project_config::config_dir,
   }
 
   gerrit::plugin { 'javamelody':
