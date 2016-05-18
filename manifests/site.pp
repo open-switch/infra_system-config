@@ -107,7 +107,7 @@ node 'review.openswitch.net', 'review-aws.openswitch.net' {
 }
 
 # Node-OS: trusty
-node 'review-dev.openswitch.net {
+node 'review-dev.openswitch.net' {
   class { 'openstack_project::review_dev':
     project_config_repo             => 'https://github.com/dramirezp/project-config-dev.git',
     #github_oauth_token              => hiera('gerrit_dev_github_token', 'XXX'),
