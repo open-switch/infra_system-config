@@ -590,7 +590,6 @@ node 'zuul-dev.openswitch.net' {
     gearman_workers      => [
       'jenkins-dev.openswitch.net','52.37.155.213',
       'zm01-dev.openswitch.net', '52.38.221.85',
-
     ],
   }
 }

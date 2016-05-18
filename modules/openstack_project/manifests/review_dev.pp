@@ -27,7 +27,7 @@ class openstack_project::review_dev (
 ) {
 
   realize (
-    User::Virtual::Localuser['zaro'],
+    User::Virtual::Localuser['dompegam'],
   )
 
   class { 'project_config':
