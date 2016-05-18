@@ -149,34 +149,9 @@ class openstack_project::gerrit (
     httpd_maxwait                       => $httpd_maxwait,
     commentlinks                        => [
       {
-        name  => 'bugheader',
-        match => '([Cc]loses|[Pp]artial|[Rr]elated)-[Bb]ug:\\s*#?(\\d+)',
-        link  => 'https://launchpad.net/bugs/$2',
-      },
-      {
         name  => 'bug',
-        match => '\\b[Bb]ug:? #?(\\d+)',
-        link  => 'https://launchpad.net/bugs/$1',
-      },
-      {
-        name  => 'story',
-        match => '\\b[Ss]tory:? #?(\\d+)',
-        link  => 'https://storyboard.openstack.org/#!/story/$1',
-      },
-      {
-        name  => 'blueprint',
-        match => '(\\b[Bb]lue[Pp]rint\\b|\\b[Bb][Pp]\\b)[ \\t#:]*([A-Za-z0-9\\-]+)',
-        link  => 'https://blueprints.launchpad.net/openstack/?searchtext=$2',
-      },
-      {
-        name  => 'testresult',
-        match => '<li>([^ ]+) <a href=\"[^\"]+\" target=\"_blank\">([^<]+)</a> : ([^ ]+)([^<]*)</li>',
-        html  => '<li class=\"comment_test\"><span class=\"comment_test_name\"><a href=\"$2\">$1</a></span> <span class=\"comment_test_result\"><span class=\"result_$3\">$3</span>$4</span></li>',
-      },
-      {
-        name  => 'launchpadbug',
-        match => '<a href=\"(https://bugs\\.launchpad\\.net/[a-zA-Z0-9\\-]+/\\+bug/(\\d+))[^\"]*\">[^<]+</a>',
-        html  => '<a href=\"$1\">$1</a>'
+        match => '\\b[Tg][gG]\\s*-?\\s*#?(\\d+)',
+        link  => 'https://tree.taiga.io/project/openswitch/issue/$1',
       },
       {
         name  => 'changeid',
