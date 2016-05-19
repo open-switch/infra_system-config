@@ -7,7 +7,7 @@ class openstack_project::review_dev (
   $mysql_host = '',
   $mysql_password = '',
   $email_private_key = '',
-  $contactstore = true,
+  $contactstore = false,
   $contactstore_appsec = '',
   $contactstore_pubkey = '',
   $ssh_dsa_key_contents = '',
@@ -49,7 +49,7 @@ class openstack_project::review_dev (
     ssh_project_rsa_pubkey_contents => $ssh_project_rsa_pubkey_contents,
     email                           => 'review-dev@openstack.org',
     war                             =>
-      'http://tarballs.openstack.org/ci/test/gerrit-v2.9.4.3.7adc92a.war',
+      'https://www.gerritcodereview.com/download/gerrit-2.12.2.war',
     contactstore                    => $contactstore,
     contactstore_appsec             => $contactstore_appsec,
     contactstore_pubkey             => $contactstore_pubkey,
@@ -69,7 +69,7 @@ class openstack_project::review_dev (
     sysadmins                       => $sysadmins,
     gitweb                          => false,
     cgit                            => true,
-    web_repo_url                    => 'https://git.openswitch.net/cgit/',
+    web_repo_url                    => 'https://git-dev.openswitch.net/cgit/',
     swift_username                  => $swift_username,
     swift_password                  => $swift_password,
     replication                         => [
@@ -84,20 +84,6 @@ class openstack_project::review_dev (
       {
         name                 => 'local',
         url                  => 'file:///opt/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git03',
-        url                  => 'cgit@git03.openswitch.net:/var/lib/git/',
-        replicationDelay     => '1',
-        threads              => '4',
-        mirror               => true,
-      },
-      {
-        name                 => 'git04',
-        url                  => 'cgit@git04.openswitch.net:/var/lib/git/',
         replicationDelay     => '1',
         threads              => '4',
         mirror               => true,
