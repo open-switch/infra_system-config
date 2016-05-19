@@ -103,7 +103,6 @@ class openstack_project::review_dev (
         mirror               => true,
       },
     ],
-    afs                             => true,
     require                         => $::project_config::config_dir,
   }
 
