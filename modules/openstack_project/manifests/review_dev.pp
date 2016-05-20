@@ -106,7 +106,7 @@ class openstack_project::review_dev (
     version => 'e00d5af',
   }
 
-  gerrit:plugin { 'gerrit-oauth-provider':
+  gerrit::plugin { 'gerrit-oauth-provider':
     base_url => "https://archive.openswitch.net/gerrit/",
     version => '2.11.3',
   }
