@@ -54,7 +54,7 @@ class openstack_project::review_dev (
     ssh_project_rsa_pubkey_contents => $ssh_project_rsa_pubkey_contents,
     email                           => 'review-dev@openstack.org',
     war                             =>
-      'https://www.gerritcodereview.com/download/gerrit-2.12.2.war',
+      'https://archive.openswitch.net/gerrit/gerrit-2.12.2.ops.war',
     contactstore                    => $contactstore,
     contactstore_appsec             => $contactstore_appsec,
     contactstore_pubkey             => $contactstore_pubkey,
