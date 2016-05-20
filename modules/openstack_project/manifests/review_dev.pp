@@ -80,7 +80,6 @@ class openstack_project::review_dev (
     sysadmins                       => $sysadmins,
     gitweb                          => false,
     cgit                            => true,
-    web_repo_url                    => 'https://git-dev.openswitch.net/cgit/',
     swift_username                  => $swift_username,
     swift_password                  => $swift_password,
     replication                         => [
