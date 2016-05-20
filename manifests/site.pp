@@ -178,21 +178,14 @@ node /^jenkins\d+\.openswitch\.net$/ {
 # Node-OS: precise
 node 'jenkins-dev.openswitch.net' {
   class { 'openstack_project::jenkins_dev':
-    project_config_repo     => 'https://git.openswitch.net/infra/project-config',
+    #project_config_repo     => 'https://git.openswitch.net/infra/project-config',
     jenkins_ssh_private_key  => hiera('jenkins_dev_ssh_private_key_contents', 'XXX'),
-    jenkins_jobs_password   => hiera('jenkins_dev_jobs_password', 'XXX'),
-    ssl_cert_file           => '/etc/ssl/certs/ssl-cert-snakeoil.pem',
-    ssl_key_file            => '/etc/ssl/private/ssl-cert-snakeoil.key',
+    mysql_root_password      => hiera('gerrit_dev_mysql_root_password', 'XXX'),
+    mysql_password           => hiera('gerrit_dev_mysql_password', 'XXX'),
+    #jenkins_jobs_password   => hiera('jenkins_dev_jobs_password', 'XXX'),
+    #ssl_cert_file           => '/etc/ssl/certs/ssl-cert-snakeoil.pem',
+    #ssl_key_file            => '/etc/ssl/private/ssl-cert-snakeoil.key',
     sysadmins                => hiera('sysadmins', []),
-    #mysql_password           => hiera('nodepool_dev_mysql_password', 'XXX'),
-    #mysql_root_password      => hiera('nodepool_dev_mysql_root_password', 'XXX'),
-    #nodepool_ssh_private_key => hiera('jenkins_dev_ssh_private_key_contents', 'XXX'),
-    #jenkins_api_user         => hiera('jenkins_dev_api_user', 'username'),
-    #jenkins_api_key          => hiera('jenkins_dev_api_key', 'XXX'),
-    #jenkins_credentials_id   => hiera('jenkins_dev_credentials_id', 'XXX'),
-    #hpcloud_username         => hiera('nodepool_hpcloud_username', 'username'),
-    #hpcloud_password         => hiera('nodepool_hpcloud_password', 'XXX'),
-    #hpcloud_project          => hiera('nodepool_hpcloud_project', 'XXX'),
   }
 }
 
