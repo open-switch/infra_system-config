@@ -78,8 +78,8 @@ class openstack_project::review_dev (
     mysql_password                  => $mysql_password,
     email_private_key               => $email_private_key,
     sysadmins                       => $sysadmins,
-    gitweb                          => false,
-    cgit                            => true,
+    gitweb                          => true,
+    cgit                            => false,
     swift_username                  => $swift_username,
     swift_password                  => $swift_password,
     replication                         => [
