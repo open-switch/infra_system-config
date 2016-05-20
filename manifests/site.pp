@@ -109,7 +109,7 @@ node 'review.openswitch.net', 'review-aws.openswitch.net' {
 # Node-OS: trusty
 node 'review-dev.openswitch.net' {
   class { 'openstack_project::review_dev':
-    project_config_repo             => 'https://github.com/dramirezp/project-config-dev.git',
+    project_config_repo             => 'https://git.openswitch.net/infra/project-config',
     #github_oauth_token              => hiera('gerrit_dev_github_token', 'XXX'),
     #github_project_username         => hiera('github_dev_project_username', 'username'),
     #github_project_password         => hiera('github_dev_project_password', 'XXX'),
@@ -178,7 +178,7 @@ node /^jenkins\d+\.openswitch\.net$/ {
 # Node-OS: precise
 node 'jenkins-dev.openswitch.net' {
   class { 'openstack_project::jenkins_dev':
-    project_config_repo     => 'https://github.com/dramirezp/project-config-dev.git',
+    project_config_repo     => 'https://git.openswitch.net/infra/project-config',
     jenkins_ssh_private_key  => hiera('jenkins_dev_ssh_private_key_contents', 'XXX'),
     jenkins_jobs_password   => hiera('jenkins_dev_jobs_password', 'XXX'),
     ssl_cert_file           => '/etc/ssl/certs/ssl-cert-snakeoil.pem',
@@ -583,7 +583,7 @@ node /^zm\d+\.openswitch\.net$/ {
 # Node-OS: trusty
 node 'zuul-dev.openswitch.net' {
   class { 'openstack_project::zuul_dev':
-    project_config_repo  => 'https://github.com/dramirezp/project-config-dev.git',
+    project_config_repo  => 'https://git.openswitch.net/infra/project-config',
     gerrit_server        => 'review-dev.openswitch.net',
     gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_dev_ssh_rsa_pubkey_contents', 'XXX'),
