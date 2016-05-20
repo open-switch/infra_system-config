@@ -52,7 +52,7 @@ class openstack_project::review_dev (
     ssh_rsa_pubkey_contents         => $ssh_rsa_pubkey_contents,
     ssh_project_rsa_key_contents    => $ssh_project_rsa_key_contents,
     ssh_project_rsa_pubkey_contents => $ssh_project_rsa_pubkey_contents,
-    email                           => 'review-dev@openstack.org',
+    email                           => 'review@openswitch.net',
     war                             =>
       'https://archive.openswitch.net/gerrit/gerrit-2.12.2.ops.war',
     contactstore                    => $contactstore,
