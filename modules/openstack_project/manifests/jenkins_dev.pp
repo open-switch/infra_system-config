@@ -16,7 +16,7 @@ class openstack_project::jenkins_dev (
 ) {
 
   realize (
-    User::Virtual::Localuser['zaro'],
+    User::Virtual::Localuser['dompegam'],
   )
 
   include openstack_project
@@ -141,7 +141,8 @@ class openstack_project::jenkins_dev (
 
   if $manage_jenkins_jobs == true {
     class { 'project_config':
-    url  => $project_config_repo,
+        url  => $project_config_repo,
+    }
   }
 
   if $manage_jenkins_jobs == true {
