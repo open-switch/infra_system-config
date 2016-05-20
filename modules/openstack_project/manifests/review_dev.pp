@@ -53,6 +53,7 @@ class openstack_project::review_dev (
     ssh_project_rsa_key_contents    => $ssh_project_rsa_key_contents,
     ssh_project_rsa_pubkey_contents => $ssh_project_rsa_pubkey_contents,
     email                           => 'review@openswitch.net',
+    logo                            => 'puppet:///modules/openstack_project/openswitch-dev.png',
     war                             =>
       'https://archive.openswitch.net/gerrit/gerrit-2.12.2.ops.war',
     contactstore                    => $contactstore,

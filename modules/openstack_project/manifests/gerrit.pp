@@ -75,6 +75,7 @@ class openstack_project::gerrit (
   $web_repo_url = '',
   $secondary_index = true,
   $afs = false,
+  $logo = 'puppet:///modules/openstack_project/openswitch.png',
 ) {
   class { 'openstack_project::server':
     iptables_public_tcp_ports => [80, 443, 29418],
@@ -241,7 +242,7 @@ class openstack_project::gerrit (
 
   file { '/home/gerrit2/review_site/static/title.png':
     ensure  => present,
-    source  => 'puppet:///modules/openstack_project/openswitch.png',
+    source  => $logo,
     require => Class['::gerrit'],
     notify => Exec['reload_gerrit_header'],
   }
