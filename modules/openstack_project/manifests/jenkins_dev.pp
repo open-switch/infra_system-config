@@ -144,55 +144,25 @@ class openstack_project::jenkins_dev (
     url  => $project_config_repo,
   }
 
-  class { '::jenkins::job_builder':
-    url          => "https://${vhost_name}/",
-    username     => $jenkins_jobs_username,
-    password     => $jenkins_jobs_password,
-    git_revision => $jenkins_git_revision,
-    git_url      => $jenkins_git_url,
-    config_dir   => $::project_config::jenkins_job_builder_config_dir,
-    require      => $::project_config::config_dir,
+  if $manage_jenkins_jobs == true {
+    class { 'project_config':
+      url  => $project_config_repo,
+    }
+    class { '::jenkins::job_builder':
+      url          => "https://${vhost_name}/",
+      username     => $jenkins_jobs_username,
+      password     => $jenkins_jobs_password,
+      git_revision => $jenkins_git_revision,
+      git_url      => $jenkins_git_url,
+      config_dir   => $::project_config::jenkins_job_builder_config_dir,
+      require      => $::project_config::config_dir,
+    }
+    file { '/etc/default/jenkins':
+      ensure => present,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      source => 'puppet:///modules/openstack_project/jenkins/jenkins.default',
+    }
   }
-
-  file { '/etc/default/jenkins':
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/openstack_project/jenkins/jenkins.default',
-  }
-
-#  class { '::nodepool':
-#    mysql_root_password      => $mysql_root_password,
-#    mysql_password           => $mysql_password,
-#    nodepool_ssh_private_key => $nodepool_ssh_private_key,
-#    environment              => {
-#      'NODEPOOL_SSH_KEY'     => $openstack_project::jenkins_dev_ssh_key,
-#    }
-#  }
-
-#  file { '/etc/nodepool/nodepool.yaml':
-#    ensure  => present,
-#    owner   => 'nodepool',
-#    group   => 'root',
-#    mode    => '0400',
-#    content => template("openstack_project/nodepool/${nodepool_template}"),
-#    require => [
-#      File['/etc/nodepool'],
-#      User['nodepool'],
-#    ],
-#  }
-
-#  file { '/etc/nodepool/scripts':
-#    ensure  => directory,
-#    owner   => 'root',
-#    group   => 'root',
-#    mode    => '0755',
-#    recurse => true,
-#    purge   => true,
-#    force   => true,
-#    require => File['/etc/nodepool'],
-#    source  => 'puppet:///modules/openstack_project/nodepool/scripts',
-#  }
-
 }
