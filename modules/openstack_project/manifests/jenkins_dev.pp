@@ -13,14 +13,11 @@ class openstack_project::jenkins_dev (
   $hpcloud_password ='',
   $hpcloud_project ='',
   $nodepool_template ='nodepool-dev.yaml.erb',
+  $ssl_chain_file = '/etc/ssl/certs/intermediate.pem',
   $ssl_cert_file_contents = '',
   $ssl_key_file_contents = '',
   $ssl_chain_file_contents = '',
 ) {
-
-  realize (
-    User::Virtual::Localuser['dompegam'],
-  )
 
   include openstack_project
 
@@ -28,18 +25,34 @@ class openstack_project::jenkins_dev (
     iptables_public_tcp_ports => [80, 443],
     sysadmins                 => $sysadmins,
   }
-  include bup
-  bup::site { 'rs-ord':
-    backup_user   => 'bup-jenkins-dev',
-    backup_server => 'ci-backup-rs-ord.openstack.org',
+#  include bup
+#  bup::site { 'rs-ord':
+#    backup_user   => 'bup-jenkins-dev',
+#    backup_server => 'ci-backup-rs-ord.openstack.org',
+#  }
+
+  # Set defaults here because they evaluate variables which you cannot
+  # do in the class parameter list.
+  if $ssl_cert_file == '' {
+    $prv_ssl_cert_file = "/etc/ssl/certs/${vhost_name}.pem"
   }
+  else {
+    $prv_ssl_cert_file = $ssl_cert_file
+  }
+  if $ssl_key_file == '' {
+    $prv_ssl_key_file = "/etc/ssl/private/${vhost_name}.key"
+  }
+  else {
+    $prv_ssl_key_file = $ssl_key_file
+  }
+
   class { '::jenkins::master':
-    vhost_name              => 'jenkins-dev.openstack.org',
-    serveradmin             => 'webmaster@openstack.org',
+    vhost_name              => 'jenkins-dev.openswitch.net',
+    serveradmin             => 'webmaster@openswitch.net',
     logo                    => 'openswitch.png',
-    ssl_cert_file           => '/etc/ssl/certs/ssl-cert-snakeoil.pem',
-    ssl_key_file            => '/etc/ssl/private/ssl-cert-snakeoil.key',
-    ssl_chain_file          => '',
+    ssl_cert_file           => $prv_ssl_cert_file,
+    ssl_key_file            => $prv_ssl_key_file,
+    ssl_chain_file          => $ssl_chain_file,
     jenkins_ssh_private_key => $jenkins_ssh_private_key,
     jenkins_ssh_public_key  => $openstack_project::jenkins_dev_ssh_key,
     ssl_cert_file_contents  => $ssl_cert_file_contents,
