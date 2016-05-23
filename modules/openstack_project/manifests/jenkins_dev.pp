@@ -13,6 +13,9 @@ class openstack_project::jenkins_dev (
   $hpcloud_password ='',
   $hpcloud_project ='',
   $nodepool_template ='nodepool-dev.yaml.erb',
+  $ssl_cert_file_contents = '',
+  $ssl_key_file_contents = '',
+  $ssl_chain_file_contents = '',
 ) {
 
   realize (
@@ -39,6 +42,9 @@ class openstack_project::jenkins_dev (
     ssl_chain_file          => '',
     jenkins_ssh_private_key => $jenkins_ssh_private_key,
     jenkins_ssh_public_key  => $openstack_project::jenkins_dev_ssh_key,
+    ssl_cert_file_contents  => $ssl_cert_file_contents,
+    ssl_key_file_contents   => $ssl_key_file_contents,
+    ssl_chain_file_contents => $ssl_chain_file_contents,
   }
 
   jenkins::plugin { 'build-timeout':
