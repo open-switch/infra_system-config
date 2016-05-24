@@ -51,6 +51,8 @@ class openstack_project::zuul_dev(
     require    => $::project_config::config_dir,
   }
 
+  class { '::zuul::merger': }
+
   if $gerrit_ssh_host_key != '' {
     file { '/home/zuul/.ssh':
       ensure  => directory,
@@ -70,8 +72,4 @@ class openstack_project::zuul_dev(
     }
   }
 
-  file { '/etc/zuul/merger-logging.conf':
-    ensure => present,
-    source => 'puppet:///modules/openstack_project/zuul/merger-logging.conf',
-  }
 }
