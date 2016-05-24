@@ -8,17 +8,13 @@ class openstack_project::zuul_dev(
   $gerrit_ssh_host_key = '',
   $zuul_ssh_private_key = '',
   $url_pattern = '',
-  $status_url = 'http://zuul-dev.openstack.org',
+  $status_url = 'http://zuul-dev.openswitch.net',
   $zuul_url = '',
   $sysadmins = [],
   $statsd_host = '',
   $gearman_workers = [],
   $project_config_repo = '',
 ) {
-
-  realize (
-    User::Virtual::Localuser['zaro'],
-  )
 
   # Turn a list of hostnames into a list of iptables rules
   $iptables_rules = regsubst ($gearman_workers, '^(.*)$', '-m state --state NEW -m tcp -p tcp --dport 4730 -s \1 -j ACCEPT')
@@ -46,8 +42,8 @@ class openstack_project::zuul_dev(
     job_name_in_report   => true,
     status_url           => $status_url,
     statsd_host          => $statsd_host,
-    git_email            => 'jenkins@openstack.org',
-    git_name             => 'OpenStack Jenkins',
+    git_email            => 'jenkins@openswitch.net',
+    git_name             => 'openswitch-dev Jenkins',
   }
 
   class { '::zuul::server':
@@ -70,22 +66,10 @@ class openstack_project::zuul_dev(
       owner   => 'zuul',
       group   => 'zuul',
       mode    => '0600',
-      content => "review-dev.openstack.org,23.253.78.13,2001:4800:7817:101:be76:4eff:fe04 ${gerrit_ssh_host_key}",
+      content => "review-dev.openswitch.net,52.32.114.247 ${gerrit_ssh_host_key}",
       replace => true,
       require => File['/home/zuul/.ssh'],
     }
-  }
-
-  file { '/etc/zuul/logging.conf':
-    ensure => present,
-    source => 'puppet:///modules/openstack_project/zuul/logging.conf',
-    notify => Exec['zuul-reload'],
-  }
-
-  file { '/etc/zuul/gearman-logging.conf':
-    ensure => present,
-    source => 'puppet:///modules/openstack_project/zuul/gearman-logging.conf',
-    notify => Exec['zuul-reload'],
   }
 
   file { '/etc/zuul/merger-logging.conf':

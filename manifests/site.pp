@@ -584,7 +584,7 @@ node 'zuul-dev.openswitch.net' {
     gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_dev_ssh_rsa_pubkey_contents', 'XXX'),
     zuul_ssh_private_key => hiera('zuul_dev_ssh_private_key_contents', 'XXX'),
-    url_pattern          => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
+    #url_pattern          => 'http://logs.openstack.org/{build.parameters[LOG_PATH]}',
     zuul_url             => 'http://zuul-dev.openswitch.net/p',
     sysadmins            => hiera('sysadmins', []),
     statsd_host          => 'graphite.openstack.org',
