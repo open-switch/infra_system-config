@@ -6,6 +6,7 @@ class openstack_project::jenkins_dev (
   $mysql_root_password,
   $mysql_password,
   $nodepool_ssh_private_key = '',
+  $manage_jenkins_jobs = true,
   $jenkins_api_user ='',
   $jenkins_api_key ='',
   $jenkins_credentials_id ='',
