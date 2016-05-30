@@ -161,12 +161,6 @@ class openstack_project::jenkins_dev (
 
   if $manage_jenkins_jobs == true {
     class { 'project_config':
-        url  => $project_config_repo,
-    }
-  }
-
-  if $manage_jenkins_jobs == true {
-    class { 'project_config':
       url  => $project_config_repo,
     }
     class { '::jenkins::job_builder':
