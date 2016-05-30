@@ -185,7 +185,6 @@ node 'jenkins-dev.openswitch.net' {
     jenkins_ssh_private_key  => hiera('jenkins_dev_ssh_private_key_contents', 'XXX'),
     mysql_root_password      => hiera('gerrit_dev_mysql_root_password', 'XXX'),
     mysql_password           => hiera('gerrit_dev_mysql_password', 'XXX'),
-    jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
     jenkins_jobs_password   => hiera('jenkins_dev_jobs_password', 'XXX'),
     ssl_cert_file_contents   => hiera('jenkins_dev_ssl_cert_file_contents', 'XXX'),
     ssl_key_file_contents    => hiera('jenkins_dev_ssl_key_file_contents', 'XXX'),
