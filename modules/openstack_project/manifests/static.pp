@@ -114,12 +114,12 @@ class openstack_project::static (
   }
 
   # Cleanup of build artifacts, keep a two-week history
-  cron { 'cleanupartifacts':
-    user        => 'jenkins',
-    hour        => '*/12',
-    minute      => '0',
-    command     => 'find /srv/static/archive/artifacts/periodic -maxdepth 1 -type d -ctime +30 | xargs rm -rf',
-  }
+#  cron { 'cleanupartifacts':
+#    user        => 'jenkins',
+#    hour        => '*/12',
+#    minute      => '0',
+#    command     => 'find /srv/static/archive/artifacts/periodic -maxdepth 1 -type d -ctime +30 | xargs rm -rf',
+#  }
 
   file { '/srv/static/archive':
     ensure  => directory,
