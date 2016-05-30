@@ -18,6 +18,7 @@ class openstack_project::jenkins_dev (
   $ssl_cert_file_contents = '',
   $ssl_key_file_contents = '',
   $ssl_chain_file_contents = '',
+  $project_config_repo = '',
 ) {
 
   include openstack_project

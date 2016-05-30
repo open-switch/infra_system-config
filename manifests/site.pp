@@ -181,7 +181,7 @@ node /^jenkins\d+\.openswitch\.net$/ {
 # Node-OS: precise
 node 'jenkins-dev.openswitch.net' {
   class { 'openstack_project::jenkins_dev':
-    #project_config_repo     => 'https://git.openswitch.net/infra/project-config',
+    project_config_repo     => 'https://git.openswitch.net/infra/project-config',
     jenkins_ssh_private_key  => hiera('jenkins_dev_ssh_private_key_contents', 'XXX'),
     mysql_root_password      => hiera('gerrit_dev_mysql_root_password', 'XXX'),
     mysql_password           => hiera('gerrit_dev_mysql_password', 'XXX'),
