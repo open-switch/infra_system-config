@@ -1,6 +1,9 @@
 # == Class: openstack_project::jenkins_dev
 #
 class openstack_project::jenkins_dev (
+  $vhost_name = $::fqdn,
+  $jenkins_jobs_password = '',
+  $jenkins_jobs_username = 'gerrig', # This is not a typo, well it isn't anymore.
   $jenkins_ssh_private_key = '',
   $sysadmins = [],
   $mysql_root_password,
