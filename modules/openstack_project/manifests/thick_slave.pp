@@ -91,6 +91,11 @@ exec { 'apt-get-update':
     ensure   => latest,
     provider => pip,
   }
+  
+  package { 'python-jenkins'
+    ensure => present,
+    provider => pip,
+  }
 
   package { 'PyYaml':
     ensure => present,
