@@ -108,8 +108,7 @@ exec { 'apt-get-update':
 
   package { 'yamllint':
     ensure => present,
-    provider => pip,
-}
+ }
 
   package { 'jenkins-job-builder':
     ensure => present,
