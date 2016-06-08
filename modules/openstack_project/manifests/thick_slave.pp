@@ -120,7 +120,6 @@ file { '/etc/jenkins_jobs/jenkins_jobs.ini':
    owner   => 'root',
    group   => 'root',
     mode    => '0755',
-   recurse => true,
    purge   => true,
    force   => true,
    source  => "/etc/jenkins_jobs/config",
