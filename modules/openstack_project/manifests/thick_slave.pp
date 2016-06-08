@@ -83,14 +83,10 @@ exec { 'apt-get-update':
 
   include pip
 
-  package { 'pyyaml':
-    ensure   => latest,
-    provider => pip,
-  }
-
   package { 'lcov':
     ensure => 'installed'
   }
+
   package { 'tornado':
     ensure   => latest,
     provider => pip,
@@ -99,17 +95,7 @@ exec { 'apt-get-update':
   package { 'PyYaml':
     ensure => present,
     provider => pip,
- }
-
-  package { 'python-jenkins':
-    ensure => present,
-    provider => pip,
- }
-  
-  package { 'yamllint':
-    ensure => present,
-    provider => pip,
- }
+  }
 
   package { 'jenkins-job-builder':
     ensure => present,
