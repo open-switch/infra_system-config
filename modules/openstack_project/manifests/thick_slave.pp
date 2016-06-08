@@ -105,22 +105,29 @@ exec { 'apt-get-update':
     ensure => present,
     provider => pip,
  }
+  
+  package { 'yamllint':
+    ensure => present,
+    provider => pip,
+ }
 
   package { 'jenkins-job-builder':
     ensure => present,
   }
 
- file { '/etc/jenkins_jobs/jenkins_jobs.ini':
-    ensure  => directory,
-    owner   => 'root',
-    group   => 'root',
+file { '/etc/jenkins_jobs/jenkins_jobs.ini':
+   ensure  => directory,
+   owner   => 'root',
+   group   => 'root',
     mode    => '0755',
-    recurse => true,
-    purge   => true,
-    force   => true,
-    source  => $config_dir,
-    require => File['/etc/jenkins_jobs'],
+   recurse => true,
+   purge   => true,
+   force   => true,
+   source  => "/etc/jenkins_jobs/config",
+   require => File['/etc/jenkins_jobs'],
+   require => File['/etc/jenkins_jobs/config'],
     content => $jenkins_jjb.erb,
+
   }
 
 
