@@ -92,7 +92,7 @@ exec { 'apt-get-update':
     provider => pip,
   }
   
-  package { 'python-jenkins'
+  package { 'python-jenkins':
     ensure => present,
     provider => pip,
   }
