@@ -115,23 +115,12 @@ exec { 'apt-get-update':
     ensure => present,
   }
 
-  file { '/etc/jenkins_jobs/jenkins_jobs.ini':
-    ensure  => present
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    source  => "/etc/jenkins_jobs/config",
-    require => File['/etc/jenkins_jobs'],
-    require => File['/etc/jenkins_jobs/config'],
-    content => $jenkins_jjb.erb,
-  }
 
 
 #  $perl_packages = [
 #    'libwww-perl',
 #    'libdatetime-perl',
 #  ]
-
 #  package { $perl_packages:
 #    ensure   => 'installed',
 #    install_options => ['--allow-unauthenticated', '-f'],
