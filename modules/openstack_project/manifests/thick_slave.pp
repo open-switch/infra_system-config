@@ -96,10 +96,38 @@ exec { 'apt-get-update':
     provider => pip,
   }
 
-  package { 'jenkins-job-builder':
+  package { 'PyYaml':
     ensure => present,
     provider => pip,
+ }
+
+  package { 'python-jenkins':
+    ensure => present,
+    provider => pip,
+ }
+
+  package { 'yamllint':
+    ensure => present,
+    provider => pip,
+}
+
+  package { 'jenkins-job-builder':
+    ensure => present,
   }
+
+ file { '/etc/jenkins_jobs/jenkins_jobs.ini':
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    recurse => true,
+    purge   => true,
+    force   => true,
+    source  => $config_dir,
+    require => File['/etc/jenkins_jobs'],
+    content => $jenkins_jjb.erb,
+  }
+
 
 #  $perl_packages = [
 #    'libwww-perl',
