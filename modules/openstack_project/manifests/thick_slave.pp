@@ -106,11 +106,6 @@ exec { 'apt-get-update':
     provider => pip,
  }
 
-  package { 'yaml-lint':
-    ensure => installed,
-    provider => 'gem'
- }
-
   package { 'jenkins-job-builder':
     ensure => present,
   }
