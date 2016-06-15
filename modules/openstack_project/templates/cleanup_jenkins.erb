@@ -3,6 +3,14 @@
 echo "Cleaning the server ..."
 echo
 
+echo "Check if periodic cleanup has been disabled on this slave"
+if [ ! -f /tmp/disable-periodic-cleanup.txt ]; then
+    echo "Proceed with cleanup"
+else
+    echo "Aborting cleanup"
+    exit 0
+fi
+
 echo 'Waiting for node to be idle'
 echo
 while ! curl -s -k -X POST https://jenkins.openswitch.net/computer/<%=slave%>/api/xml | grep -q '<idle>true</idle>'; do
