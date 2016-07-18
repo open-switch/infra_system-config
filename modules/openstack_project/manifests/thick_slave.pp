@@ -189,18 +189,6 @@ exec { 'apt-get-update':
 #    mode   => '0755',
 #  }
 
-  file { '/var/log/upstart/docker.log':
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-  }
-
-  file { '/var/log/syslog':
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-  }
-
 #  exec { 'Monitoring package installation':
 #    command => 'curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O && unzip CloudWatchMonitoringScripts-1.2.1.zip && rm CloudWatchMonitoringScripts-1.2.1.zip',
 #    creates => '/var/log/cloudwatch',
