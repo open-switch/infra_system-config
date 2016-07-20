@@ -47,10 +47,10 @@ node default {
   }
 }
 
-node 'proxy.openswitch.net' {
+node 'analytics.openswitch.net' {
   class { 'openstack_project::server':
     sysadmins => hiera('sysadmins', []),
-    iptables_public_tcp_ports => [8080],
+    iptables_public_tcp_ports => [80, 443, 8086],
   }
 }
 
