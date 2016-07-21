@@ -190,14 +190,14 @@ exec { 'apt-get-update':
 #  }
 
   file { '/var/log/upstart/docker.log':
-    owner  => 'root',
-    group  => 'root',
+#    owner  => 'root',
+#    group  => 'root',
     mode   => '0644',
   }
 
   file { '/var/log/syslog':
-    owner  => 'root',
-    group  => 'root',
+#    owner  => 'root',
+#    group  => 'root',
     mode   => '0644',
   }
 
