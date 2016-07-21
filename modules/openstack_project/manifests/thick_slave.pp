@@ -190,15 +190,17 @@ exec { 'apt-get-update':
 #  }
 
   file { '/var/log/upstart/docker.log':
-#    owner  => 'root',
-#    group  => 'root',
+    owner  => 'syslog',
+    group  => 'adm',
     mode   => '0644',
+    notify  => Service['rsyslog'],
   }
 
   file { '/var/log/syslog':
-#    owner  => 'root',
-#    group  => 'root',
+    owner  => 'syslog',
+    group  => 'adm',
     mode   => '0644',
+    notify  => Service['rsyslog'],
   }
 
 #  exec { 'Monitoring package installation':
