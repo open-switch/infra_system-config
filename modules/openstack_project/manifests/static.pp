@@ -113,12 +113,15 @@ class openstack_project::static (
     require  => File[$ssl_cert_file, $ssl_key_file, $ssl_chain_file,  '/srv/static/archive'],
   }
 
-  # Cleanup of build artifacts, keep a two-week history
+  # Cleanup of build artifacts.
+  # Keep 90 days of history for artifacts
+  # keep 60 days history for experimental images
   cron { 'cleanupartifacts':
     user        => 'jenkins',
     hour        => '*/12',
     minute      => '0',
     command     => 'find /srv/static/archive/artifacts/periodic/* -maxdepth 1 -type d -mtime +90 | xargs rm -rf',
+    command     => 'find /srv/static/archive/experimental/periodic/* -maxdepth 1 -type d -mtime +60 | xargs rm -rf',
   }
 
   file { '/srv/static/archive':
