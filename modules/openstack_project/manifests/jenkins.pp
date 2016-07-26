@@ -5,7 +5,7 @@ class openstack_project::jenkins (
   $jenkins_jobs_password = '',
   $jenkins_jobs_username = 'gerrig', # This is not a typo, well it isn't anymore.
   $jenkins_git_url = 'https://git.openstack.org/openstack-infra/jenkins-job-builder',
-  $jenkins_git_revision = 'master',
+  $jenkins_git_revision = '49be71864aaa5ca2096383ce7eb838c375e9a33c',
   $manage_jenkins_jobs = true,
   $ssl_cert_file = '',
   $ssl_key_file = '',
