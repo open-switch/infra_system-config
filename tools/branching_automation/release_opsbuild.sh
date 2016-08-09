@@ -1,8 +1,10 @@
 #!/bin/bash
 
-NewRelease_Name=epazote
-Rlease_Version=0.4.0
+#The name of Release you are branching for
+NewRelease_Name=
+Rlease_Version=
 Ops-build_sha=
+# Last Release name, can be toronto, dill etc
 Release_Name=dill
 
 #epazote & 0.4.0 tag is 0.3.0-rc0

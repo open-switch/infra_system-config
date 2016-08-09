@@ -10,13 +10,16 @@ recipe_folder=yocto/openswitch/meta-distro-openswitch/recipes-ops//vsi
 #epazote & 0.4.0 tag is 0.3.0-rc0
 #the content of conf file in  master branch needs to be updated, not release branch
 
-projects_list=ops,ops-aaa-utils,ops-ansible,ops-arpmgrd,ops-broadview,ops-bufmond,ops-build,ops-cfgd,ops-checkmk-agent,ops-classifierd,ops-cli,ops-config-yaml,ops-dhcp-tftp,ops-docs,ops-fand,ops-ft-framework,ops-hw-config,ops-intfd,ops-ipapps,ops-lacpd,ops-ledd,ops-lldpd,ops-mgmt-intf,ops-ntpd,ops-openvswitch,ops-passwd-srv,ops-pmd,ops-portd,ops-powerd,ops-quagga,ops-rbac,ops-restapi,ops-restd,ops-snmpd,ops-stpd,ops-supportability,ops-switchd,ops-switchd-container-plugin,ops-switchd-opennsl-plugin,ops-switchd-p4switch-plugin,ops-sysd,ops-sysmond,ops-tempd,ops-topology-common,ops-topology-lib-vtysh,ops-utils,ops-vland,ops-vsi,ops-webui,ops-l2macd
+#projects_list=ops,ops-aaa-utils,ops-ansible,ops-arpmgrd,ops-broadview,ops-bufmond,ops-build,ops-cfgd,ops-checkmk-agent,ops-classifierd,ops-cli,ops-config-yaml,ops-dhcp-tftp,ops-docs,ops-fand,ops-ft-framework,ops-hw-config,ops-intfd,ops-ipapps,ops-lacpd,ops-ledd,ops-lldpd,ops-mgmt-intf,ops-ntpd,ops-openvswitch,ops-passwd-srv,ops-pmd,ops-portd,ops-powerd,ops-quagga,ops-rbac,ops-restapi,ops-restd,ops-snmpd,ops-stpd,ops-supportability,ops-switchd,ops-switchd-container-plugin,ops-switchd-opennsl-plugin,ops-switchd-p4switch-plugin,ops-sysd,ops-sysmond,ops-tempd,ops-topology-common,ops-topology-lib-vtysh,ops-utils,ops-vland,ops-vsi,ops-webui,ops-l2macd
 
-S_REPOS=`echo $projects_list | sed -e 's#,# #g'`
+#S_REPOS=`echo $projects_list | sed -e 's#,# #g'`
+
+#Get a list of all openswitch projects 
+projects_list=`ssh -p 29418 review.openswitch.net gerrit ls-projects | grep openswitch | cut -d'/' -f2`
 
 #cd releasebranching
 
-for i in $S_REPOS
+for i in `echo $projects_list`
 do
   cd releasebranching/$i
   pwd
@@ -54,23 +57,6 @@ do
   git push origin release 
   done
 done
-
-
-
-
-
-#To get projects:
-#grep -ri "SRCREV" yocto/openswitch/meta-distro-openswitch/recipes-ops/ | cut -d'/' -f7 | cut -d'.' -f1
-#To get SRCREV's:
-#grep -ri "SRCREV" yocto/openswitch/meta-distro-openswitch/recipes-ops/ | cut -d'/' -f7 | cut -d'=' -f2 | tr -d '"'
-
-
-#get list of all projects 
-#projects_lists=`ssh -p 29418 review.openswitch.net gerrit ls-projects | grep openswitch | awk -F '/' '{print $2}'`
-
-
-
-#echo $projects_lists
 
 for i in $(echo $projects_lists)
 do
