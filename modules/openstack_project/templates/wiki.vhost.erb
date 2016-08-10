@@ -1,0 +1,85 @@
+# vim: filetype=apache
+
+<VirtualHost *:80>
+        ServerAdmin admin@openswitch.net
+        ServerName <%= srvname %>
+
+        DocumentRoot /var/www
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /var/www/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride None
+                Require all granted
+        </Directory>
+
+        RewriteEngine on
+        RewriteCond %{SERVER_PORT} !^443$
+        RewriteRule ^/(.*)$ https://<%= srvname %>/$1 [L,R]
+
+        ErrorLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_access.log combined
+        ServerSignature Off
+
+</VirtualHost>
+<VirtualHost *:443>
+        ServerAdmin admin@openswitch.net
+        ServerName <%= srvname %>
+
+        SSLEngine on
+        SSLProtocol All -SSLv2 -SSLv3
+        SSLCertificateFile      <%= ssl_cert_file %>
+        SSLCertificateKeyFile   <%= ssl_key_file %>
+        SSLCertificateChainFile <%= ssl_chain_file %>
+
+        DocumentRoot /srv/wiki
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory /srv/wiki>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride all
+                Require all granted
+
+        <IfModule mod_rewrite.c>
+
+                # Uncomment to implement server-side URL rewriting
+                # (cf. <http://www.dokuwiki.org/config:userewrite>).
+                        # Do *not* mix that with multisite!
+                #RewriteEngine on
+                #RewriteBase /dokuwiki
+                #RewriteRule ^lib                      - [L]
+                #RewriteRule ^doku.php                 - [L]
+                #RewriteRule ^feed.php                 - [L]
+                #RewriteRule ^_media/(.*)              lib/exe/fetch.php?media=$1  [QSA,L]
+                #RewriteRule ^_detail/(.*)             lib/exe/detail.php?media=$1 [QSA,L]
+                #RewriteRule ^_export/([^/]+)/(.*)     doku.php?do=export_$1&id=$2 [QSA,L]
+                #RewriteRule ^$                        doku.php  [L]
+                #RewriteRule (.*)                      doku.php?id=$1  [QSA,L]
+        </IfModule>
+        </Directory>
+
+        <LocationMatch "/(data|conf|bin|inc)/">
+	    Order allow,deny
+	    Deny from all
+            Satisfy All
+        </LocationMatch>
+
+        ErrorLog /var/log/apache2/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog /var/log/apache2/access.log combined
+        ServerSignature Off
+
+</VirtualHost>

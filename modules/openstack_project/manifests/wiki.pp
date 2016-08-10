@@ -3,6 +3,7 @@
 class openstack_project::wiki (
   $mysql_root_password = '',
   $sysadmins = [],
+  $vhost_name = $::fqdn,
   $ssl_cert_file_contents = '',
   $ssl_key_file_contents = '',
   $ssl_chain_file_contents = ''
@@ -17,50 +18,58 @@ class openstack_project::wiki (
     sysadmins                 => $sysadmins,
   }
 
-  class { 'mediawiki':
-    role                      => 'all',
-    mediawiki_location        => '/srv/mediawiki/w',
-    mediawiki_images_location => '/srv/mediawiki/images',
-    site_hostname             => $::fqdn,
-    ssl_cert_file             => "/etc/ssl/certs/${::fqdn}.pem",
-    ssl_key_file              => "/etc/ssl/private/${::fqdn}.key",
-    ssl_chain_file            => '/etc/ssl/certs/intermediate.pem',
-    ssl_cert_file_contents    => $ssl_cert_file_contents,
-    ssl_key_file_contents     => $ssl_key_file_contents,
-    ssl_chain_file_contents   => $ssl_chain_file_contents,
+  include apache
+
+  a2mod { 'rewrite':
+    ensure => present,
   }
-  class { 'memcached':
-    max_memory => 2048,
-    listen_ip  => '127.0.0.1',
-    tcp_port   => 11000,
-    udp_port   => 11000,
+  a2mod { 'proxy':
+    ensure => present,
   }
-  class { 'mysql::server':
-    config_hash => {
-      'root_password'  => $mysql_root_password,
-      'default_engine' => 'InnoDB',
-      'bind_address'   => '127.0.0.1',
+  a2mod { 'proxy_http':
+    ensure => present,
+  }
+
+  $prv_ssl_cert_file = "/etc/ssl/certs/${vhost_name}.pem"
+  $prv_ssl_key_file = "/etc/ssl/private/${vhost_name}.key"
+  $ssl_chain_file = '/etc/ssl/certs/intermediate.pem'
+
+  apache::vhost { $vhost_name:
+    port => 80,
+    docroot => '/tmp',
+    template => 'openstack_project/wiki.vhost.erb',
+    ssl_cert_file => $prv_ssl_cert_file,
+    ssl_key_file  => $prv_ssl_key_file,
+    ssl_chain_file => $ssl_chain_file,
+  }
+
+  if $ssl_cert_file_contents != '' {
+    file { $prv_ssl_cert_file:
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0640',
+      content => $ssl_cert_file_contents,
+      before  => Apache::Vhost[$vhost_name],
     }
   }
-  include mysql::server::account_security
 
-  mysql_backup::backup { 'wiki':
-    require => Class['mysql::server'],
+  if $ssl_key_file_contents != '' {
+    file { $prv_ssl_key_file:
+      owner   => 'root',
+      group   => 'ssl-cert',
+      mode    => '0640',
+      content => $ssl_key_file_contents,
+      before  => Apache::Vhost[$vhost_name],
+    }
   }
 
-#  include bup
-#  bup::site { 'rs-ord':
-#    backup_user   => 'bup-wiki',
-#    backup_server => 'ci-backup-rs-ord.openstack.org',
-#  }
-
-#  class { '::elasticsearch':
-#    es_template_config => {
-#      'bootstrap.mlockall'               => true,
-#      'discovery.zen.ping.unicast.hosts' => ['localhost'],
-#    },
-#    version            => '1.3.2',
-#    heap_size          => '1g',
-#  }
-
+  if $ssl_chain_file_contents != '' {
+    file { $ssl_chain_file:
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0640',
+      content => $ssl_chain_file_contents,
+      before  => Apache::Vhost[$vhost_name],
+    }
+  }
 }

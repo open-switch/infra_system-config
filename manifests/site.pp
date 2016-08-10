@@ -48,9 +48,11 @@ node default {
 }
 
 node 'analytics.openswitch.net' {
-  class { 'openstack_project::server':
-    sysadmins => hiera('sysadmins', []),
-    iptables_public_tcp_ports => [80, 443, 8086],
+  class { 'openstack_project::analytics':
+    sysadmins               => hiera('sysadmins', []),
+    ssl_cert_file_contents  => hiera('analytics_ssl_cert_file_contents', 'XXX'),
+    ssl_key_file_contents   => hiera('analytics_ssl_key_file_contents', 'XXX'),
+    ssl_chain_file_contents => hiera('analytics_ssl_chain_file_contents', 'XXX'),
   }
 }
 
