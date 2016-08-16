@@ -88,10 +88,10 @@ exec { 'apt-get-update':
   }
 
   package { 'tornado':
-    ensure   => latest,
+    ensure   => present,
     provider => pip,
   }
-  
+
   package { 'python-jenkins':
     ensure => present,
     provider => pip,
