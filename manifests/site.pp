@@ -631,6 +631,16 @@ node /^openswitch-slave-.*\.openswitch\.net$/ {
   }
 }
 
+node /^slave-runner-.*.openswitch\.net$/ {
+  include openstack_project
+  class { 'openstack_project::runner_slave':
+    aws_credentials_content => hiera('slave_runner_aws_credentials', 'XXX'),
+    aws_dynamic_key         => hiera('aws_dynamic_slave_key', 'XXX'),
+    ssh_key        => $openstack_project::jenkins_ssh_key,
+    sysadmins      => hiera('sysadmins', []),
+  }
+}
+
 node /^openswitch-slave-.*\-dev.openswitch\.net$/ {
   include openstack_project
   class { 'openstack_project::slave':
