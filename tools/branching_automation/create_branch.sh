@@ -1,23 +1,49 @@
 #!/bin/bash
 
-#This is a script to create a git branch for all projects provided in csv format
-#utilizes Gerrit CLI
-#This script should be run from a Gerrit Administrators worktation
+# Usage: ./create_release_branch <new_branch_name> <SHA of ops-build>
 
-#projects_list=ops-aaa-utils,ops-ansible,ops-arpmgrd,ops-broadview,ops-bufmond,ops-cfgd,ops-checkmk-agent,ops-classifierd,ops-cli,ops-config-yaml,ops-dhcp-tftp,ops-docs,ops-fand,ops-ft-framework,ops-hw-config,ops-intfd,ops-ipapps,ops-lacpd,ops-ledd,ops-lldpd,ops-mgmt-intf,ops-ntpd,ops-openvswitch,ops-passwd-srv,ops-pmd,ops-portd,ops-powerd,ops-quagga,ops-rbac,ops-restapi,ops-restd,ops-snmpd,ops-stpd,ops-supportability,ops-switchd,ops-switchd-container-plugin,ops-switchd-opennsl-plugin,ops-switchd-p4switch-plugin,ops-sysd,ops-sysmond,ops-tempd,ops-topology-common,ops-topology-lib-vtysh,ops-utils,ops-vland,ops-vsi,ops-webui,ops-l2macd
+# Create a sandbox directory if it does not exist
+if [ ! -d branch_creation ]; then
+    echo "Creating a new directory for working"
+    mkdir branch_creation
+else
+    echo "Directory exists. Moving on..."
+fi
 
-#S_REPOS=`echo $projects_list | sed -e 's#,# #g'`
+cd branch_creation
 
-#Get a list of all openswitch projects 
-projects_list=`ssh -p 29418 review.openswitch.net gerrit ls-projects | grep openswitch`
+# Clone ops-build if it does not exist already
+if [ ! -d ops-build ]; then
+    echo "Cloning ops-build and reset to the desired SHA"
+    git clone https://git.openswitch.net/openswitch/ops-build
+    cd ops-build
+else
+    echo "ops-build already exists."
+    cd ops-build
+    # git pull --rebase
+fi
 
-#Typically, this will be master branch
-src_branch=
-#Typically, rel/dill or rel/toronto etc
-dest_branch=
+# Rest ops-build to the SHA that from where we need to branch
+git reset --hard $2
 
-for i in `echo $projects_list`
+if [ ! -d src ]; then
+    mkdir src
+fi
+
+#Parse the recipe files and clone all the repos and reset each repo to the SHA in the recipe file
+for recipe in `find yocto/openswitch/meta-distro-openswitch/recipes-ops/. -name *.bb`
 do
-  echo " Creating release branch for project $i "
-  ssh -p 29418 review.openswitch.net gerrit create-branch $i $dest_branch $src_branch
+    if grep -q SRCREV "$recipe"; then
+        sha=$(grep SRCREV $recipe | cut -d'"' -f2)
+        if [ $sha = "\${AUTOREV}" ]; then
+            sha=HEAD
+        fi
+    fi
+    repo=`echo $recipe | cut -d'/' -f7 | cut -d'.' -f1`
+
+    echo "SHA $sha repository $repo"
+
+    # Create a branch at this SHA
+    #ssh -p 29418 review.openswitch.net gerrit create-branch $repo $1 $sha
+
 done
