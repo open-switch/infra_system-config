@@ -9,8 +9,9 @@ class openstack_project::thick_slave(
   include openstack_project::jenkins_params
 
   # VSI setup
-  include docker
-
+class { 'docker':
+  version => '1.9.1-0~trusty',
+}
 #  exec {"Docker membership":
 #    unless => "grep -q 'docker\\S*jenkins' /etc/group",
 #    command => "usermod -aG docker jenkins",
