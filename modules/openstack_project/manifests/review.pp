@@ -197,6 +197,17 @@ class openstack_project::review (
         mirror               => true,
         remoteNameStyle      => 'underscore',
        },
+       {
+        name                 => 'github-opx',
+        url                  => 'git@github.com:open-switch/',
+        projects             => 'opx/*',
+        pushhead             => '+refs/heads/*:refs/heads/*',
+        pushtag              => '+refs/heads/*:refs/tags/*',
+        threads              => '3',
+        timeout              => '30',
+        mirror               => true,
+        remoteNameStyle      => 'basenameOnly',
+       },
     ],
     require                             => $::project_config::config_dir,
   }
@@ -204,7 +215,7 @@ class openstack_project::review (
   gerrit::plugin { 'javamelody':
     version => 'e00d5af',
   }
- 
+
   gerrit::plugin { 'delete-project':
     version => 'ec9a665',
   }
