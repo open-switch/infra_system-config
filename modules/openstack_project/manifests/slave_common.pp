@@ -69,7 +69,7 @@ class openstack_project::slave_common(
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    source  => 'https://storage.googleapis.com/git-repo-downloads/repo'
+    source  => 'http://storage.googleapis.com/git-repo-downloads/repo'
   }
 
   # Temporary for debugging glance launch problem
