@@ -64,6 +64,14 @@ class openstack_project::slave_common(
     mode   => '0440',
   }
 
+  file { '/usr/local/bin/repo':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    source  => 'https://storage.googleapis.com/git-repo-downloads/repo'
+  }
+
   # Temporary for debugging glance launch problem
   # https://lists.launchpad.net/openstack/msg13381.html
   # NOTE(dprince): ubuntu only as RHEL6 doesn't have sysctl.d yet
