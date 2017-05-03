@@ -13,6 +13,8 @@ class openstack_project::slave_common(
 #    source   => 'https://git.openstack.org/openstack/requirements',
 #  }
 
+  include wget
+
   class { 'project_config':
     url  => $project_config_repo,
   }
@@ -64,12 +66,11 @@ class openstack_project::slave_common(
     mode   => '0440',
   }
 
-  file { '/usr/local/bin/repo':
-    ensure  => present,
+  wget::fetch { 'https://storage.googleapis.com/git-repo-downloads/repo':
+    destination => '/usr/local/bin/repo',
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    source  => 'http://storage.googleapis.com/git-repo-downloads/repo'
   }
 
   # Temporary for debugging glance launch problem
