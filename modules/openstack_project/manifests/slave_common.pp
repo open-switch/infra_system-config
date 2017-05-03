@@ -68,9 +68,9 @@ class openstack_project::slave_common(
 
   wget::fetch { 'https://storage.googleapis.com/git-repo-downloads/repo':
     destination => '/usr/local/bin/repo',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
+    execuser    => 'root',
+    group       => 'root',
+    mode        => '0755',
   }
 
   # Temporary for debugging glance launch problem
