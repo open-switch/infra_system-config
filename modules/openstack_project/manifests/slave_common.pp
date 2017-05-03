@@ -69,7 +69,6 @@ class openstack_project::slave_common(
   wget::fetch { 'https://storage.googleapis.com/git-repo-downloads/repo':
     destination => '/usr/local/bin/repo',
     execuser    => 'root',
-    group       => 'root',
     mode        => '0755',
   }
 
