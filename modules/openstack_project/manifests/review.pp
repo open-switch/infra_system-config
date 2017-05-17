@@ -202,7 +202,7 @@ class openstack_project::review (
         url                  => 'git@github.com:open-switch/',
         projects             => 'opx/*',
         pushhead             => '+refs/heads/*:refs/heads/*',
-        pushtag              => '+refs/heads/*:refs/tags/*',
+        pushtag              => '+refs/tags/*:refs/tags/*',
         threads              => '3',
         timeout              => '30',
         mirror               => true,
