@@ -6,6 +6,10 @@ class openstack_project::slave_vsi (
   $ssh_key = '',
   $sysadmins = [],
   $token = 'XXX',
+  $aws_access_key_id = 'XXX',
+  $aws_secret_access_key = 'XXX',
+  $aws_dynamic_key = 'XXX',
+  $aws_ssh_key = 'XXX',
 ) {
 
   include openstack_project
