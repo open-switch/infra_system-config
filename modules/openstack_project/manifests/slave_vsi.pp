@@ -53,4 +53,14 @@ class openstack_project::slave_vsi (
     require => User['jenkins'],
   }
 
+  package { "ansible":
+    ensure => present,
+    provider => "pip"
+  }
+
+  package { "awscli":
+    ensure => present,
+    provider => "pip"
+  }
+
 }
