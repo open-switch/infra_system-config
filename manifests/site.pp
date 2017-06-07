@@ -669,7 +669,6 @@ node /^slave-vsi-.*\.openswitch\.net$/ {
     aws_credentials_content => hiera('slave_runner_aws_credentials', 'XXX'),
     aws_dynamic_key         => hiera('aws_dynamic_slave_key', 'XXX'),
     aws_ssh_key             => hiera('aws_ssh_key', 'XXX'),
-    sysadmins               => hiera('sysadmins', []),
   }
 }
 
