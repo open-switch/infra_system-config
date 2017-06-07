@@ -663,9 +663,13 @@ node /^slave-jk-.*\.openswitch\.net$/ {
 node /^slave-vsi-.*\.openswitch\.net$/ {
   include openstack_project
   class { 'openstack_project::slave_vsi':
-    ssh_key   => $openstack_project::jenkins_ssh_key,
+    ssh_key                 => $openstack_project::jenkins_ssh_key,
     sysadmins               => hiera('sysadmins', []),
-    token     => hiera('jenkins_jobs_password','XXX'),
+    token                   => hiera('jenkins_jobs_password','XXX'),
+    aws_credentials_content => hiera('slave_runner_aws_credentials', 'XXX'),
+    aws_dynamic_key         => hiera('aws_dynamic_slave_key', 'XXX'),
+    aws_ssh_key             => hiera('aws_ssh_key', 'XXX'),
+    sysadmins               => hiera('sysadmins', []),
   }
 }
 

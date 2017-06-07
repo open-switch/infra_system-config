@@ -63,4 +63,40 @@ class openstack_project::slave_vsi (
     provider => "pip"
   }
 
+  file { '/home/jenkins/.ssh/aws_dynamic.key':
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => 0600,
+    content => $aws_dynamic_key,
+  }
+
+  file { '/home/jenkins/.aws':
+    ensure => 'directory',
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => '0750',
+  }
+
+  file { '/home/jenkins/.aws/credentials':
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => '0600',
+    content => $aws_credentials_content,
+    require => File['/home/jenkins/.aws'],
+  }
+
+  file { '/home/jenkins/.aws/config':
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => '0600',
+    content => template('openstack_project/aws_config.erb'),
+    require => File['/home/jenkins/.aws'],
+  }
+
+  file { '/home/jenkins/aws':
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => 0600,
+    content => $aws_ssh_key,
+  }
 }
