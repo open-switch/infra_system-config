@@ -81,7 +81,7 @@ class openstack_project::slave_vsi (
     owner  => 'jenkins',
     group  => 'jenkins',
     mode   => '0600',
-    content => $aws_credentials_content,
+    content => template('openstack_project/aws_credentials.erb'),
     require => File['/home/jenkins/.aws'],
   }
 

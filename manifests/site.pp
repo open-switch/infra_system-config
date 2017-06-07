@@ -666,7 +666,8 @@ node /^slave-vsi-.*\.openswitch\.net$/ {
     ssh_key                 => $openstack_project::jenkins_ssh_key,
     sysadmins               => hiera('sysadmins', []),
     token                   => hiera('jenkins_jobs_password','XXX'),
-    aws_credentials_content => hiera('slave_runner_aws_credentials', 'XXX'),
+    aws_access_key_id       => hiera('aws_access_key_id', 'XXX'),
+    aws_secret_access_key   => hiera('aws_secret_access_key', 'XXX'),
     aws_dynamic_key         => hiera('aws_dynamic_slave_key', 'XXX'),
     aws_ssh_key             => hiera('aws_ssh_key', 'XXX'),
   }
