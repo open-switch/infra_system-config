@@ -3,7 +3,7 @@
 # Enable puppet agent service?
 # Setting this to "yes" allows the puppet agent service to run.
 # Setting this to "no" keeps the puppet agent service from running.
-START=no
+START=yes
 
 # Startup options
 DAEMON_OPTS=""
