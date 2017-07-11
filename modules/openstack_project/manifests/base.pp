@@ -134,7 +134,7 @@ class openstack_project::base(
     ensure  => absent,
     user    => 'root',
   }
-  
+
   # Which Puppet do I take?
   # Take $puppet_version and pin to that version
   if ($::osfamily == 'Debian') {
@@ -208,10 +208,6 @@ class openstack_project::base(
     mode    => '0444',
     content => template('openstack_project/puppet.conf.erb'),
     replace => true,
-  }
-
-  service { 'puppet':
-    ensure => stopped,
   }
 }
 
