@@ -67,6 +67,11 @@ class openstack_project::slave_vsi (
     provider => "pip"
   }
 
+  package { "requests-file":
+    ensure => present,
+    provider => "pip"
+  }
+
   file { '/home/jenkins/.ssh/aws_dynamic.key':
     owner  => 'jenkins',
     group  => 'jenkins',
