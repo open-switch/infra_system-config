@@ -7,7 +7,20 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
 <%= "  ServerAlias #{serveraliases}" -%>
 <% end -%>
 
-  Redirect / https://<%= srvname %>/
+  DocumentRoot <%= docroot %>
+  <Directory <%= docroot %>>
+    Options <%= options %>
+    AllowOverride all
+    Order allow,deny
+    allow from all
+  </Directory>
+  <Directory <%= docroot %>/old/artifacts>
+    Options <%= options %>
+    AllowOverride all
+    Order allow,deny
+    allow from all
+    IndexOrderDefault Descending Date
+  </Directory>
 
   ErrorLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_error.log
   LogLevel warn
@@ -16,12 +29,12 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
 </VirtualHost>
 
 <VirtualHost <%= vhost_name %>:443>
-    ServerName <%= srvname %>
-  <% if serveraliases.is_a? Array -%>
-  <% serveraliases.each do |name| -%><%= "  ServerAlias #{name}\n" %><% end -%>
-  <% elsif serveraliases != '' -%>
-  <%= "  ServerAlias #{serveraliases}" -%>
-  <% end -%>
+  ServerName <%= srvname %>
+<% if serveraliases.is_a? Array -%>
+<% serveraliases.each do |name| -%><%= "  ServerAlias #{name}\n" %><% end -%>
+<% elsif serveraliases != '' -%>
+<%= "  ServerAlias #{serveraliases}" -%>
+<% end -%>
 
   SSLEngine on
   SSLProtocol All -SSLv2 -SSLv3
@@ -32,23 +45,23 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
   SSLCertificateChainFile <%= ssl_chain_file %>
 <% end %>
 
-    DocumentRoot <%= docroot %>
-    <Directory <%= docroot %>>
-      Options <%= options %>
-      AllowOverride all
-      Order allow,deny
-      allow from all
-    </Directory>
-    <Directory <%= docroot %>/artifacts>
-      Options <%= options %>
-      AllowOverride all
-      Order allow,deny
-      allow from all
-      IndexOrderDefault Descending Date
-    </Directory>
+  DocumentRoot <%= docroot %>
+  <Directory <%= docroot %>>
+    Options <%= options %>
+    AllowOverride all
+    Order allow,deny
+    allow from all
+  </Directory>
+  <Directory <%= docroot %>/old/artifacts>
+    Options <%= options %>
+    AllowOverride all
+    Order allow,deny
+    allow from all
+    IndexOrderDefault Descending Date
+  </Directory>
 
-    ErrorLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_ssl_error.log
-    LogLevel warn
-    CustomLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_ssl_access.log combined
-    ServerSignature Off
+  ErrorLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_ssl_error.log
+  LogLevel warn
+  CustomLog /var/log/<%= scope.lookupvar("apache::params::apache_name") %>/<%= name %>_ssl_access.log combined
+  ServerSignature Off
 </VirtualHost>
