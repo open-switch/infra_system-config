@@ -120,7 +120,7 @@ class openstack_project::static (
     user        => 'jenkins',
     hour        => '*/12',
     minute      => '0',
-    command     => 'find /srv/static/archive/artifacts/periodic/* -maxdepth 1 -type d -mtime +90 | xargs rm -rf ; find /srv/static/archive/experimental/periodic/* -maxdepth 1 -type d -mtime +60 | xargs rm -rf',
+    command     => 'find /srv/static/archive/old/artifacts/periodic/* -maxdepth 1 -type d -mtime +90 | xargs rm -rf ; find /srv/static/archive/old/experimental/periodic/* -maxdepth 1 -type d -mtime +60 | xargs rm -rf',
   }
 
   file { '/srv/static/archive':
@@ -130,7 +130,7 @@ class openstack_project::static (
     require => User['jenkins'],
   }
 
-  file { '/srv/static/archive/artifacts/periodic':
+  file { '/srv/static/archive/old/artifacts/periodic':
     ensure  => directory,
     owner   => 'jenkins',
     group   => 'jenkins',
