@@ -57,6 +57,10 @@ class openstack_project::slave_vsi (
     require => User['jenkins'],
   }
 
+  package { "fakechroot":
+    ensure => installed,
+  }
+
   package { "ansible":
     ensure => present,
     provider => "pip"
