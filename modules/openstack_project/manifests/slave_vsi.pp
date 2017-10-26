@@ -10,6 +10,7 @@ class openstack_project::slave_vsi (
   $aws_secret_access_key = 'XXX',
   $aws_dynamic_key = 'XXX',
   $aws_ssh_key = 'XXX',
+  $opxbuild_docker_pass = 'XXX',
 ) {
 
   include openstack_project
@@ -111,5 +112,12 @@ class openstack_project::slave_vsi (
     group  => 'jenkins',
     mode   => 0600,
     content => $aws_ssh_key,
+  }
+
+  file { '/home/jenkins/.dockerpass':
+    owner  => 'jenkins',
+    group  => 'jenkins',
+    mode   => 0600,
+    content => $opxbuild_docker_pass,
   }
 }

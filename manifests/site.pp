@@ -670,6 +670,7 @@ node /^slave-vsi-.*\.openswitch\.net$/ {
     aws_secret_access_key   => hiera('aws_secret_access_key', 'XXX'),
     aws_dynamic_key         => hiera('aws_dynamic_slave_key', 'XXX'),
     aws_ssh_key             => hiera('aws_ssh_key', 'XXX'),
+    opxbuild_docker_pass    => hiera('opxbuild_docker_pass', 'XXX'),
   }
 }
 
