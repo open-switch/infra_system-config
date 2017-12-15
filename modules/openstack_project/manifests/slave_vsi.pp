@@ -123,6 +123,7 @@ class openstack_project::slave_vsi (
 
   $py35="3.5.4"
   $py36="3.6.3"
+  $pypy3="pypy3.5-5.9.0"
   include pyenv
   pyenv::install { "jenkins": }
 
@@ -138,10 +139,16 @@ class openstack_project::slave_vsi (
     global => false,
   }
 
+  pyenv::compile { "compile $pypy3 jenkins":
+    user   => "jenkins",
+    python => "$pypy3",
+    global => false,
+  }
+
   file { "/home/jenkins/.pyenv/version":
     owner   => "jenkins",
     group   => "jenkins",
     mode    => 0644,
-    content => "$py36\n$py35\nsystem",
+    content => "$py36\n$py35\n$pypy3\nsystem",
   }
 }
