@@ -120,4 +120,28 @@ class openstack_project::slave_vsi (
     mode   => 0600,
     content => $opxbuild_docker_pass,
   }
+
+  $py35="3.5.4"
+  $py36="3.6.3"
+  include pyenv
+  pyenv::install { "jenkins": }
+
+  pyenv::compile { "compile $py35 jenkins":
+    user   => "jenkins",
+    python => "$py35",
+    global => true,
+  }
+
+  pyenv::compile { "compile $py36 jenkins":
+    user   => "jenkins",
+    python => "$py36",
+    global => true,
+  }
+
+  file { "/home/jenkins/.pyenv/version":
+    owner   => "jenkins",
+    group   => "jenkins",
+    mode    => 0644,
+    content => "$py36\n$py35\nsystem",
+  }
 }
