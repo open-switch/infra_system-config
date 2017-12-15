@@ -129,13 +129,13 @@ class openstack_project::slave_vsi (
   pyenv::compile { "compile $py35 jenkins":
     user   => "jenkins",
     python => "$py35",
-    global => true,
+    global => false,
   }
 
   pyenv::compile { "compile $py36 jenkins":
     user   => "jenkins",
     python => "$py36",
-    global => true,
+    global => false,
   }
 
   file { "/home/jenkins/.pyenv/version":
