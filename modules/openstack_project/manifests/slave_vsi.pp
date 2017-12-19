@@ -64,17 +64,22 @@ class openstack_project::slave_vsi (
 
   package { "ansible":
     ensure => present,
-    provider => "pip"
+    provider => "pip",
   }
 
   package { "awscli":
     ensure => present,
-    provider => "pip"
+    provider => "pip",
+  }
+
+  package { "colorama":
+    ensure => present,
+    provider => "pip",
   }
 
   package { "requests-file":
     ensure => present,
-    provider => "pip"
+    provider => "pip",
   }
 
   file { '/home/jenkins/.ssh/aws_dynamic.key':
