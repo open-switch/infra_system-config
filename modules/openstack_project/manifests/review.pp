@@ -125,7 +125,7 @@ class openstack_project::review (
     sshd_threads                        => '100',
     httpd_maxwait                       => '5000min',
     war                                 =>
-      'http://tarballs.openstack.org/ci/gerrit/gerrit-v2.11.4.23.12d5c47.war',
+      'http://tarballs.openstack.org/ci/gerrit/gerrit-v2.13.9.4.2a605d5.war',
     contactstore                        => $contactstore,
     contactstore_appsec                 => $contactstore_appsec,
     contactstore_pubkey                 => $contactstore_pubkey,
