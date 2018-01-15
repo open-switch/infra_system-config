@@ -45,7 +45,7 @@ class openstack_project::wiki (
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
-    content => "/etc/letsencrypt/live/${vhost_name}/cert.pem",
+    source  => "/etc/letsencrypt/live/${vhost_name}/cert.pem",
     before  => Apache::Vhost[$vhost_name],
   }
 
@@ -53,7 +53,7 @@ class openstack_project::wiki (
     owner   => 'root',
     group   => 'ssl-cert',
     mode    => '0640',
-    content => "/etc/letsencrypt/live/${vhost_name}/privkey.pem",
+    source  => "/etc/letsencrypt/live/${vhost_name}/privkey.pem",
     before  => Apache::Vhost[$vhost_name],
   }
 
