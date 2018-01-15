@@ -42,13 +42,13 @@ class openstack_project::wiki (
   }
 
   file { $prv_ssl_cert_file:
-    ensure => 'link'
+    ensure => 'link',
     target => "/etc/letsencrypt/live/${vhost_name}/cert.pem",
     before => Apache::Vhost[$vhost_name],
   }
 
   file { $prv_ssl_key_file:
-    ensure => 'link'
+    ensure => 'link',
     target => "/etc/letsencrypt/live/${vhost_name}/privkey.pem",
     before => Apache::Vhost[$vhost_name],
   }
