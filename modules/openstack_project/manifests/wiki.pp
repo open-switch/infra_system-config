@@ -4,8 +4,6 @@ class openstack_project::wiki (
   $mysql_root_password = '',
   $sysadmins = [],
   $vhost_name = $::fqdn,
-  $ssl_cert_file_contents = '',
-  $ssl_key_file_contents = '',
   $ssl_chain_file_contents = ''
 ) {
 
@@ -43,24 +41,20 @@ class openstack_project::wiki (
     ssl_chain_file => $ssl_chain_file,
   }
 
-  if $ssl_cert_file_contents != '' {
-    file { $prv_ssl_cert_file:
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0640',
-      content => $ssl_cert_file_contents,
-      before  => Apache::Vhost[$vhost_name],
-    }
+  file { $prv_ssl_cert_file:
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0640',
+    content => "/etc/letsencrypt/live/${vhost_name}/cert.pem",
+    before  => Apache::Vhost[$vhost_name],
   }
 
-  if $ssl_key_file_contents != '' {
-    file { $prv_ssl_key_file:
-      owner   => 'root',
-      group   => 'ssl-cert',
-      mode    => '0640',
-      content => $ssl_key_file_contents,
-      before  => Apache::Vhost[$vhost_name],
-    }
+  file { $prv_ssl_key_file:
+    owner   => 'root',
+    group   => 'ssl-cert',
+    mode    => '0640',
+    content => "/etc/letsencrypt/live/${vhost_name}/privkey.pem",
+    before  => Apache::Vhost[$vhost_name],
   }
 
   if $ssl_chain_file_contents != '' {
@@ -71,5 +65,12 @@ class openstack_project::wiki (
       content => $ssl_chain_file_contents,
       before  => Apache::Vhost[$vhost_name],
     }
+  }
+
+  cron { 'certbot':
+    command => 'certbot renew --renew-hook "/usr/sbin/apache2ctl graceful"',
+    user => 'root',
+    hour => [1, 13],
+    minute => 6,
   }
 }
