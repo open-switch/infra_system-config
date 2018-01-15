@@ -42,19 +42,15 @@ class openstack_project::wiki (
   }
 
   file { $prv_ssl_cert_file:
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
-    source  => "/etc/letsencrypt/live/${vhost_name}/cert.pem",
-    before  => Apache::Vhost[$vhost_name],
+    ensure => 'link'
+    target => "/etc/letsencrypt/live/${vhost_name}/cert.pem",
+    before => Apache::Vhost[$vhost_name],
   }
 
   file { $prv_ssl_key_file:
-    owner   => 'root',
-    group   => 'ssl-cert',
-    mode    => '0640',
-    source  => "/etc/letsencrypt/live/${vhost_name}/privkey.pem",
-    before  => Apache::Vhost[$vhost_name],
+    ensure => 'link'
+    target => "/etc/letsencrypt/live/${vhost_name}/privkey.pem",
+    before => Apache::Vhost[$vhost_name],
   }
 
   if $ssl_chain_file_contents != '' {
