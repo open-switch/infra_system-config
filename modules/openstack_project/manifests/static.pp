@@ -10,9 +10,7 @@ class openstack_project::static (
   $swift_default_container = '',
   $project_config_repo = '',
   $ssl_cert_file = "/etc/ssl/certs/${::fqdn}.pem",
-  $ssl_cert_file_contents = '',
   $ssl_key_file = "/etc/ssl/private/${::fqdn}.key",
-  $ssl_key_file_contents = '',
   $ssl_chain_file = '/etc/ssl/certs/intermediate.pem',
   $ssl_chain_file_contents = '',
 ) {
@@ -22,22 +20,14 @@ class openstack_project::static (
     sysadmins                 => $sysadmins,
   }
 
-  if $ssl_cert_file_contents != '' {
-    file { $ssl_cert_file:
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0640',
-      content => $ssl_cert_file_contents,
-    }
+  file { $ssl_cert_file:
+    ensure => 'link',
+    target => '/etc/letsencrypt/live/archive.openswitch.net/cert.pem',
   }
 
-  if $ssl_key_file_contents != '' {
-    file { $ssl_key_file:
-      owner   => 'root',
-      group   => 'ssl-cert',
-      mode    => '0640',
-      content => $ssl_key_file_contents,
-    }
+  file { $ssl_key_file:
+    ensure => 'link',
+    target => '/etc/letsencrypt/live/archive.openswitch.net/privkey.pem',
   }
 
   if $ssl_chain_file_contents != '' {
@@ -47,6 +37,13 @@ class openstack_project::static (
       mode    => '0640',
       content => $ssl_chain_file_contents,
     }
+  }
+
+  cron { 'certbot':
+    command => 'certbot renew --renew-hook "/usr/sbin/apache2ctl graceful"',
+    user => 'root',
+    hour => [1, 13],
+    minute => 6,
   }
 
 #  class { 'project_config':
