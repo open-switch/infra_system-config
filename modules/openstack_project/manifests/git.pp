@@ -56,8 +56,8 @@ class openstack_project::git (
   # The two listens defineed here are what the world will hit.
   haproxy::listen { 'balance_git_http':
     bind => {
-      ":80" => []
-      ":443" => ['ssl', 'crt', "/etc/haproxy/certs/${::fqdn}.pem"]
+      ":80" => [],
+      ":443" => ['ssl', 'crt', "/etc/haproxy/certs/${::fqdn}.pem"],
     },
     mode             => 'http',
     collect_exported => false,
@@ -85,12 +85,6 @@ class openstack_project::git (
   }
   haproxy::balancermember { 'balance_git_http_member':
     listening_service => 'balance_git_http',
-    server_names      => $balancer_member_names,
-    ipaddresses       => $balancer_member_ips,
-    ports             => '8080',
-  }
-  haproxy::balancermember { 'balance_git_https_member':
-    listening_service => 'balance_git_https',
     server_names      => $balancer_member_names,
     ipaddresses       => $balancer_member_ips,
     ports             => '8080',
