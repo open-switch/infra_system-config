@@ -67,9 +67,9 @@ class openstack_project::git (
     },
   }
   haproxy::listen { 'balance_git_https':
-#    ipaddress        => [$::ipaddress, $::ipaddress6],
-    ipaddress        => [$::ipaddress],
-    ports            => ['443'],
+    bind => {
+      "${::ipaddress}:443" => ['ssl', 'crt', "/etc/haproxy/certs/${::fqdn}.pem"]
+    },
     mode             => 'tcp',
     collect_exported => false,
     options          => {
@@ -104,7 +104,7 @@ class openstack_project::git (
     listening_service => 'balance_git_https',
     server_names      => $balancer_member_names,
     ipaddresses       => $balancer_member_ips,
-    ports             => '4443',
+    ports             => '8080',
   }
   haproxy::balancermember { 'balance_git_daemon_member':
     listening_service => 'balance_git_daemon',
@@ -121,5 +121,12 @@ class openstack_project::git (
     mode   => '0644',
     source => 'puppet:///modules/openstack_project/git/rsyslog.haproxy.conf',
     notify => Service['rsyslog'],
+  }
+
+  cron { 'certbot':
+    command => "certbot renew --renew-hook 'cat /etc/letsencrypt/live/${::fqdn}/fullchain.pem /etc/letsencrypt/live/${::fqdn}/privkey.pem > /etc/haproxy/certs/${::fqdn}.pem; service haproxy restart'",
+    user => 'root',
+    hour => [1, 13],
+    minute => 6,
   }
 }
