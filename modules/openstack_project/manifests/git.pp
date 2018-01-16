@@ -49,7 +49,8 @@ class openstack_project::git (
       'user'    => 'haproxy',
       'group'   => 'haproxy',
       'daemon'  => '',
-      'stats'   => 'socket /var/lib/haproxy/stats user root group root mode 0600 level admin'
+      'stats'   => 'socket /var/lib/haproxy/stats user root group root mode 0600 level admin',
+      'tune.ssl.default-dh-param' => '2048',
     },
   }
   # The three listen defines here are what the world will hit.
