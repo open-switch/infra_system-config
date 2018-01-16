@@ -53,25 +53,13 @@ class openstack_project::git (
       'tune.ssl.default-dh-param' => '2048',
     },
   }
-  # The three listen defines here are what the world will hit.
+  # The two listens defineed here are what the world will hit.
   haproxy::listen { 'balance_git_http':
-#    ipaddress        => [$::ipaddress, $::ipaddress6],
-    ipaddress        => [$::ipaddress],
-    ports            => ['80'],
-    mode             => 'tcp',
-    collect_exported => false,
-    options          => {
-      'balance' => 'source',
-      'option'  => [
-        'tcplog',
-      ],
-    },
-  }
-  haproxy::listen { 'balance_git_https':
     bind => {
-      "${::ipaddress}:443" => ['ssl', 'crt', "/etc/haproxy/certs/${::fqdn}.pem"]
+      ":80" => []
+      ":443" => ['ssl', 'crt', "/etc/haproxy/certs/${::fqdn}.pem"]
     },
-    mode             => 'tcp',
+    mode             => 'http',
     collect_exported => false,
     options          => {
       'balance' => 'source',
