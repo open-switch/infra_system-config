@@ -153,8 +153,6 @@ node 'jenkins.openswitch.net' {
     project_config_repo     => 'https://git.openswitch.net/infra/project-config',
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
     jenkins_ssh_private_key => hiera('jenkins_ssh_private_key_contents', 'XXX'),
-    ssl_cert_file_contents  => hiera('jenkins_ssl_cert_file_contents', 'XXX'),
-    ssl_key_file_contents   => hiera('jenkins_ssl_key_file_contents', 'XXX'),
     ssl_chain_file_contents => hiera('jenkins_ssl_chain_file_contents', 'XXX'),
     sysadmins               => hiera('sysadmins', []),
 #    zmq_event_receivers     => ['logstash.openstack.org',
