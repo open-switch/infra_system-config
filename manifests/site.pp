@@ -73,8 +73,6 @@ node 'review.openswitch.net', 'review-aws.openswitch.net' {
     gerritbot_password                  => hiera('gerrit_gerritbot_password', 'XXX'),
     gerritbot_ssh_rsa_key_contents      => hiera('gerritbot_ssh_rsa_key_contents', 'XXX'),
     gerritbot_ssh_rsa_pubkey_contents   => hiera('gerritbot_ssh_rsa_pubkey_contents', 'XXX'),
-    ssl_cert_file_contents              => hiera('gerrit_ssl_cert_file_contents', 'XXX'),
-    ssl_key_file_contents               => hiera('gerrit_ssl_key_file_contents', 'XXX'),
     ssl_chain_file_contents             => hiera('gerrit_ssl_chain_file_contents', 'XXX'),
     ssh_dsa_key_contents                => hiera('gerrit_ssh_dsa_key_contents', 'XXX'),
     ssh_dsa_pubkey_contents             => hiera('gerrit_ssh_dsa_pubkey_contents', 'XXX'),

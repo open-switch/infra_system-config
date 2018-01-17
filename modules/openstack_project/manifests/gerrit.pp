@@ -14,8 +14,6 @@ class openstack_project::gerrit (
   $ssl_cert_file = "/etc/ssl/certs/${::fqdn}.pem",
   $ssl_key_file = "/etc/ssl/private/${::fqdn}.key",
   $ssl_chain_file = '/etc/ssl/certs/intermediate.pem',
-  $ssl_cert_file_contents = '',
-  $ssl_key_file_contents = '',
   $ssl_chain_file_contents = '',
   $ssh_dsa_key_contents = '', # If left empty puppet will not create file.
   $ssh_dsa_pubkey_contents = '', # If left empty puppet will not create file.
@@ -120,8 +118,6 @@ class openstack_project::gerrit (
     ssl_cert_file                       => $ssl_cert_file,
     ssl_key_file                        => $ssl_key_file,
     ssl_chain_file                      => $ssl_chain_file,
-    ssl_cert_file_contents              => $ssl_cert_file_contents,
-    ssl_key_file_contents               => $ssl_key_file_contents,
     ssl_chain_file_contents             => $ssl_chain_file_contents,
     ssh_dsa_key_contents                => $ssh_dsa_key_contents,
     ssh_dsa_pubkey_contents             => $ssh_dsa_pubkey_contents,
