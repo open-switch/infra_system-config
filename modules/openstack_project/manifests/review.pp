@@ -208,6 +208,11 @@ class openstack_project::review (
     require                             => $::project_config::config_dir,
   }
 
+  gerrit::plugin { 'reviewers':
+    version => '2.13',
+    base_url => 'https://archive.openswitch.net/old/gerrit/',
+  }
+
   gerrit::plugin { 'javamelody':
     version => 'e00d5af',
   }
@@ -217,7 +222,7 @@ class openstack_project::review (
   }
 
   gerrit::plugin { 'gerrit-oauth-provider':
-    base_url => "https://archive.openswitch.net/gerrit/",
+    base_url => "https://archive.openswitch.net/old/gerrit/",
     version => '0.3',
   }
 
