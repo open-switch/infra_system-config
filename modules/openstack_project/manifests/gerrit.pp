@@ -146,6 +146,11 @@ class openstack_project::gerrit (
     httpd_maxwait                       => $httpd_maxwait,
     commentlinks                        => [
       {
+        name  => 'concourse',
+        match => 'ci\\/(.+)\\/(.+)\\/(.+)\\/(\\d+)',
+        html  => '<a href=\"https://concourse.openswitch.net/teams/$1/pipelines/$2/jobs/$3/builds/$4\">$2 #$4</a>'
+      },
+      {
         name  => 'bug',
         match => '\\b[Tg][gG]\\s*-?\\s*#?(\\d+)',
         link  => 'https://tree.taiga.io/project/openswitch/issue/$1',
