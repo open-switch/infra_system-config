@@ -194,6 +194,17 @@ class openstack_project::review (
         remoteNameStyle      => 'underscore',
        },
        {
+        name                 => 'github-tools',
+        url                  => 'git@github.com:open-switch/',
+        projects             => 'tools/*',
+        pushhead             => '+refs/heads/*:refs/heads/*',
+        pushtag              => '+refs/heads/*:refs/tags/*',
+        threads              => '3',
+        timeout              => '30',
+        mirror               => true,
+        remoteNameStyle      => 'underscore',
+       },
+       {
         name                 => 'github-opx',
         url                  => 'git@github.com:open-switch/',
         projects             => 'opx/*',
