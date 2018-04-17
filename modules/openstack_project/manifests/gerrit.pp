@@ -148,7 +148,7 @@ class openstack_project::gerrit (
       {
         name  => 'concourse',
         match => 'ci\\/(.+)\\/(.+)\\/(.+)\\/(\\d+)',
-        html  => '<a href=\"https://concourse.openswitch.net/teams/$1/pipelines/$2/jobs/$3/builds/$4\">$2 #$4</a>'
+        html  => '<a href=\"https://concourse.openswitch.net/teams/$1/pipelines/$2/jobs/$3/builds/$4\">$2 $3 #$4</a>'
       },
       {
         name  => 'bug',
